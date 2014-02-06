@@ -34,9 +34,13 @@ way, webdesigners will find their way to your project, but coders won't. This
 can also be used for specific tasks within complex projects like filesystems or
 content management systems, e.g. implementing a specific feature or fixing a
 bigger bug.
+All projects can contain subprojects, creating gigantic trees of projects for
+a fine granular control of tasks. On the technical side of things, subprojects
+have a value for 'parent', which references the parent object (which might
+reference another parent, and so on).
 """
 
-class MetaProject(models.Model):
+class Project(models.Model):
     name = models.CharField(max_length=50)
     owners = models.ManyToManyField(Worker)
     desc = models.TextField(blank=True)
@@ -55,23 +59,15 @@ class MetaProject(models.Model):
         (1, 'Active'),
     )
     status = models.IntegerField(choices=STATUS_CHOICES)
-
-    class Meta:
-        abstract = True
-
-    def __str__(self):
-        return self.name
-
-class Project(MetaProject):
-    pass
-
-class SubProject(MetaProject):
-    parent = models.ForeignKey(Project)
+    parent = models.ForeignKey('self', blank=True, null=True)
     SEEKING_CHOICES = (
         (0, 'Not seeking for help'),
         (1, 'Seeking for help'),
     )
     seeking = models.IntegerField(choices=SEEKING_CHOICES)
+
+    def __str__(self):
+        return self.name
 
 class Link(models.Model):
     name = models.CharField(max_length=50)
@@ -85,9 +81,6 @@ class WorkerLink(Link):
 
 class ProjectLink(Link):
     project = models.ForeignKey(Project)
-
-class SubProjectLink(Link):
-    subproject = models.ForeignKey(SubProject)
 
 class Credit(models.Model):
     worker = models.ForeignKey(Worker)
