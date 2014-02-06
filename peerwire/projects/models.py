@@ -24,7 +24,19 @@ class Worker(AbstractUser):
     def __str__(self):
         return self.get_username() + self.get_full_name()
 
-class Project(models.Model):
+"""
+About the project system:
+There are projects and subprojects. Projects contain subprojects for e.g.
+coding, localization, design, etc. for easy distinction. Let's say, you want to
+make a website. The backend is done, but you still need webdesigners. Make a
+subproject 'Design' and a subproject 'Code', and set Design to seeking. This
+way, webdesigners will find their way to your project, but coders won't. This
+can also be used for specific tasks within complex projects like filesystems or
+content management systems, e.g. implementing a specific feature or fixing a
+bigger bug.
+"""
+
+class MetaProject(models.Model):
     name = models.CharField(max_length=50)
     owners = models.ManyToManyField(Worker)
     desc = models.TextField(blank=True)
@@ -44,8 +56,22 @@ class Project(models.Model):
     )
     status = models.IntegerField(choices=STATUS_CHOICES)
 
+    class Meta:
+        abstract = True
+
     def __str__(self):
         return self.name
+
+class Project(MetaProject):
+    pass
+
+class SubProject(MetaProject):
+    parent = models.ForeignKey(Project)
+    SEEKING_CHOICES = (
+        (0, 'Not seeking for help'),
+        (1, 'Seeking for help'),
+    )
+    seeking = models.IntegerField(choices=SEEKING_CHOICES)
 
 class Link(models.Model):
     name = models.CharField(max_length=50)
@@ -59,6 +85,9 @@ class WorkerLink(Link):
 
 class ProjectLink(Link):
     project = models.ForeignKey(Project)
+
+class SubProjectLink(Link):
+    subproject = models.ForeignKey(SubProject)
 
 class Credit(models.Model):
     worker = models.ForeignKey(Worker)
