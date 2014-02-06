@@ -20,7 +20,6 @@ class Worker(AbstractUser):
     desc = models.TextField(blank=True)
     langs = models.ManyToManyField(Lang, blank=True)
     skills = models.ManyToManyField(Skill, blank=True)
-    # TODO: credits/ack
 
     def __str__(self):
         return self.get_username() + self.get_full_name()
@@ -51,4 +50,9 @@ class Project(models.Model):
 
     def __str__(self):
         return self.name
+
+class Credit(models.Model):
+    worker = models.ForeignKey(Worker)
+    project = models.ForeignKey(Project)
+    ack = models.IntegerField()
 
