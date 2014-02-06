@@ -42,8 +42,11 @@ reference another parent, and so on).
 
 class Project(models.Model):
     name = models.CharField(max_length=50)
-    owners = models.ManyToManyField(Worker)
+    owners = models.ManyToManyField(Worker, related_name='owners')
     desc = models.TextField(blank=True)
+    workers = models.ManyToManyField(
+        Worker, related_name='workers', blank=True
+        )
     langs = models.ManyToManyField(Lang, blank=True)
     skills = models.ManyToManyField(Skill, blank=True)
     LEVEL_CHOICES = (
