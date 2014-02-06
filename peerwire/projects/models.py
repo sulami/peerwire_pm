@@ -44,12 +44,21 @@ class Project(models.Model):
     )
     status = models.IntegerField(choices=STATUS_CHOICES)
 
-    class Link(models.Model):
-        name = models.CharField(max_length=50)
-        url = models.URLField(max_length=200)
-
     def __str__(self):
         return self.name
+
+class Link(models.Model):
+    name = models.CharField(max_length=50)
+    url = models.URLField(max_length=200)
+
+    class Meta:
+        abstract = True
+
+class WorkerLink(Link):
+    worker = ForeignKey(Worker)
+
+class ProjectLink(Link):
+    project = ForeignKey(Project)
 
 class Credit(models.Model):
     worker = models.ForeignKey(Worker)
