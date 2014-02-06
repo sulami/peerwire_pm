@@ -4,13 +4,13 @@ from django.contrib.auth.models import AbstractUser
 class Lang(models.Model):
     name = models.CharField(max_length=30)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 class Skill(models.Model):
     name = models.CharField(max_length=50)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 class Worker(AbstractUser):
@@ -21,7 +21,7 @@ class Worker(AbstractUser):
     langs = models.ManyToManyField(Lang, blank=True)
     skills = models.ManyToManyField(Skill, blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.get_username() + self.get_full_name()
 
 """
@@ -69,7 +69,7 @@ class Project(models.Model):
     )
     seeking = models.IntegerField(choices=SEEKING_CHOICES)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 class Link(models.Model):
