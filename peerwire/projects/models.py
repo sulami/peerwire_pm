@@ -55,10 +55,10 @@ class Link(models.Model):
         abstract = True
 
 class WorkerLink(Link):
-    worker = ForeignKey(Worker)
+    worker = models.ForeignKey(Worker)
 
 class ProjectLink(Link):
-    project = ForeignKey(Project)
+    project = models.ForeignKey(Project)
 
 class Credit(models.Model):
     worker = models.ForeignKey(Worker)
