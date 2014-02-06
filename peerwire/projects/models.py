@@ -54,5 +54,5 @@ class Project(models.Model):
 class Credit(models.Model):
     worker = models.ForeignKey(Worker)
     project = models.ForeignKey(Project)
-    ack = models.IntegerField()
+    ack = models.IntegerField(default=0)
 
