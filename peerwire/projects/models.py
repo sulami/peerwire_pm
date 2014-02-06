@@ -25,7 +25,7 @@ class Worker(AbstractUser):
         return self.get_username() + self.get_full_name()
 
 class Project(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=50)
     owners = models.ManyToManyField(Worker)
     desc = models.TextField(blank=True)
     langs = models.ManyToManyField(Lang, blank=True)
