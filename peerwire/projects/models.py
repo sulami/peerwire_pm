@@ -32,11 +32,11 @@ class Project(models.Model):
     langs = models.ManyToManyField(Lang, blank=True)
     skills = models.ManyToManyField(Skill, blank=True)
     LEVEL_CHOICES = (
-        (0, 'Beginners'),
+        (0, 'Beginner'),
         (1, 'Easy'),
         (2, 'Medium'),
         (3, 'Advanced'),
-        (4, 'Experts'),
+        (4, 'Expert'),
     )
     level = models.IntegerField(choices=LEVEL_CHOICES)
     STATUS_CHOICES = (
