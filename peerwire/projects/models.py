@@ -1,6 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
+# Global difficulty levels
+LEVEL_CHOICES = (
+    (0, 'Beginner'),
+    (1, 'Easy'),
+    (2, 'Medium'),
+    (3, 'Advanced'),
+    (4, 'Expert'),
+)
+
 class Lang(models.Model):
     name = models.CharField(max_length=30)
 
@@ -18,8 +27,6 @@ class Worker(AbstractUser):
     # class AbstractUser
     avatar = models.ImageField(upload_to='avatars', blank=True)
     desc = models.TextField(blank=True)
-    langs = models.ManyToManyField(Lang, blank=True)
-    skills = models.ManyToManyField(Skill, blank=True)
 
     def __unicode__(self):
         return self.get_username() + self.get_full_name()
@@ -49,13 +56,6 @@ class Project(models.Model):
         )
     langs = models.ManyToManyField(Lang, blank=True)
     skills = models.ManyToManyField(Skill, blank=True)
-    LEVEL_CHOICES = (
-        (0, 'Beginner'),
-        (1, 'Easy'),
-        (2, 'Medium'),
-        (3, 'Advanced'),
-        (4, 'Expert'),
-    )
     level = models.IntegerField(choices=LEVEL_CHOICES)
     STATUS_CHOICES = (
         (0, 'Inactive'),
@@ -72,17 +72,27 @@ class Project(models.Model):
     def __unicode__(self):
         return self.name
 
-class Link(models.Model):
+class WorkerSkill(models.Model):
+    skill = models.ForeignKey(Skill)
+    worker = models.ForeignKey(Worker)
+    level = models.IntegerField(choices=LEVEL_CHOICES)
+
+class WorkerLang(models.Model):
+    lang = models.ForeignKey(Lang)
+    worker = models.ForeignKey(Worker)
+    level = models.IntegerField(choices=LEVEL_CHOICES)
+
+class MetaLink(models.Model):
     name = models.CharField(max_length=50)
     url = models.URLField(max_length=200)
 
     class Meta:
         abstract = True
 
-class WorkerLink(Link):
+class WorkerLink(MetaLink):
     worker = models.ForeignKey(Worker)
 
-class ProjectLink(Link):
+class ProjectLink(MetaLink):
     project = models.ForeignKey(Project)
 
 class Credit(models.Model):
