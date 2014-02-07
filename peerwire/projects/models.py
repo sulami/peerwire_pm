@@ -23,29 +23,11 @@ class Skill(models.Model):
         return self.name
 
 class Worker(AbstractUser):
-    # Full name, email, password, time registered and last login are in meta
-    # class AbstractUser
     avatar = models.ImageField(upload_to='avatars', blank=True)
     desc = models.TextField(blank=True)
 
     def __unicode__(self):
-        return self.get_username() + self.get_full_name()
-
-"""
-About the project system:
-There are projects and subprojects. Projects contain subprojects for e.g.
-coding, localization, design, etc. for easy distinction. Let's say, you want to
-make a website. The backend is done, but you still need webdesigners. Make a
-subproject 'Design' and a subproject 'Code', and set Design to seeking. This
-way, webdesigners will find their way to your project, but coders won't. This
-can also be used for specific tasks within complex projects like filesystems or
-content management systems, e.g. implementing a specific feature or fixing a
-bigger bug.
-All projects can contain subprojects, creating gigantic trees of projects for
-a fine granular control of tasks. On the technical side of things, subprojects
-have a value for 'parent', which references the parent object (which might
-reference another parent, and so on).
-"""
+        return self.get_username() + ' - ' + self.get_full_name()
 
 class Project(models.Model):
     name = models.CharField(max_length=50)
