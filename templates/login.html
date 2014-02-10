@@ -1,0 +1,20 @@
+{% extends 'skeleton.html' %}
+{% block title %}{% endblock %}
+
+{% block content %}
+{% if not user.is_authenticated %}
+    <h1>Login</h1>
+    {% if form.errors %}
+        <div class="failure">Login failed</div>
+        <div class="divider-line">&nbsp;</div>
+    {% endif %}
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {{ form.username }}
+        {{ form.password }}
+        <input type="submit" value="login" />
+        <input type="hidden" name="next" value="{{ next }}" />
+        <input type="hidden" name="redirect" value="/" />
+    </form>
+{% endif %}
+{% endblock %}
