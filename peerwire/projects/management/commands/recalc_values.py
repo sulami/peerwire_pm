@@ -12,6 +12,7 @@ class Command(BaseCommand):
                 p.save()
             # Inactive projects
             else:
-                p.value = 0
-                p.save()
+                if p.value != 0:
+                    p.value = 0
+                    p.save()
 
