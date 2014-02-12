@@ -54,7 +54,13 @@ class Worker(AbstractUser):
     desc = models.TextField(blank=True)
 
     def __unicode__(self):
-        return self.get_username() + ' - ' + self.get_full_name()
+        if self.first_name:
+            if self.last_name:
+                return self.username + ' - ' + self.get_full_name()
+            else:
+                return self.username + ' - ' + self.first_name
+        else:
+            return self.username
 
 class Project(models.Model):
     name = models.CharField(max_length=50)
