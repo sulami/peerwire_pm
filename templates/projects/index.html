@@ -4,5 +4,9 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-Index page, currently static
+Index page, currently static<br>
+<h2>Trending Projects</h2>
+{% for project in trending_projects %}
+    <a href="{% url 'projects:projectpage' project.id %}">{{ project }}</a><br>
+{% endfor %}
 {% endblock %}

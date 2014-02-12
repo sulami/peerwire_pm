@@ -10,6 +10,15 @@ LEVEL_CHOICES = (
     (4, 'Expert'),
 )
 
+# Get the full project path in the project tree
+def get_project_path(p, b=''):
+    b = p.name + b
+    if p.parent:
+        b = '/' + b
+        return get_project_path(p.parent, b)
+    else:
+        return b
+
 class Lang(models.Model):
     name = models.CharField(max_length=30)
 
@@ -50,9 +59,10 @@ class Project(models.Model):
         (1, 'Seeking for help'),
     )
     seeking = models.IntegerField(choices=SEEKING_CHOICES)
+    value = models.IntegerField(default=0)
 
     def __unicode__(self):
-        return self.name
+        return get_project_path(self)
 
 class WorkerSkill(models.Model):
     skill = models.ForeignKey(Skill)
