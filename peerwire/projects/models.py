@@ -19,6 +19,18 @@ def get_project_path(p, b=''):
     else:
         return b
 
+# Get the project tree with the current project as root, returns a dict with
+# projects and level difference from root
+def get_project_tree(p, tree={}, i=0):
+    if p.project_set:
+        tree[p] = i
+        i += 1
+        for sp in p.project_set.all():
+            get_project_tree(sp, tree, i)
+    else:
+        tree[p] = i
+    return tree
+
 class Lang(models.Model):
     name = models.CharField(max_length=30)
 
@@ -60,6 +72,9 @@ class Project(models.Model):
     )
     seeking = models.IntegerField(choices=SEEKING_CHOICES)
     value = models.IntegerField(default=0)
+
+    def project_tree(self):
+        return get_project_tree(self)
 
     def __unicode__(self):
         return get_project_path(self)
