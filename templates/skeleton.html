@@ -6,6 +6,7 @@
     <title>{% block title %}{% endblock %}Peerwire</title>
 </head>
 <body>
+    <a href="{% url 'projects:index' %}">Home</a>
     {% if user.is_authenticated %}
         Welcome back,
         {% if user.first_name %}

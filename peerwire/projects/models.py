@@ -31,6 +31,12 @@ def get_project_tree(p, tree, i=0):
         tree[p] = i
     return tree
 
+def get_project_root(p, tree):
+    if p.parent:
+        tree.insert(0, p.parent)
+        get_project_root(p.parent, tree)
+    return tree
+
 class Lang(models.Model):
     name = models.CharField(max_length=30)
 
@@ -75,6 +81,9 @@ class Project(models.Model):
 
     def project_tree(self):
         return get_project_tree(self, {})
+
+    def project_root(self):
+        return get_project_root(self, [])
 
     def __unicode__(self):
         return get_project_path(self)
