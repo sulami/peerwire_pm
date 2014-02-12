@@ -13,6 +13,9 @@ def index(request):
 
 def projectpage(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
+    if project.status == 1:
+        project.value += 1
+        project.save()
     context = {'project': project}
     return render(request, 'projects/projectpage.html', context)
 
