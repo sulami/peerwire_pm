@@ -22,14 +22,26 @@
             <a href="{{ l.url }}">{{ l.name }}</a><br>
         {% endfor %}
     {% endif %}
+    {% if profile.workerlang_set %}
+        <h2>Languages:</h2>
+        {% for l in profile.workerlang_set.all %}
+            {{ l }} ({{ l.level }})<br>
+        {% endfor %}
+    {% endif %}
+    {% if profile.workerskill_set %}
+        <h2>Skills:</h2>
+        {% for l in profile.workerskill_set.all %}
+            {{ l }} ({{ l.level }})<br>
+        {% endfor %}
+    {% endif %}
     {% if profile.projects_owned %}
-        <h2>Projects owned ({{ profile.projects_owned.count }})</h2>
+        <h2>Projects owned ({{ profile.projects_owned.count }}):</h2>
         {% for p in profile.projects_owned.all %}
             {{ p }}<br>
         {% endfor %}
     {% endif %}
     {% if profile.projects_workingon %}
-        <h2>Projects working on ({{ profile.projects_workingon.count }})</h2>
+        <h2>Projects working on ({{ profile.projects_workingon.count }}):</h2>
         {% for p in profile.projects_workingon.all %}
             {{ p }}<br>
         {% endfor %}

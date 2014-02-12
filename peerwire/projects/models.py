@@ -99,10 +99,16 @@ class WorkerSkill(models.Model):
     worker = models.ForeignKey(Worker)
     level = models.IntegerField(choices=LEVEL_CHOICES)
 
+    def __unicode__(self):
+        return self.skill.name
+
 class WorkerLang(models.Model):
     lang = models.ForeignKey(Lang)
     worker = models.ForeignKey(Worker)
     level = models.IntegerField(choices=LEVEL_CHOICES)
+
+    def __unicode__(self):
+        return self.lang.name
 
 class MetaLink(models.Model):
     name = models.CharField(max_length=50)
