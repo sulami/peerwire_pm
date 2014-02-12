@@ -7,7 +7,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         for p in Project.objects.all():
             # Active projects
-            if p.status = 1:
+            if p.status == 1:
                 p.value *= .9
                 p.save()
             # Inactive projects
