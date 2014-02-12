@@ -21,7 +21,7 @@ def get_project_path(p, b=''):
 
 # Get the project tree with the current project as root, returns a dict with
 # projects and level difference from root
-def get_project_tree(p, tree={}, i=0):
+def get_project_tree(p, tree, i=0):
     if p.project_set:
         tree[p] = i
         i += 1
@@ -74,7 +74,7 @@ class Project(models.Model):
     value = models.IntegerField(default=0)
 
     def project_tree(self):
-        return get_project_tree(self)
+        return get_project_tree(self, {})
 
     def __unicode__(self):
         return get_project_path(self)

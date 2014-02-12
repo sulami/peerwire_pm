@@ -7,8 +7,8 @@
 <h1>{{ project }}</h1>
 {{ project.desc }}
 <h2>Project Tree</h2>
-{% for sp, level in project.project_tree.items %}
-    {% for i in level|get_range %}
+{% for sp, indent in project.project_tree.items %}
+    {% for i in indent|get_range %}
         &nbsp;
     {% endfor %}
     {{ sp.name }}<br>
