@@ -128,6 +128,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'projects',
+    'registration',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
@@ -160,3 +161,6 @@ LOGGING = {
         },
     }
 }
+
+### Django-registration
+ACCOUNT_ACTIVATION_DAYS = 7
