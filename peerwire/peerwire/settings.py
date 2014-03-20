@@ -21,7 +21,7 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = 'projects.Worker'
+AUTH_USER_MODEL = 'projects.User'
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts

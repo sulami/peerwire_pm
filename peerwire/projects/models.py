@@ -49,7 +49,7 @@ class Skill(models.Model):
     def __unicode__(self):
         return self.name
 
-class Worker(AbstractUser):
+class User(AbstractUser):
     avatar = models.ImageField(upload_to='avatars', blank=True)
     desc = models.TextField(blank=True)
 
@@ -64,10 +64,10 @@ class Worker(AbstractUser):
 
 class Project(models.Model):
     name = models.CharField(max_length=50)
-    owners = models.ManyToManyField(Worker, related_name='projects_owned')
+    owners = models.ManyToManyField(User, related_name='projects_owned')
     desc = models.TextField(blank=True)
-    workers = models.ManyToManyField(
-        Worker, related_name='projects_workingon', blank=True
+    users = models.ManyToManyField(
+        User, related_name='projects_workingon', blank=True
         )
     langs = models.ManyToManyField(Lang, blank=True)
     skills = models.ManyToManyField(Skill, blank=True)
@@ -94,17 +94,17 @@ class Project(models.Model):
     def __unicode__(self):
         return get_project_path(self)
 
-class WorkerSkill(models.Model):
+class UserSkill(models.Model):
     skill = models.ForeignKey(Skill)
-    worker = models.ForeignKey(Worker)
+    user = models.ForeignKey(User)
     level = models.IntegerField(choices=LEVEL_CHOICES)
 
     def __unicode__(self):
         return self.skill.name
 
-class WorkerLang(models.Model):
+class UserLang(models.Model):
     lang = models.ForeignKey(Lang)
-    worker = models.ForeignKey(Worker)
+    user = models.ForeignKey(User)
     level = models.IntegerField(choices=LEVEL_CHOICES)
 
     def __unicode__(self):
@@ -117,14 +117,14 @@ class MetaLink(models.Model):
     class Meta:
         abstract = True
 
-class WorkerLink(MetaLink):
-    worker = models.ForeignKey(Worker)
+class UserLink(MetaLink):
+    user = models.ForeignKey(User)
 
 class ProjectLink(MetaLink):
     project = models.ForeignKey(Project)
 
 class Credit(models.Model):
-    worker = models.ForeignKey(Worker)
+    user = models.ForeignKey(User)
     project = models.ForeignKey(Project)
     ack = models.IntegerField(default=0)
 
