@@ -12,7 +12,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '/var/run/media/sulami/Data/Peerwire/db.db',                      # Or path to database file if using sqlite3.
+        'NAME': '/home/sulami/build/peerwire_pm/db.db',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -52,7 +52,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = '/var/run/media/sulami/Data/Peerwire/media'
+MEDIA_ROOT = '/home/sulami/build/peerwire_pm/media'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -63,7 +63,7 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = '/var/run/media/sulami/Data/Peerwire/static'
+STATIC_ROOT = '/home/sulami/Desktop/peerwire_pm/static'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -113,7 +113,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/var/run/media/sulami/Data/Peerwire/templates',
+    '/home/sulami/build/peerwire_pm/templates',
 )
 
 INSTALLED_APPS = (
