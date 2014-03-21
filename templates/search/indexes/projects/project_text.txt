@@ -1,0 +1,8 @@
+{{ object.name }}
+{{ object.desc }}
+{% for o in object.langs.items %}
+    {{ o.name }}
+{% endfor %}
+{% for o in object.skills.items %}
+    {{ o.name }}
+{% endfor %}
