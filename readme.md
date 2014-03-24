@@ -12,7 +12,7 @@ Software Setup
 --------------
 
   * Nginx
-  * PostgreSQL
+  * MySQL /w InnoDB
   * Elasticsearch (tested on 1.0.1)
   * Python (>= 2.7)
   * Python-pyelasticsearch (tested on 0.6.1)
