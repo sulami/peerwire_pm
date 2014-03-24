@@ -20,7 +20,7 @@
             </div>
             <div id="account">
                 {% if user.is_authenticated %}
-                    Welcome back,
+                    welcome back,
                     {% if user.first_name %}
                         {{ user.first_name }}
                     {% else %}
@@ -28,15 +28,18 @@
                     {% endif %}
                     <a href="{% url 'auth_logout' %}">logout</a>
                 {% else %}
-                    Welcome, Guest
+                    welcome, guest
                     <a href="{% url 'auth_login' %}">login</a>
                 {% endif %}
             </div>
         </div>
         <div id="content">
             {% block content %}
-        This should not be visible. Content-block is missing.
-    {% endblock %}
+                This should not be visible. Content-block is missing.
+            {% endblock %}
+        </div>
+        <div id="footer">
+            <p>&copy; 2014 peerwire | <a href="">contact</a></p>
         </div>
     </div>
 </body>

@@ -4,7 +4,17 @@
 {% block title %}{% endblock %}
 
 {% block content %}
-<div class="subcontainer" style="float: left; width: 250px">
+<div class="subcontainer sc_small">
+    <div class="subcontainer_h">
+        news
+    </div>
+    <div class="subcontainer_c">
+        {% for project in trending_projects %}
+            <a href="{% url 'projects:projectpage' project.id %}">{{ project }}</a><br>
+        {% endfor %}
+    </div>
+</div>
+<div class="subcontainer sc_large">
     <div class="subcontainer_h">
         trending projects
     </div>

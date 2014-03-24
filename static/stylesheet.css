@@ -6,9 +6,8 @@ div#container {
     background-color: rgb(255,255,255);
     border: 1px rgb(200,200,200) solid;
     /* box-shadow: 0px 2px 6px rgba(100, 100, 100, 0.3); */
-    float: left;
     margin: auto;
-    width: 100%;
+    width: 960px;
 }
 a {
     color: rgb(0,0,0);
@@ -45,21 +44,39 @@ div.menu_button {
     padding: 3px;
 }
 div#content {
-    float: left;
     width: 100%;
 }
 div.subcontainer {
-    background-color: rgb(230,230,230);
+    background-color: rgb(240,240,240);
+    display: inline-block;
     margin: 5px;
+    vertical-align: top;
 }
+div.sc_small { width: 250px }
+div.sc_large { width: 685px }
 div.subcontainer_h {
     background-color: rgb(50,50,50);
-    border-bottom: 1px rgb(251,179,0) solid;
-    color: white;
+    border-bottom: 2px rgb(251,179,0) solid;
+    color: rgb(230,230,230);
     font-size: 18px;
     padding: 3px;
 }
 div.subcontainer_c {
     padding: 3px;
+}
+div.col_gray_l { background-color: rgb(240,240,240) }
+div.col_gray_d { background-color: rgb(230,230,230) }
+div#footer {
+    background-color: rgb(50, 50, 50);
+    border-top: 2px rgb(251,179,0) solid;
+    color: rgb(230,230,230);
+    margin-top: 10px;
+    width: 100%;
+}
+div#footer p {
+    font-size: 12px;
+    margin: 0px;
+    padding: 5px;
+    text-align: center;
 }
 
