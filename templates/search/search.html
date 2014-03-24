@@ -14,6 +14,32 @@
         </table>
 
         {% if query %}
+
+            {# faceting #}
+            <h3>Specify search</h3>
+            {% if facets.fields.status %}
+                Status:
+                {% for status in facets.fields.status %}
+                    <a href="{{ request.get_full_path }}&amp;selected_facets=status_exact:{{ status.0|urlencode }}">{{ status.0 }}</a> ({{ status.1 }})
+                {% endfor %}
+                <br />
+            {% endif %}
+            {% if facets.fields.seeking %}
+                Seeking:
+                {% for seeking in facets.fields.seeking %}
+                    <a href="{{ request.get_full_path }}&amp;selected_facets=seeking_exact:{{ seeking.0|urlencode }}">{{ seeking.0 }}</a> ({{ seeking.1 }})
+                {% endfor %}
+                <br />
+            {% endif %}
+            {% if facets.fields.level %}
+                Level:
+                {% for level in facets.fields.level %}
+                    <a href="{{ request.get_full_path }}&amp;selected_facets=level_exact:{{ level.0|urlencode }}">{{ level.0 }}</a> ({{ level.1 }})
+                {% endfor %}
+                <br />
+            {% endif %}
+            {# /faceting #}
+
             <h3>Results</h3>
 
             {% for result in page.object_list %}

@@ -1,20 +1,21 @@
 from django.conf.urls import patterns, include, url
 
-# Uncomment the next two lines to enable the admin:
+from haystack.forms import FacetedSearchForm
+from haystack.query import SearchQuerySet
+from haystack.views import FacetedSearchView
+
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'peerwire.views.home', name='home'),
-    # url(r'^peerwire/', include('peerwire.foo.urls')),
+sqs = SearchQuerySet().facet('status').facet('seeking').facet('level')
 
+urlpatterns = patterns('',
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^acc/', include('registration.backends.default.urls')),
+    url(r'^s/$', FacetedSearchView(form_class=FacetedSearchForm, searchqueryset=sqs), name='haystack_search'),
     url(r'^s/', include('haystack.urls')),
     url(r'^', include('projects.urls', namespace='projects')),
 )
