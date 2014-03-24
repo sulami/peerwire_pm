@@ -44,7 +44,7 @@
 
             {% for result in page.object_list %}
                 <p>
-                    <a href="{% url 'projects:projectpage' result.object.pk %}">{{ result.object.name }}</a>
+                    <a href="{% url 'projects:projectpage' result.object.pk %}">{{ result.object }}</a>
                 </p>
             {% empty %}
                 <p>No results found.</p>
