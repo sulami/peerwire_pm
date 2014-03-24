@@ -4,8 +4,8 @@ Peerwire Project Management Platform
 TODO
 ----
 
-  * search by all kinds of stuff (elasticsearch)
   * account management pages
+  * messaging
   * webdesign
 
 Software Setup
@@ -27,6 +27,7 @@ URL overview
 /       - index page
 /u/1/   - user page 1
 /p/1/   - project page 1
+/s/     - haystack search stack
 
 [//]: # vim:filetype=markdown
 
