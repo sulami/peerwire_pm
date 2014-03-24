@@ -1,27 +1,43 @@
 {% load staticfiles %}
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
-    <!-- TODO: stylesheets -->
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <title>{% block title %}{% endblock %}Peerwire</title>
+    <link rel="stylesheet" href="{% static 'stylesheet.css' %}" type="text/css" media="screen" charset="utf-8">
 </head>
 <body>
-    <a href="{% url 'projects:index' %}">Home</a>
-    {% if user.is_authenticated %}
-        Welcome back,
-        {% if user.first_name %}
-            {{ user.first_name }}
-        {% else %}
-            {{ user.username }}
-        {% endif %}
-        <a href="{% url 'auth_logout' %}">Logout</a>
-    {% else %}
-        Welcome, Guest
-        <a href="{% url 'auth_login' %}">Login</a>
-    {% endif %}
-    <br>
-    {% block content %}
+    <div id="container">
+        <div id="header" style="background-image: url({% static 'composite_full.svg' %})">
+            <div id="menu">
+                <menu id="main_menu" type="toolbar">
+                {% if user.is_authenticated %}
+                    <li><div class="menu_button"><a href="{% url 'projects:profilepage' user.pk %}">my profile</a></div></li>
+                {% endif %}
+                    <li><div class="menu_button"><a href="{% url 'haystack_search' %}">search</a></div></li>
+                    <li><div class="menu_button"><a href="{% url 'projects:index' %}">home</a></div></li>
+                </menu>
+            </div>
+            <div id="account">
+                {% if user.is_authenticated %}
+                    Welcome back,
+                    {% if user.first_name %}
+                        {{ user.first_name }}
+                    {% else %}
+                        {{ user.username }}
+                    {% endif %}
+                    <a href="{% url 'auth_logout' %}">logout</a>
+                {% else %}
+                    Welcome, Guest
+                    <a href="{% url 'auth_login' %}">login</a>
+                {% endif %}
+            </div>
+        </div>
+        <div id="content">
+            {% block content %}
         This should not be visible. Content-block is missing.
     {% endblock %}
+        </div>
+    </div>
 </body>
 </html>
