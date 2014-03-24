@@ -54,6 +54,7 @@ div.subcontainer {
 }
 div.sc_small { width: 250px }
 div.sc_large { width: 685px }
+div.sc_full { width: 950px }
 div.subcontainer_h {
     background-color: rgb(50,50,50);
     border-bottom: 2px rgb(251,179,0) solid;
