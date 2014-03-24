@@ -17,20 +17,20 @@
     {% if profile.avatar %}
         <img src="" />
     {% endif %}
-    {% if profile.workerlink_set %}
-        {% for l in profile.workerlink_set.all %}
+    {% if profile.userlink %}
+        {% for l in profile.userlink.all %}
             <a href="{{ l.url }}">{{ l.name }}</a><br>
         {% endfor %}
     {% endif %}
-    {% if profile.workerlang_set %}
+    {% if profile.userlang_set %}
         <h2>Languages:</h2>
-        {% for l in profile.workerlang_set.all %}
+        {% for l in profile.userlang_set.all %}
             {{ l }} ({{ l.level }})<br>
         {% endfor %}
     {% endif %}
-    {% if profile.workerskill_set %}
+    {% if profile.userskill_set %}
         <h2>Skills:</h2>
-        {% for l in profile.workerskill_set.all %}
+        {% for l in profile.userskill_set.all %}
             {{ l }} ({{ l.level }})<br>
         {% endfor %}
     {% endif %}

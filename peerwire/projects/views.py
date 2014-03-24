@@ -20,6 +20,6 @@ def projectpage(request, project_id):
     return render(request, 'projects/projectpage.html', context)
 
 def profilepage(request, profile_id):
-    profile = get_object_or_404(Worker, pk=profile_id)
+    profile = get_object_or_404(User, pk=profile_id)
     context = {'profile': profile}
     return render(request, 'projects/profilepage.html', context)
