@@ -11,7 +11,7 @@
         {% endfor %}
         {{ project.name }}
     </div>
-    <div class="subcontainer_c">
+    <div class="subcontainer_c subcontainer_small">
         {% for sp, indent in project.project_tree.items %}
             <div class="{% cycle 'col_gray_l' 'col_gray_d' %}">
             {% for i in indent|get_range %}

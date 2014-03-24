@@ -11,13 +11,15 @@
         <div id="header" style="background-image: url({% static 'composite_full.svg' %})">
             <div id="menu">
                 <menu id="main_menu" type="toolbar">
+                    <li><div class="menu_button"><a href="{% url 'projects:index' %}">home</a></div></li>
+                    <li><div class="menu_button"><a href="{% url 'haystack_search' %}">search</a></div></li>
                 {% if user.is_authenticated %}
                     <li><div class="menu_button"><a href="{% url 'projects:profilepage' user.pk %}">my profile</a></div></li>
+                    <li><div class="menu_button"><a href="{% url 'auth_logout' %}">logout</a></div></li>
+                {% else %}
+                    <li><div class="menu_button"><a href="{% url 'auth_login' %}">login</a></div></li>
                 {% endif %}
-                    <li><div class="menu_button"><a href="{% url 'haystack_search' %}">search</a></div></li>
-                    <li><div class="menu_button"><a href="{% url 'projects:index' %}">home</a></div></li>
                 </menu>
-            </div>
             <div id="account">
                 {% if user.is_authenticated %}
                     welcome back,
@@ -26,13 +28,18 @@
                     {% else %}
                         {{ user.username }}
                     {% endif %}
-                    <a href="{% url 'auth_logout' %}">logout</a>
                 {% else %}
                     welcome, guest
-                    <a href="{% url 'auth_login' %}">login</a>
                 {% endif %}
             </div>
+            </div>
         </div>
+        <span style="font-size: 12px">
+        <span style="font-weight: bold; margin-left: 5px">news</span> |
+            +++ <a href="">News...</a>
+            +++ <a href="">Those are more news</a>
+            +++ <a href="">These are actually good news&#0153;</a>
+        </span>
         <div id="content">
             {% block content %}
                 This should not be visible. Content-block is missing.
