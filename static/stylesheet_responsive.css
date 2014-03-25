@@ -15,8 +15,12 @@ div.sc_full {
     -webkit-transition: all .5s;
 }
 @media screen and (max-width: 599px) {
-    body { margin: 0px }
+    body { background-color: rgb(255,255,255); margin: 0px }
     div#container { border: none; width: 100% }
+    div#header {
+        background-image: url('/static/composite_full_mobile.svg');
+        background-position: top center;
+    }
     menu#main_menu { margin-top: 60px; text-align: center }
     menu#main_menu li { margin-left: 0px }
     div#account { text-align: center }
@@ -27,8 +31,12 @@ div.sc_full {
     div.sc_full { width: 100% }
 }
 @media screen and (min-width: 600px) {
-    body { margin: 10px }
+    body { background-color: rgb(230,230,230); margin: 10px }
     div#container { border: 1px rgb(200,200,200) solid; width: 100% }
+    div#header {
+        background-image: url('/static/composite_full.svg');
+        background-position: top left;
+    }
     menu#main_menu { margin-top: 17px; text-align: right }
     menu#main_menu li { margin-left: 15px }
     div#account { text-align: right }
