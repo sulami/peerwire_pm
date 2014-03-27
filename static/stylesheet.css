@@ -66,9 +66,9 @@ div.subcontainer_h {
 div.subcontainer_c {
     padding: 3px;
 }
-div.subcontainer_small { padding: 0px !important }
-div.col_gray_l { background-color: rgb(240,240,240); padding: 3px }
-div.col_gray_d { background-color: rgb(230,230,230); padding: 3px }
+div.mono {
+    font-family: Inconsolata, monospace;
+}
 div#footer {
     background-color: rgb(50, 50, 50);
     border-top: 2px rgb(251,179,0) solid;

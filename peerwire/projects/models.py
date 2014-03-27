@@ -1,3 +1,4 @@
+# coding: utf-8
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
@@ -19,16 +20,28 @@ def get_project_path(p, b=''):
     else:
         return b
 
-# Get the project tree with the current project as root, returns a dict with
-# projects and level difference from root
-def get_project_tree(p, tree, i=0):
+# This thing is so ugly. It makes a list of lists, containing a projects object
+# and some HTML-code for the tree-style display, using unicode and an unhealthy
+# amount of values passed in loops. But it seems to match the output of UNIX
+# tree in every situation.
+def get_project_tree(p, padding, tree, c, initial):
     if p.project_set:
-        tree[p] = i
-        i += 1
-        for sp in p.project_set.all():
-            get_project_tree(sp, tree, i)
+        tree.append([ [p, padding] ])
+        if p.parent and initial > 1:
+            if c != p.parent.project_set.all().count():
+                padding = padding[:-1] + u'│'
+            else:
+                padding = padding[:-1] + '&nbsp;'
+        count = 0
+        for sub in p.project_set.all().order_by('-value'):
+            count += 1
+            if count == p.project_set.all().count():
+                get_project_tree(sub, padding + u'└', tree, count, initial + 1)
+            else:
+                get_project_tree(sub, padding + u'├', tree, count, initial + 1)
     else:
-        tree[p] = i
+        tree.append([ [p, padding] ])
+        return tree
     return tree
 
 def get_project_root(p, tree):
@@ -86,7 +99,7 @@ class Project(models.Model):
     value = models.IntegerField(default=0)
 
     def project_tree(self):
-        return get_project_tree(self, {})
+        return get_project_tree(self, '', [], 0, 1)
 
     def project_root(self):
         return get_project_root(self, [])

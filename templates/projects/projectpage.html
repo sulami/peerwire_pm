@@ -4,30 +4,30 @@
 {% block title %}{{ project }} - {% endblock %}
 
 {% block content %}
-<div class="subcontainer sc_small">
+<div class="subcontainer sc_large">
     <div class="subcontainer_h">
         {% for pp in project.project_root %}
             <a href="{% url 'projects:projectpage' pp.pk %}">{{ pp.name }}</a> /
         {% endfor %}
         {{ project.name }}
     </div>
-    <div class="subcontainer_c subcontainer_small">
-        {% for sp, indent in project.project_tree.items %}
-            <div class="{% cycle 'col_gray_l' 'col_gray_d' %}">
-            {% for i in indent|get_range %}
-                &nbsp;&nbsp;
-            {% endfor %}
-            <a href="{%url 'projects:projectpage' sp.pk %}">{{ sp.name }}</a><br>
-            </div>
-        {% endfor %}
-    </div>
-</div><!--
---><div class="subcontainer sc_large">
-    <div class="subcontainer_h">
-        About this project
-    </div>
     <div class="subcontainer_c">
         {{ project.desc }}
+    </div>
+</div><!--
+--><div class="subcontainer sc_small">
+    <div class="subcontainer_h">
+        Projecttree
+    </div>
+    <div class="subcontainer_c">
+        {% for array in project.project_tree %}
+            {% for b in array %}
+                <div class="mono">
+                    {% autoescape off %}
+                        {{ b.1 }}{% endautoescape %}<a href="{% url 'projects:projectpage' b.0.pk %}">{{ b.0 }}</a>
+                </div>
+            {% endfor %}
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
