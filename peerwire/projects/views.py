@@ -23,3 +23,4 @@ def profilepage(request, profile_id):
     profile = get_object_or_404(User, pk=profile_id)
     context = {'profile': profile}
     return render(request, 'projects/profilepage.html', context)
+
