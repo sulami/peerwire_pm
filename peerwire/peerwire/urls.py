@@ -19,5 +19,6 @@ urlpatterns = patterns('',
     url(r'^acc/', include('registration.backends.default.urls')),
     url(r'^s/$', FacetedSearchView(form_class=FacetedSearchForm, searchqueryset=sqs), name='haystack_search'),
     url(r'^s/', include('haystack.urls')),
+    url(r'^n/', include('news.urls', namespace='news')),
     url(r'^', include('projects.urls', namespace='projects')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -131,6 +131,7 @@ INSTALLED_APPS = (
     'registration',
     'haystack',
     'projects',
+    'news',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
