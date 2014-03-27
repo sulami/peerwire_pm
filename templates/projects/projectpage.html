@@ -24,7 +24,7 @@
             {% for b in array %}
                 <div class="mono">
                     {% autoescape off %}
-                        {{ b.1 }}{% endautoescape %}<a href="{% url 'projects:projectpage' b.0.pk %}">{{ b.0 }}</a>
+                        {{ b.1 }}{% endautoescape %}<a href="{% url 'projects:projectpage' b.0.pk %}">{{ b.0.name }}</a>
                 </div>
             {% endfor %}
         {% endfor %}
