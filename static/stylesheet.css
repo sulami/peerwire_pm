@@ -66,6 +66,12 @@ div.subcontainer_h {
 div.subcontainer_c {
     padding: 3px;
 }
+img.profile_avatar {
+    display: block;
+    margin: auto;
+    max-width: 300px;
+    width: 100%;
+}
 div.mono {
     font-family: Inconsolata, monospace;
 }

@@ -15,14 +15,16 @@
             {% endif %}
         </div>
         <div class="subcontainer_c">
-            {{ profile.desc }}<br>
             {% if profile.avatar %}
-                <img src="" />
+                <img class="profile_avatar" src="{{ profile.avatar.url }}" />
             {% endif %}
             {% if profile.userlink %}
                 {% for l in profile.userlink.all %}
                     <a href="{{ l.url }}">{{ l.name }}</a><br>
                 {% endfor %}
+            {% endif %}
+            {% if profile.desc %}
+                {{ profile.desc|linebreaks }}
             {% endif %}
         </div>
     </div><!--
@@ -57,19 +59,19 @@
             </div>
             <div class="subcontainer_c">
                 {% for p in profile.projects_owned.all %}
-                    {{ p }}<br>
+                    <a href="{% url 'projects:projectpage' p.pk %}">{{ p }}</a> <br/>
                 {% endfor %}
             </div>
         </div><!--
     {% endif %}
     {% if profile.projects_workingon.exists %}
-        --><div class="subcontainer sc_full">
+        --><div class="subcontainer sc_large">
             <div class="subcontainer_h">
                 Projects working on ({{ profile.projects_workingon.count }})
             </div>
             <div class="subcontainer_c">
                 {% for p in profile.projects_workingon.all %}
-                    {{ p }}<br>
+                    <a href="{% url 'projects:projectpage' p.pk %}">{{ p }}</a> <br/>
                 {% endfor %}
             </div>
         </div>

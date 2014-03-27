@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.conf.urls import patterns, include, url
+from django.conf.urls.static import static
 
 from haystack.forms import FacetedSearchForm
 from haystack.query import SearchQuerySet
@@ -18,4 +20,4 @@ urlpatterns = patterns('',
     url(r'^s/$', FacetedSearchView(form_class=FacetedSearchForm, searchqueryset=sqs), name='haystack_search'),
     url(r'^s/', include('haystack.urls')),
     url(r'^', include('projects.urls', namespace='projects')),
-)
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
