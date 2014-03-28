@@ -8,53 +8,99 @@
     <div class="subcontainer_c">
     <form method="get" action=".">
             {{ form }}<input type="submit" value="Search">
-
-        {% if query %}
-
-            {# faceting #}
-            <h3>Specify search</h3>
-            {% if facets.fields.status %}
-                Status:
-                {% for status in facets.fields.status %}
-                    <a href="{{ request.get_full_path }}&amp;selected_facets=status_exact:{{ status.0|urlencode }}">{{ status.0 }}</a> <span style="color: rgb(170,170,170)">({{ status.1 }})</span>
-                {% endfor %}
-            {% endif %} |
-            {% if facets.fields.seeking %}
-                Seeking:
-                {% for seeking in facets.fields.seeking %}
-                    <a href="{{ request.get_full_path }}&amp;selected_facets=seeking_exact:{{ seeking.0|urlencode }}">{{ seeking.0 }}</a> <span style="color: rgb(170,170,170)">({{ seeking.1 }})</span>
-                {% endfor %}
-            {% endif %} |
-            {% if facets.fields.level %}
-                Level:
-                {% for level in facets.fields.level %}
-                    <a href="{{ request.get_full_path }}&amp;selected_facets=level_exact:{{ level.0|urlencode }}">{{ level.0 }}</a> <span style="color: rgb(170,170,170)">({{ level.1 }})</span>
-                {% endfor %}
-            {% endif %}
-            {# /faceting #}
-
-            <h3>Results</h3>
-
-            {% for result in page.object_list %}
-                <p>
-                    <a href="{% url 'projects:projectpage' result.object.pk %}">{{ result.object }}</a>
-                </p>
-            {% empty %}
-                <p>No results found.</p>
-            {% endfor %}
-
-            {% if page.has_previous or page.has_next %}
-                <div>
-                    {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
-                    |
-                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
-                </div>
-            {% endif %}
-        {% else %}
-            {# Show some example queries to run, maybe query syntax, something else? #}
-        {% endif %}
-    </form>
     </div>
+</div>
+{% if query %}
+    <div class="subcontainer sc_small">
+    <div class="subcontainer_h">
+    Specify search
+    </div>
+    <div class="subcontainer_c">
+    <table style="width: 100%;">
+    {% if facets.fields.status %}
+        <tr><td>
+        Status:
+        </td>
+        {% for status in facets.fields.status %}
+            {% if forloop.counter0 != 0 %}
+                <tr><td></td>
+            {% endif %}
+            <td>
+            <a href="{{ request.get_full_path }}&amp;selected_facets=status_exact:{{ status.0|urlencode }}">
+                {{ status.0 }}
+            </a>
+            <span style="color: rgb(170,170,170)">
+                ({{ status.1 }})
+            </span>
+            </td></tr>
+        {% endfor %}
+    {% endif %}
+    {% if facets.fields.seeking %}
+        <tr><td>
+        Seeking:
+        </td>
+        {% for seeking in facets.fields.seeking %}
+            {% if forloop.counter0 != 0 %}
+                <tr><td></td>
+            {% endif %}
+            <td>
+            <a href="{{ request.get_full_path }}&amp;selected_facets=seeking_exact:{{ seeking.0|urlencode }}">
+                {{ seeking.0 }}
+            </a>
+            <span style="color: rgb(170,170,170)">
+                ({{ seeking.1 }})
+            </span>
+            </td></tr>
+        {% endfor %}
+    {% endif %}
+    {% if facets.fields.level %}
+        <tr><td>
+        Level:
+        </td>
+        {% for level in facets.fields.level %}
+            {% if forloop.counter0 != 0 %}
+                <tr><td></td>
+            {% endif %}
+            <td>
+            <a href="{{ request.get_full_path }}&amp;selected_facets=level_exact:{{ level.0|urlencode }}">
+                {{ level.0 }}
+            </a>
+            <span style="color: rgb(170,170,170)">
+                ({{ level.1 }})
+            </span>
+            </td></tr>
+        {% endfor %}
+    {% endif %}
+    </table>
+    </div>
+    </div><!--
+
+    --><div class="subcontainer sc_large">
+    <div class="subcontainer_h">
+        Results
+    </div>
+    <div class="subcontainer_c">
+    {% for result in page.object_list %}
+        <a href="{% url 'projects:projectpage' result.object.pk %}">
+            {{ result.object }}
+        </a>
+        <br />
+    {% empty %}
+        <p>No results found.</p>
+    {% endfor %}
+
+    {% if page.has_previous or page.has_next %}
+        <div>
+            {% if page.has_previous %}<a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous{% if page.has_previous %}</a>{% endif %}
+            |
+            {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next &raquo;{% if page.has_next %}</a>{% endif %}
+        </div>
+    {% endif %}
+{% else %}
+    {# Show some example queries to run, maybe query syntax, something else? #}
+{% endif %}
+</form>
+</div>
 </div>
 {% endblock %}
 
