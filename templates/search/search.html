@@ -25,7 +25,7 @@
             {% if forloop.counter0 != 0 %}
                 <tr><td></td>
             {% endif %}
-            <td>
+            <td style="text-align: right">
             <a href="{{ request.get_full_path }}&amp;selected_facets=status_exact:{{ status.0|urlencode }}">
                 {{ status.0 }}
             </a>
@@ -37,13 +37,13 @@
     {% endif %}
     {% if facets.fields.seeking %}
         <tr><td>
-        Seeking:
+        Seeking for help:
         </td>
         {% for seeking in facets.fields.seeking %}
             {% if forloop.counter0 != 0 %}
-                <tr><td></td>
+                <tr style="text-align: right"><td></td>
             {% endif %}
-            <td>
+            <td style="text-align: right">
             <a href="{{ request.get_full_path }}&amp;selected_facets=seeking_exact:{{ seeking.0|urlencode }}">
                 {{ seeking.0 }}
             </a>
@@ -59,9 +59,9 @@
         </td>
         {% for level in facets.fields.level %}
             {% if forloop.counter0 != 0 %}
-                <tr><td></td>
+                <tr style="text-align: right"><td></td>
             {% endif %}
-            <td>
+            <td style="text-align: right">
             <a href="{{ request.get_full_path }}&amp;selected_facets=level_exact:{{ level.0|urlencode }}">
                 {{ level.0 }}
             </a>
