@@ -5,8 +5,11 @@ TODO
 ----
 
   * account management pages
-  * messaging
-  * webdesign
+  * project management pages
+  * news templates
+  * better project-/projectpages
+  * featured projects
+  * premium account preparations
 
 Software Setup
 --------------
@@ -28,6 +31,11 @@ URL overview
 /u/1/   - user page 1
 /p/1/   - project page 1
 /s/     - haystack search stack
+/n/     - news index
+/n/1/   - news post 1
+
+/static/    - static files
+/media/     - media files
 
 [//]: # vim:filetype=markdown
 
