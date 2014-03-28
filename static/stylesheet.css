@@ -13,7 +13,10 @@ a {
     transition: all .3s;
     -webkit-transition: all .3s;
 }
-a:hover {
+div.subcontainer_h a, div#footer a {
+    color: rgb(230,230,230);
+}
+a:hover, div.subcontainer_h a:hover, div#footer a:hover {
     color: rgb(251,179,0);
     transition: all .3s;
     -webkit-transition: all .3s;
@@ -79,13 +82,10 @@ div#footer {
     background-color: rgb(50, 50, 50);
     border-top: 2px rgb(251,179,0) solid;
     color: rgb(230,230,230);
-    margin-top: 10px;
-    width: 100%;
-}
-div#footer p {
     font-size: 12px;
-    margin: 0px;
+    margin-top: 10px;
     padding: 5px;
     text-align: center;
+    width: 100%;
 }
 

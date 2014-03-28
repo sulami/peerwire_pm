@@ -16,6 +16,7 @@
                 <menu id="main_menu" type="toolbar">
                     <li><div class="menu_button"><a href="{% url 'projects:index' %}">home</a></div></li>
                     <li><div class="menu_button"><a href="{% url 'haystack_search' %}">search</a></div></li>
+                    <li><div class="menu_button"><a href="{% url 'news:index' %}">news</a></div></li>
                 {% if user.is_authenticated %}
                     <li><div class="menu_button"><a href="{% url 'projects:profilepage' user.pk %}">my profile</a></div></li>
                     <li><div class="menu_button"><a href="{% url 'auth_logout' %}">logout</a></div></li>
@@ -43,7 +44,7 @@
             {% endblock %}
         </div>
         <div id="footer">
-            <p>&copy; 2014 peerwire | <a href="">contact</a></p>
+            &copy; 2014 peerwire | <a href="">contact</a>
         </div>
     </div>
 </body>
