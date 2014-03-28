@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ news.title }} - {% endblock %}
+
+{% block content %}
+    <div class="subcontainer sc_full">
+        <div class="subcontainer_h">
+            {{ news.title }}
+        </div>
+        <div class="subcontainer_c">
+            {{ news.text|linebreaksbr }}
+            <br />
+            <span style="font-size: 12px">{{ news.pub_date }}</span>
+        </div>
+    </div>
+{% endblock %}
+

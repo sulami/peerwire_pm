@@ -5,10 +5,15 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 
 from projects.models import *
+from news.models import News
 
 def index(request):
     trending_projects = Project.objects.all().order_by('-value')[:10]
-    context = {'trending_projects': trending_projects}
+    news = News.objects.all().order_by('-pub_date')[:10]
+    context = {
+        'trending_projects': trending_projects,
+        'news': news,
+        }
     return render(request, 'projects/index.html', context)
 
 def projectpage(request, project_id):

@@ -9,8 +9,8 @@
         news
     </div>
     <div class="subcontainer_c">
-        {% for project in trending_projects %}
-            <a href="{% url 'projects:projectpage' project.id %}">{{ project }}</a><br>
+        {% for post in news %}
+            <a href="{% url 'news:newspage' post.id %}">{{ post.title }}</a><br>
         {% endfor %}
     </div>
 </div><!--
