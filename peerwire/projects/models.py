@@ -4,11 +4,11 @@ from django.contrib.auth.models import AbstractUser
 
 # Global difficulty levels
 LEVEL_CHOICES = (
-    (0, 'Beginner'),
-    (1, 'Easy'),
-    (2, 'Medium'),
-    (3, 'Advanced'),
-    (4, 'Expert'),
+    ('Beginner', 'Beginner'),
+    ('Easy', 'Easy'),
+    ('Medium', 'Medium'),
+    ('Advanced', 'Advanced'),
+    ('Expert', 'Expert'),
 )
 
 # Get the full project path in the project tree
@@ -84,18 +84,18 @@ class Project(models.Model):
         )
     langs = models.ManyToManyField(Lang, blank=True)
     skills = models.ManyToManyField(Skill, blank=True)
-    level = models.IntegerField(choices=LEVEL_CHOICES)
+    level = models.CharField(max_length=20, choices=LEVEL_CHOICES)
     STATUS_CHOICES = (
-        (0, 'Inactive'),
-        (1, 'Active'),
+        ('Inactive', 'Inactive'),
+        ('Active', 'Active'),
     )
-    status = models.IntegerField(choices=STATUS_CHOICES)
+    status = models.CharField(max_length= 10, choices=STATUS_CHOICES)
     parent = models.ForeignKey('self', blank=True, null=True)
     SEEKING_CHOICES = (
-        (0, 'Not seeking for help'),
-        (1, 'Seeking for help'),
+        ('No', 'Not seeking for help'),
+        ('Yes', 'Seeking for help'),
     )
-    seeking = models.IntegerField(choices=SEEKING_CHOICES)
+    seeking = models.CharField(max_length=3, choices=SEEKING_CHOICES)
     value = models.IntegerField(default=0)
 
     def project_tree(self):
