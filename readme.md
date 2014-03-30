@@ -5,9 +5,11 @@ TODO
 ----
 
   * account management pages
-  * project management pages
-  * news templates
+  * pretty project management pages
   * better project-/projectpages
+  * search facets for languages
+
+  * credit system
   * featured projects
   * premium account preparations
 
