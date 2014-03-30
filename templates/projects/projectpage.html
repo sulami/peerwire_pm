@@ -12,7 +12,7 @@
         {{ project.name }}
     </div>
     <div class="subcontainer_c">
-        {{ project.desc }}
+        {{ project.desc|default:'No description' }}
     </div>
 </div><!--
 --><div class="subcontainer sc_small">
