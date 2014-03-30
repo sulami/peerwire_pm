@@ -1,0 +1,12 @@
+- model: projects.skill
+  pk: 1
+  fields:
+    name: Jquery
+- model: projects.skill
+  pk: 2
+  fields:
+    name: Linux
+- model: projects.skill
+  pk: 3
+  fields:
+    name: Android
