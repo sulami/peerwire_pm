@@ -1,5 +1,5 @@
 # Create your views here.
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
@@ -23,6 +23,18 @@ def projectpage(request, project_id):
         project.save()
     context = {'project': project}
     return render(request, 'projects/projectpage.html', context)
+
+def edit_project(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    if request.method == 'POST':
+        form = ProjectForm(request.POST, instance=project)
+        if form.is_valid():
+            form.save()
+            return redirect('projects:projectpage', project.pk)
+    else:
+        form = ProjectForm(instance=project)
+    context = {'form': form, 'project': project}
+    return render(request, 'projects/edit_project.html', context)
 
 def profilepage(request, profile_id):
     profile = get_object_or_404(User, pk=profile_id)

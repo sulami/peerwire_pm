@@ -1,6 +1,7 @@
 # coding: utf-8
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.forms import ModelForm
 
 # Global difficulty levels
 LEVEL_CHOICES = (
@@ -106,6 +107,12 @@ class Project(models.Model):
 
     def __unicode__(self):
         return get_project_path(self)
+
+class ProjectForm(ModelForm):
+    class Meta:
+        model = Project
+        fields = ['name', 'desc', 'langs', 'skills', 'level', 'status',
+            'seeking']
 
 class UserSkill(models.Model):
     skill = models.ForeignKey(Skill)
