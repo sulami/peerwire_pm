@@ -21,10 +21,9 @@ def get_project_path(p, b=''):
     else:
         return b
 
-# This thing is so ugly. It makes a list of lists, containing a projects object
-# and some HTML-code for the tree-style display, using unicode and an unhealthy
-# amount of values passed in loops. But it seems to match the output of UNIX
-# tree in every situation.
+# This function makes a list of lists, containing a projects object and some 
+# HTML-code for the tree-style display, using unicode and an unhealthy amount of
+# values passed in loops.
 def get_project_tree(p, padding, tree, c, initial):
     if p.project_set:
         tree.append([ [p, padding] ])
@@ -85,18 +84,30 @@ class Project(models.Model):
         )
     langs = models.ManyToManyField(Lang, blank=True)
     skills = models.ManyToManyField(Skill, blank=True)
-    level = models.CharField(max_length=20, choices=LEVEL_CHOICES, blank=False, default='')
+    level = models.CharField(
+		max_length=20,
+		choices=LEVEL_CHOICES,
+		blank=False, default=''
+		)
     STATUS_CHOICES = (
         ('Inactive', 'Inactive'),
         ('Active', 'Active'),
     )
-    status = models.CharField(max_length= 10, choices=STATUS_CHOICES, blank=False, default='')
+    status = models.CharField(
+		max_length= 10,
+		choices=STATUS_CHOICES,
+		blank=False, default=''
+		)
     parent = models.ForeignKey('self', blank=True, null=True)
     SEEKING_CHOICES = (
         ('No', 'Not seeking for help'),
         ('Yes', 'Seeking for help'),
     )
-    seeking = models.CharField(max_length=3, choices=SEEKING_CHOICES, blank=False, default='')
+    seeking = models.CharField(
+		max_length=3,
+		choices=SEEKING_CHOICES,
+		blank=False, default=''
+		)
     value = models.IntegerField(default=0)
 
     def project_tree(self):
@@ -147,4 +158,3 @@ class Credit(models.Model):
     user = models.ForeignKey(User)
     project = models.ForeignKey(Project)
     ack = models.IntegerField(default=0)
-
