@@ -12,9 +12,20 @@
         {{ project.name }}
     </div>
     <div class="subcontainer_c">
-        {{ project.desc|default:'No description' }}
+        {{ project.desc|default:'No description'|linebreaksbr }}
     </div>
 </div><!--
+{% if user in project.owners.all %}
+    --><div class="subcontainer sc_small">
+        <div class="subcontainer_h">
+            Admin
+        </div>
+        <div class="subcontainer_c">
+            <li><a href="{% url 'projects:edit_project' project.pk %}">Edit Project</a></li>
+            <li><a href="">Delete Project</a></li>
+        </div>
+    </div><!--
+{% endif %}
 --><div class="subcontainer sc_small">
     <div class="subcontainer_h">
         Projecttree
