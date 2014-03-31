@@ -26,6 +26,8 @@ def projectpage(request, project_id):
 
 def edit_project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
+    if request.user not in project.owners.all():
+        return redirect('projects:projectpage', project.pk)
     if request.method == 'POST':
         form = ProjectForm(request.POST, instance=project)
         if form.is_valid():
@@ -40,4 +42,8 @@ def profilepage(request, profile_id):
     profile = get_object_or_404(User, pk=profile_id)
     context = {'profile': profile}
     return render(request, 'projects/profilepage.html', context)
+
+def edit_profile(request):
+    profile = get_object_or_404(User, pk=request.user.pk)
+    return render(request, 'projects/edit_profile.html')
 

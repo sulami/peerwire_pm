@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^acc/', include('registration.backends.default.urls')),
+    url(r'^a/', include('registration.backends.default.urls')),
     url(r'^s/$', FacetedSearchView(form_class=FacetedSearchForm, searchqueryset=sqs), name='haystack_search'),
     url(r'^s/', include('haystack.urls')),
     url(r'^n/', include('news.urls', namespace='news')),
