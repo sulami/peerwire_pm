@@ -85,29 +85,29 @@ class Project(models.Model):
     langs = models.ManyToManyField(Lang, blank=True)
     skills = models.ManyToManyField(Skill, blank=True)
     level = models.CharField(
-		max_length=20,
-		choices=LEVEL_CHOICES,
-		blank=False, default=''
-		)
+        max_length=20,
+        choices=LEVEL_CHOICES,
+        blank=False, default=''
+        )
     STATUS_CHOICES = (
         ('Inactive', 'Inactive'),
         ('Active', 'Active'),
     )
     status = models.CharField(
-		max_length= 10,
-		choices=STATUS_CHOICES,
-		blank=False, default=''
-		)
+        max_length= 10,
+        choices=STATUS_CHOICES,
+        blank=False, default=''
+        )
     parent = models.ForeignKey('self', blank=True, null=True)
     SEEKING_CHOICES = (
         ('No', 'Not seeking for help'),
         ('Yes', 'Seeking for help'),
     )
     seeking = models.CharField(
-		max_length=3,
-		choices=SEEKING_CHOICES,
-		blank=False, default=''
-		)
+        max_length=3,
+        choices=SEEKING_CHOICES,
+        blank=False, default=''
+        )
     value = models.IntegerField(default=0)
 
     def project_tree(self):
