@@ -9,6 +9,7 @@ TODO
   * better project-/projectpages
   * search facets for languages
 
+  * network
   * credit system
   * featured projects
   * premium account preparations
