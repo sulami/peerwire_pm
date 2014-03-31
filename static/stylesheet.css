@@ -24,7 +24,11 @@ a:hover, div.subcontainer_h a:hover, div#footer a:hover {
 table {
     width: 100%;
 }
+tr.hover:hover {
+    background-color: rgb(230,230,230);
+}
 td {
+    padding: 0px;
     vertical-align: top;
 }
 li {
@@ -79,6 +83,8 @@ div.subcontainer {
     margin: 5px;
     vertical-align: top;
 }
+div.left { clear: left; float: left }
+div.right { clear: right; float: right }
 div.subcontainer_h {
     background-color: rgb(50,50,50);
     border-bottom: 2px rgb(251,179,0) solid;

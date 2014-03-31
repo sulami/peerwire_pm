@@ -12,7 +12,7 @@
     </div>
 </div>
 {% if query %}
-    <div class="subcontainer sc_small">
+    <div class="subcontainer sc_small left">
     <div class="subcontainer_h">
     Specify search
     </div>
@@ -26,7 +26,7 @@
             {% if forloop.counter0 != 0 %}
                 <tr><td></td>
             {% endif %}
-            <td style="text-align: right">
+            <td class="right">
             <a href="{{ request.get_full_path }}&amp;selected_facets=status_exact:{{ status.0|urlencode }}">
                 {{ status.0 }}
             </a>
@@ -42,9 +42,9 @@
         </td>
         {% for seeking in facets.fields.seeking %}
             {% if forloop.counter0 != 0 %}
-                <tr style="text-align: right"><td></td>
+                <tr class="right"><td></td>
             {% endif %}
-            <td style="text-align: right">
+            <td class="right">
             <a href="{{ request.get_full_path }}&amp;selected_facets=seeking_exact:{{ seeking.0|urlencode }}">
                 {{ seeking.0 }}
             </a>
@@ -60,9 +60,9 @@
         </td>
         {% for level in facets.fields.level %}
             {% if forloop.counter0 != 0 %}
-                <tr style="text-align: right"><td></td>
+                <tr class="right"><td></td>
             {% endif %}
-            <td style="text-align: right">
+            <td class="right">
             <a href="{{ request.get_full_path }}&amp;selected_facets=level_exact:{{ level.0|urlencode }}">
                 {{ level.0 }}
             </a>
@@ -76,19 +76,26 @@
     </div>
     </div><!--
 
-    --><div class="subcontainer sc_large">
+    --><div class="subcontainer sc_large right">
     <div class="subcontainer_h">
         Results
     </div>
     <div class="subcontainer_c">
+    <table>
     {% for result in page.object_list %}
+        <tr class="hover">
+        <td>
         <a href="{% url 'projects:projectpage' result.object.pk %}">
             {{ result.object }}
         </a>
-        <br />
+        </td>
+        <td>{{ result.object.langs.all|join:", " }}</td>
+        <td>{{ result.object.skills.all|join:", " }}</td>
+        </tr>
     {% empty %}
         <p>No results found.</p>
     {% endfor %}
+    </table>
 
     {% if page.has_previous or page.has_next %}
         <div>

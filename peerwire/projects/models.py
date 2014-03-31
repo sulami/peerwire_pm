@@ -158,3 +158,4 @@ class Credit(models.Model):
     user = models.ForeignKey(User)
     project = models.ForeignKey(Project)
     ack = models.IntegerField(default=0)
+
