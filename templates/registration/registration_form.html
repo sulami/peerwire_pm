@@ -2,10 +2,18 @@
 {% load i18n %}
 
 {% block content %}
-<form method="post" action=".">
-  {% csrf_token %}
-  {{ form.as_p }}
-
-  <input type="submit" value="{% trans 'Submit' %}" />
-</form>
+<div class="subcontainer sc_full">
+<div class="subcontainer_h">
+    Login
+</div>
+<div class="subcontainer_c">
+    <form method="post" action=".">
+      {% csrf_token %}
+      <table style="max-width: 100%; width: 400px">
+      {{ form.as_table }}
+      <tr><td></td><td><input type="submit" value="{% trans 'Submit' %}" /></td></tr>
+      </table>
+    </form>
+</div>
+</div>
 {% endblock %}
