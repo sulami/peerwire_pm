@@ -26,6 +26,25 @@
         {{ project.desc|default:'No description'|linebreaksbr }}
     </div>
 </div>
+{% if project.seeking == 'Yes' and user not in project.users.all %}
+    <div class="subcontainer sc_small right">
+        <div class="subcontainer_h">
+            Stuff
+        </div>
+        <div class="subcontainer_c">
+            <a href="">Work on this project</a>
+        </div>
+    </div>
+{% elif user in project.users.all %}
+    <div class="subcontainer sc_small right">
+        <div class="subcontainer_h">
+            Stuff
+        </div>
+        <div class="subcontainer_c">
+            <a href="">Stop working on this project</a>
+        </div>
+    </div>
+{% endif %}
 <div class="subcontainer sc_small right">
     <div class="subcontainer_h">
         Projecttree
