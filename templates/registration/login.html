@@ -9,7 +9,7 @@
 <div class="subcontainer_c">
     <form method="post" action=".">
       {% csrf_token %}
-      <table style="margin: auto; width: 400px">
+      <table style="max-width: 100%; width: 400px">
       {{ form.as_table }}
       <tr><td></td><td><input type="submit" value="{% trans 'Log in' %}" /></td></tr>
       <input type="hidden" name="next" value="/" />
