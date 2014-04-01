@@ -21,7 +21,7 @@ def get_project_path(p, b=''):
     else:
         return b
 
-# This function makes a list of lists, containing a projects object and some 
+# This function makes a list of lists, containing a projects object and some
 # HTML-code for the tree-style display, using unicode and an unhealthy amount of
 # values passed in loops.
 def get_project_tree(p, padding, tree, c, initial):
