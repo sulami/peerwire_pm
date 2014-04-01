@@ -47,6 +47,18 @@
 {% endif %}
 <div class="subcontainer sc_small right">
     <div class="subcontainer_h">
+        Users working on this
+    </div>
+    <div class="subcontainer_c">
+        {% for u in project.users.all %}
+            <li><a href="{% url 'projects:profilepage' u.pk %}">{{ u }}</a></li>
+        {% empty %}
+            <li>None</li>
+        {% endfor %}
+    </div>
+</div>
+<div class="subcontainer sc_small right">
+    <div class="subcontainer_h">
         Projecttree
     </div>
     <div class="subcontainer_c">
