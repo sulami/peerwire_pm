@@ -32,7 +32,7 @@
             Stuff
         </div>
         <div class="subcontainer_c">
-            <a href="">Work on this project</a>
+            <a href="{% url 'projects:startwork' project.pk %}">Work on this project</a>
         </div>
     </div>
 {% elif user in project.users.all %}
@@ -41,7 +41,7 @@
             Stuff
         </div>
         <div class="subcontainer_c">
-            <a href="">Stop working on this project</a>
+            <a href="{% url 'projects:finishwork' project.pk %}">Stop working on this project</a>
         </div>
     </div>
 {% endif %}

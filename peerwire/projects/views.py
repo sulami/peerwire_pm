@@ -38,6 +38,18 @@ def edit_project(request, project_id):
     context = {'form': form, 'project': project}
     return render(request, 'projects/edit_project.html', context)
 
+def startwork(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    if project.seeking == 'Yes' and request.user not in project.users.all():
+        project.users.add(request.user)
+    return redirect('projects:projectpage', project.pk)
+
+def finishwork(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    if request.user in project.users.all():
+        project.users.remove(request.user)
+    return redirect('projects:projectpage', project.pk)
+
 def profilepage(request, profile_id):
     profile = get_object_or_404(User, pk=profile_id)
     context = {'profile': profile}

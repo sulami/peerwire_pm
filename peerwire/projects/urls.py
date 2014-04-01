@@ -7,5 +7,7 @@ urlpatterns = patterns('projects.views',
     url(r'^p/(\d+)/$', 'projectpage', name='projectpage'),
     url(r'^u/(\d+)/$', 'profilepage', name='profilepage'),
     url(r'^p/(\d+)/e/$', 'edit_project', name='edit_project'),
+    url(r'^p/(\d+)/s/$', 'startwork', name='startwork'),
+    url(r'^p/(\d+)/f/$', 'finishwork', name='finishwork'),
     url(r'^u/e/$', 'edit_profile', name='edit_profile'),
     )
