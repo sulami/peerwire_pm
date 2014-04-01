@@ -1,9 +1,27 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}{{ profile.username }} - {% endblock %}
 
 {% block content %}
-    <div class="subcontainer sc_small">
+    {% if user == profile %}
+        <div class="subcontainer sc_large left">
+            <div class="subcontainer_h">
+                Admin
+            </div>
+            <div class="subcontainer_c">
+                <li><a href="{% url 'projects:edit_profile' %}">Edit Profile</a></li>
+            </div>
+        </div>
+    {% endif %}
+    <div class="subcontainer sc_small right">
+        {% if profile.avatar %}
+            <img class="profile_avatar" src="{{ profile.avatar.url }}" />
+        {% else %}
+            <img class="profile_avatar" src="{% static 'avatar.svg' %}" />
+        {% endif %}
+    </div>
+    <div class="subcontainer sc_large left">
         <div class="subcontainer_h">
             {% if profile.first_name %}
                 {{ profile.get_full_name }}
@@ -15,21 +33,16 @@
             {% endif %}
         </div>
         <div class="subcontainer_c">
-            {% if profile.avatar %}
-                <img class="profile_avatar" src="{{ profile.avatar.url }}" />
-            {% endif %}
             {% if profile.userlink %}
                 {% for l in profile.userlink.all %}
                     <a href="{{ l.url }}">{{ l.name }}</a><br>
                 {% endfor %}
             {% endif %}
-            {% if profile.desc %}
-                {{ profile.desc|linebreaks }}
-            {% endif %}
+            {{ profile.desc|default:"No description given."|linebreaksbr }}
         </div>
-    </div><!--
+    </div>
     {% if profile.userlang_set.exists %}
-        --><div class="subcontainer sc_small">
+        <div class="subcontainer sc_small right">
             <div class="subcontainer_h">
                 Languages
             </div>
@@ -38,10 +51,10 @@
                     {{ l }} ({{ l.level }})<br>
                 {% endfor %}
             </div>
-        </div><!--
+        </div>
     {% endif %}
     {% if profile.userskill_set.exists %}
-        --><div class="subcontainer sc_full">
+        <div class="subcontainer sc_small right">
             <div class="subcontainer_h">
                 Skills
             </div>
@@ -50,10 +63,10 @@
                     {{ l }} ({{ l.level }})<br>
                 {% endfor %}
             </div>
-        </div><!--
+        </div>
     {% endif %}
     {% if profile.projects_owned.exists %}
-        --><div class="subcontainer sc_large">
+        <div class="subcontainer sc_large left">
             <div class="subcontainer_h">
                 Projects owned ({{ profile.projects_owned.count }})
             </div>
@@ -62,10 +75,10 @@
                     <a href="{% url 'projects:projectpage' p.pk %}">{{ p }}</a> <br/>
                 {% endfor %}
             </div>
-        </div><!--
+        </div>
     {% endif %}
     {% if profile.projects_workingon.exists %}
-        --><div class="subcontainer sc_large">
+        <div class="subcontainer sc_large left">
             <div class="subcontainer_h">
                 Projects working on ({{ profile.projects_workingon.count }})
             </div>
