@@ -14,10 +14,10 @@
 {% if query %}
     <div class="subcontainer sc_small left">
     <div class="subcontainer_h">
-    Specify search
+        Specify search
     </div>
     <div class="subcontainer_c">
-    <table>
+    <table style="width: 100%">
     {% if facets.fields.status %}
         <tr><td>
         Status:
@@ -81,7 +81,7 @@
         Results
     </div>
     <div class="subcontainer_c">
-    <table>
+    <table style="width: 100%">
     {% for result in page.object_list %}
         <tr class="hover">
         <td>

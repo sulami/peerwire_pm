@@ -22,7 +22,8 @@ a:hover, div.subcontainer_h a:hover, div#footer a:hover {
     -webkit-transition: all .3s;
 }
 table {
-    width: 100%;
+    margin: auto;
+    max-width: 100%;
 }
 tr.hover:hover {
     background-color: rgb(230,230,230);
@@ -46,6 +47,10 @@ input:hover {
     background-color: rgb(230,230,230);
     color: rgb(251,179,0);
     text-shadow: 1px 1px rgba(0,0,0,0.2);
+}
+textarea { border: none }
+select, textarea {
+    width: 100%;
 }
 div#header {
     background-repeat: no-repeat;

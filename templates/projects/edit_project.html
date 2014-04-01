@@ -10,7 +10,7 @@
     <div class="subcontainer_c">
         <form action="." method="POST">
             {% csrf_token %}
-            <table>
+            <table style="width: 400px">
             {% for field in form %}
                 <tr>
                     <td>{{ field.label_tag }}</td>
