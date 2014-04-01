@@ -9,6 +9,7 @@ TODO
 
   * network
   * credit system
+  * bugtracker
   * featured projects
   * premium account preparations
 
