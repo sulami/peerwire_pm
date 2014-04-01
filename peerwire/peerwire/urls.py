@@ -17,6 +17,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^a/', include('registration.backends.default.urls')),
+    url(r'^a/resetpassword/passwordsent/$', 'django.contrib.auth.views.password_reset_done', name='password_reset_done'),
     url(r'^s/$', FacetedSearchView(form_class=FacetedSearchForm, searchqueryset=sqs), name='haystack_search'),
     url(r'^s/', include('haystack.urls')),
     url(r'^n/', include('news.urls', namespace='news')),
