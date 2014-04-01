@@ -57,5 +57,12 @@ def profilepage(request, profile_id):
 
 def edit_profile(request):
     profile = get_object_or_404(User, pk=request.user.pk)
-    return render(request, 'projects/edit_profile.html')
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('projects:profilepage', profile.pk)
+    else:
+        form = UserForm(instance=profile)
+    return render(request, 'projects/edit_profile.html', {'form': form})
 

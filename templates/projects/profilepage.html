@@ -5,7 +5,7 @@
 
 {% block content %}
     {% if user == profile %}
-        <div class="subcontainer sc_large left">
+        <div class="subcontainer sc_small right">
             <div class="subcontainer_h">
                 Admin
             </div>
@@ -14,13 +14,6 @@
             </div>
         </div>
     {% endif %}
-    <div class="subcontainer sc_small right">
-        {% if profile.avatar %}
-            <img class="profile_avatar" src="{{ profile.avatar.url }}" />
-        {% else %}
-            <img class="profile_avatar" src="{% static 'avatar.svg' %}" />
-        {% endif %}
-    </div>
     <div class="subcontainer sc_large left">
         <div class="subcontainer_h">
             {% if profile.first_name %}
@@ -66,7 +59,7 @@
         </div>
     {% endif %}
     {% if profile.projects_owned.exists %}
-        <div class="subcontainer sc_large left">
+        <div class="subcontainer sc_small right">
             <div class="subcontainer_h">
                 Projects owned ({{ profile.projects_owned.count }})
             </div>
@@ -78,7 +71,7 @@
         </div>
     {% endif %}
     {% if profile.projects_workingon.exists %}
-        <div class="subcontainer sc_large left">
+        <div class="subcontainer sc_small right">
             <div class="subcontainer_h">
                 Projects working on ({{ profile.projects_workingon.count }})
             </div>

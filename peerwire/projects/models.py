@@ -75,6 +75,11 @@ class User(AbstractUser):
         else:
             return self.username
 
+class UserForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'first_name', 'last_name', 'desc']
+
 class Project(models.Model):
     name = models.CharField(max_length=50)
     owners = models.ManyToManyField(User, related_name='projects_owned')

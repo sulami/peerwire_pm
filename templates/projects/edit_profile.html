@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Profile - {% endblock %}
+
+{% block content %}
+    <div class="subcontainer sc_full">
+    <div class="subcontainer_h">
+        Edit Profile
+    </div>
+    <div class="subcontainer_c">
+        <form action="." method="POST">
+            {% csrf_token %}
+            <table style="width: 500px">
+            {% for field in form %}
+                <tr>
+                    <td>{{ field.label_tag }}</td>
+                    <td style="text-align: right">{{ field }}</td>
+                </tr>
+            {% endfor %}
+            <tr><td></td><td><input type="submit" value="Save" /></td></tr>
+            </table>
+        </form>
+    </div>
+{% endblock %}
+
