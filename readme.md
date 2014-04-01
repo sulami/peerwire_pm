@@ -5,8 +5,6 @@ TODO
 ----
 
   * account management pages
-  * pretty project management pages
-  * better project-/projectpages
   * search facets for languages
 
   * network
