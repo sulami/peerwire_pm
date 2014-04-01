@@ -36,6 +36,7 @@ URL overview
 /s/     - haystack search stack
 /n/     - news index
 /n/1/   - news post 1
+/a/     - account management by django-registration
 
 /static/    - static files
 /media/     - media files
