@@ -2,14 +2,21 @@
 {% load i18n %}
 
 {% block content %}
-<form method="post" action=".">
-  {% csrf_token %}
-  {{ form.as_p }}
+<div class="subcontainer sc_full">
+<div class="subcontainer_h">
+    Login
+</div>
+<div class="subcontainer_c">
+    <form method="post" action=".">
+      {% csrf_token %}
+      <table style="margin: auto; width: 400px">
+      {{ form.as_table }}
+      <tr><td></td><td><input type="submit" value="{% trans 'Log in' %}" /></td></tr>
+      <input type="hidden" name="next" value="/" />
+      </table>
+    </form>
 
-  <input type="submit" value="{% trans 'Log in' %}" />
-  <input type="hidden" name="next" value="/" />
-</form>
-
-<p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
-<p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
+    <p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
+    <p>{% trans "Not member" %}? <a href="{% url 'registration_register' %}">{% trans "Register" %}</a>!</p>
+</div>
 {% endblock %}

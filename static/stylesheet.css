@@ -40,6 +40,7 @@ input {
     padding: 5px;
     transition: all .3s;
     -webkit-transition: all .3s;
+    width: 100%;
 }
 input:hover {
     background-color: rgb(230,230,230);
