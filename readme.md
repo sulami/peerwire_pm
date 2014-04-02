@@ -4,9 +4,7 @@ Peerwire Project Management Platform
 TODO
 ----
 
-  * account management pages
   * search facets for languages
-
   * network
   * credit system
   * bugtracker
