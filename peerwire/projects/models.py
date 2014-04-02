@@ -65,6 +65,10 @@ class Skill(models.Model):
 class User(AbstractUser):
     avatar = models.ImageField(upload_to='avatars', blank=True)
     desc = models.TextField(blank=True)
+    mail = models.EmailField()
+
+    def email_user(self, subject, message, from_email=None, **kwargs):
+        send_mail(subject, message, from_email, [self.mail], **kwargs)
 
     def __unicode__(self):
         if self.first_name:
@@ -78,7 +82,7 @@ class User(AbstractUser):
 class UserForm(ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'email', 'first_name', 'last_name', 'desc']
+        fields = ['username', 'mail', 'first_name', 'last_name', 'desc']
 
 class Project(models.Model):
     name = models.CharField(max_length=50)
