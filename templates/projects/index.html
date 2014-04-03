@@ -1,26 +1,29 @@
 {% extends 'base.html' %}
 
-{# Index page won't have a special title #}
 {% block title %}{% endblock %}
 
 {% block content %}
-<div class="subcontainer sc_small">
+<div class="subcontainer sc_small right">
     <div class="subcontainer_h">
         news
     </div>
     <div class="subcontainer_c">
         {% for post in news %}
-            <a href="{% url 'news:newspage' post.id %}">{{ post.title }}</a><br>
+            <li><a href="{% url 'news:newspage' post.id %}">{{ post.title }}</a></li>
+        {% empty %}
+            No News
         {% endfor %}
     </div>
-</div><!--
---><div class="subcontainer sc_large">
+</div>
+<div class="subcontainer sc_large left">
     <div class="subcontainer_h">
         trending projects
     </div>
     <div class="subcontainer_c">
         {% for project in trending_projects %}
-            <a href="{% url 'projects:projectpage' project.id %}">{{ project }}</a><br>
+            <li><a href="{% url 'projects:projectpage' project.id %}">{{ project }}</a></li>
+        {% empty %}
+            No trending projects
         {% endfor %}
     </div>
 </div>
