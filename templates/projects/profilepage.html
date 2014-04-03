@@ -34,53 +34,53 @@
             {{ profile.desc|default:"No description given."|linebreaksbr }}
         </div>
     </div>
-    {% if profile.userlang_set.exists %}
-        <div class="subcontainer sc_small right">
-            <div class="subcontainer_h">
-                Languages
-            </div>
-            <div class="subcontainer_c">
-                {% for l in profile.userlang_set.all %}
-                    {{ l }} ({{ l.level }})<br>
-                {% endfor %}
-            </div>
+    <div class="subcontainer sc_small right">
+        <div class="subcontainer_h">
+            Languages
         </div>
-    {% endif %}
-    {% if profile.userskill_set.exists %}
-        <div class="subcontainer sc_small right">
-            <div class="subcontainer_h">
-                Skills
-            </div>
-            <div class="subcontainer_c">
-                {% for l in profile.userskill_set.all %}
-                    {{ l }} ({{ l.level }})<br>
-                {% endfor %}
-            </div>
+        <div class="subcontainer_c">
+            {% for l in profile.userlang_set.all %}
+                <li>{{ l }} ({{ l.level }})</li>
+            {% empty %}
+                None
+            {% endfor %}
         </div>
-    {% endif %}
-    {% if profile.projects_owned.exists %}
-        <div class="subcontainer sc_small right">
-            <div class="subcontainer_h">
-                Projects owned ({{ profile.projects_owned.count }})
-            </div>
-            <div class="subcontainer_c">
-                {% for p in profile.projects_owned.all %}
-                    <a href="{% url 'projects:projectpage' p.pk %}">{{ p }}</a> <br/>
-                {% endfor %}
-            </div>
+    </div>
+    <div class="subcontainer sc_small right">
+        <div class="subcontainer_h">
+            Skills
         </div>
-    {% endif %}
-    {% if profile.projects_workingon.exists %}
-        <div class="subcontainer sc_small right">
-            <div class="subcontainer_h">
-                Projects working on ({{ profile.projects_workingon.count }})
-            </div>
-            <div class="subcontainer_c">
-                {% for p in profile.projects_workingon.all %}
-                    <a href="{% url 'projects:projectpage' p.pk %}">{{ p }}</a> <br/>
-                {% endfor %}
-            </div>
+        <div class="subcontainer_c">
+            {% for l in profile.userskill_set.all %}
+                <li>{{ l }} ({{ l.level }})</li>
+            {% empty %}
+                None
+            {% endfor %}
         </div>
-    {% endif %}
+    </div>
+    <div class="subcontainer sc_small right">
+        <div class="subcontainer_h">
+            Projects owned ({{ profile.projects_owned.count }})
+        </div>
+        <div class="subcontainer_c">
+            {% for p in profile.projects_owned.all %}
+                <li><a href="{% url 'projects:projectpage' p.pk %}">{{ p }}</a></li>
+            {% empty %}
+                None
+            {% endfor %}
+        </div>
+    </div>
+    <div class="subcontainer sc_small right">
+        <div class="subcontainer_h">
+            Projects working on ({{ profile.projects_workingon.count }})
+        </div>
+        <div class="subcontainer_c">
+            {% for p in profile.projects_workingon.all %}
+                <li><a href="{% url 'projects:projectpage' p.pk %}">{{ p }}</a></li>
+            {% empty %}
+                None
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
 
