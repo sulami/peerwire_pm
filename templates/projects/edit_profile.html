@@ -3,6 +3,7 @@
 {% block title %}Edit Profile - {% endblock %}
 
 {% block content %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <div class="subcontainer sc_full">
     <div class="subcontainer_h">
         Edit Profile
@@ -11,6 +12,7 @@
         <form action="." method="POST">
             {% csrf_token %}
             <table style="width: 500px">
+            <tbody id="tbody">
             {% for field in form %}
                 <tr>
                     <td>{{ field.label_tag }}</td>
@@ -18,8 +20,12 @@
                 </tr>
             {% endfor %}
             <tr><td></td><td><input type="submit" value="Save" /></td></tr>
+            </tbody>
             </table>
         </form>
+    <script type="text/javascript">
+    $("select").attr("size", function() { return this.options.length; });
+    </script>
     </div>
 {% endblock %}
 

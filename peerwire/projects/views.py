@@ -55,14 +55,21 @@ def profilepage(request, profile_id):
     context = {'profile': profile}
     return render(request, 'projects/profilepage.html', context)
 
+from django.forms.formsets import formset_factory
 def edit_profile(request):
     profile = get_object_or_404(User, pk=request.user.pk)
+    # UserFormSet = formset_factory(UserLangForm)
+    # i = 0
+    # for f in profile.UserLang__set.all():
+    #     i += 1
     if request.method == 'POST':
         form = UserForm(request.POST, instance=profile)
+        # formset = UserFormSet(request.POST, extra=i)
         if form.is_valid():
             form.save()
             return redirect('projects:profilepage', profile.pk)
     else:
         form = UserForm(instance=profile)
+        # formset = UserFormSet(extra=i)
     return render(request, 'projects/edit_profile.html', {'form': form})
 

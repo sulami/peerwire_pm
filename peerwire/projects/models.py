@@ -66,6 +66,8 @@ class User(AbstractUser):
     avatar = models.ImageField(upload_to='avatars', blank=True)
     desc = models.TextField(blank=True)
     mail = models.EmailField()
+    langs = models.ManyToManyField(Lang, blank=True, related_name='u_lang')
+    skills = models.ManyToManyField(Skill, blank=True, related_name='u_skill')
 
     def email_user(self, subject, message, from_email=None, **kwargs):
         send_mail(subject, message, from_email, [self.mail], **kwargs)
@@ -79,11 +81,6 @@ class User(AbstractUser):
         else:
             return self.username
 
-class UserForm(ModelForm):
-    class Meta:
-        model = User
-        fields = ['username', 'mail', 'first_name', 'last_name', 'desc']
-
 class Project(models.Model):
     name = models.CharField(max_length=50)
     owners = models.ManyToManyField(User, related_name='projects_owned')
@@ -91,8 +88,8 @@ class Project(models.Model):
     users = models.ManyToManyField(
         User, related_name='projects_workingon', blank=True
         )
-    langs = models.ManyToManyField(Lang, blank=True)
-    skills = models.ManyToManyField(Skill, blank=True)
+    langs = models.ManyToManyField(Lang, blank=True, related_name='p_lang')
+    skills = models.ManyToManyField(Skill, blank=True, related_name='p_skill')
     level = models.CharField(
         max_length=20,
         choices=LEVEL_CHOICES,
@@ -134,34 +131,11 @@ class ProjectForm(ModelForm):
         fields = ['name', 'desc', 'langs', 'skills', 'level', 'status',
             'seeking']
 
-class UserSkill(models.Model):
-    skill = models.ForeignKey(Skill)
-    user = models.ForeignKey(User)
-    level = models.IntegerField(choices=LEVEL_CHOICES)
-
-    def __unicode__(self):
-        return self.skill.name
-
-class UserLang(models.Model):
-    lang = models.ForeignKey(Lang)
-    user = models.ForeignKey(User)
-    level = models.IntegerField(choices=LEVEL_CHOICES)
-
-    def __unicode__(self):
-        return self.lang.name
-
-class MetaLink(models.Model):
-    name = models.CharField(max_length=50)
-    url = models.URLField(max_length=200)
-
+class UserForm(ModelForm):
     class Meta:
-        abstract = True
-
-class UserLink(MetaLink):
-    user = models.ForeignKey(User)
-
-class ProjectLink(MetaLink):
-    project = models.ForeignKey(Project)
+        model = User
+        fields = ['username', 'mail', 'first_name', 'last_name', 'desc',
+            'langs', 'skills']
 
 class Credit(models.Model):
     user = models.ForeignKey(User)
