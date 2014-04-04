@@ -52,13 +52,17 @@ textarea { border: none }
 select, textarea {
     width: 100%;
 }
+select[multiple] {
+    overflow: hidden;
+}
 div#header {
     background-repeat: no-repeat;
     margin-top: 5px;
-    width: 100%;
+    padding-right: 5px;
+    width: calc(100% - 5px);
 }
 div#menu {
-    padding: 5px;
+    padding-top: 5px;
 }
 menu#main_menu {
     margin-bottom: 0px;
@@ -67,14 +71,13 @@ menu#main_menu {
 menu#main_menu li {
     display: inline;
 }
-div.menu_button {
+li.menu_button {
     display: inline-block;
 }
 div#account {
     color: rgb(170,170,170);
     display: inline-block;
     font-size: 12px;
-    padding-right: 5px;
     width: 100%;
 }
 div#newsticker {
