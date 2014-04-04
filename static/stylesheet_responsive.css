@@ -16,8 +16,8 @@ div.sc_full {
     -webkit-transition: all .5s;
 }
 @media screen and (max-width: 599px) {
-    body { background-color: rgb(255,255,255); margin: 0px }
-    div#container { border: none; width: 100% }
+    body { background-color: rgb(255,255,255) }
+    div#container { border: none; margin: 0px; width: 100% }
     div#header {
         background-image: url('/static/composite_full_mobile.svg');
         background-position: top center;
@@ -32,8 +32,8 @@ div.sc_full {
     div.sc_full { width: 100% }
 }
 @media screen and (min-width: 600px) {
-    body { background-color: rgb(230,230,230); margin: 10px }
-    div#container { border: 1px rgb(200,200,200) solid; width: 100% }
+    body { background-color: rgb(230,230,230) }
+    div#container { border: 1px rgb(200,200,200) solid; margin: 10px; width: calc(100% - 20px) }
     div#header {
         background-image: url('/static/composite_full.svg');
         background-position: top left;
