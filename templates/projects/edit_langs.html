@@ -12,6 +12,7 @@
             {% csrf_token %}
             <table style="width: 500px">
             {{ form.as_table }}
+            {{ form.management_form }}
             <tr><td></td><td><input type="submit" value="Save" /></td></tr>
             </table>
         </form>

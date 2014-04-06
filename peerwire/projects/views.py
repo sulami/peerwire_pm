@@ -3,9 +3,11 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
+from django.forms.models import modelformset_factory
 
 from projects.models import *
 from news.models import News
+from projects.forms import *
 
 def index(request):
     trending_projects = Project.objects.all().order_by('-value')[:10]
@@ -65,4 +67,19 @@ def edit_profile(request):
     else:
         form = UserForm(instance=profile)
     return render(request, 'projects/edit_profile.html', {'form': form})
+
+def edit_langs(request):
+    profile = get_object_or_404(User, pk=request.user.pk)
+    LangFormSet = modelformset_factory(UserLang, form=UserLangForm)
+    if request.method == 'POST':
+        form = LangFormSet(request.POST, queryset=UserLang.objects.filter(user=request.user))
+        if form.is_valid():
+            instances = form.save(commit=False)
+            for instance in instances:
+                instance.user = request.user
+                instance.save()
+            return redirect('projects:profilepage', profile.pk)
+    else:
+        form = LangFormSet(queryset=UserLang.objects.filter(user=request.user))
+    return render(request, 'projects/edit_langs.html', {'form': form})
 

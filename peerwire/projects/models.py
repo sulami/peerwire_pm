@@ -1,7 +1,6 @@
 # coding: utf-8
 from django.db import models
 from django.contrib.auth.models import AbstractUser
-from django.forms import ModelForm
 
 # Global difficulty levels
 LEVEL_CHOICES = (
@@ -79,11 +78,6 @@ class User(AbstractUser):
         else:
             return self.username
 
-class UserForm(ModelForm):
-    class Meta:
-        model = User
-        fields = ['username', 'mail', 'first_name', 'last_name', 'desc']
-
 class Project(models.Model):
     name = models.CharField(max_length=50)
     owners = models.ManyToManyField(User, related_name='projects_owned')
@@ -128,16 +122,10 @@ class Project(models.Model):
     def __unicode__(self):
         return get_project_path(self)
 
-class ProjectForm(ModelForm):
-    class Meta:
-        model = Project
-        fields = ['name', 'desc', 'langs', 'skills', 'level', 'status',
-            'seeking']
-
 class UserSkill(models.Model):
     skill = models.ForeignKey(Skill)
     user = models.ForeignKey(User)
-    level = models.IntegerField(choices=LEVEL_CHOICES)
+    level = models.CharField(max_length=20, choices=LEVEL_CHOICES)
 
     def __unicode__(self):
         return self.skill.name
@@ -145,7 +133,7 @@ class UserSkill(models.Model):
 class UserLang(models.Model):
     lang = models.ForeignKey(Lang)
     user = models.ForeignKey(User)
-    level = models.IntegerField(choices=LEVEL_CHOICES)
+    level = models.CharField(max_length=20, choices=LEVEL_CHOICES)
 
     def __unicode__(self):
         return self.lang.name
