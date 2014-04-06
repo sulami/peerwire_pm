@@ -12,17 +12,12 @@
         <form action="." method="POST">
             {% csrf_token %}
             <table style="width: 500px">
-<<<<<<< HEAD
-            <tbody id="tbody">
             {% for field in form %}
                 <tr>
-                    <td>{{ field.label_tag }}</td>
-                    <td style="text-align: right">{{ field }}</td>
+                <td>{{ field.label_tag }}</td>
+                <td>{{ field }}</td>
                 </tr>
             {% endfor %}
-=======
-            {{ form.as_table }}
->>>>>>> other_models
             <tr><td></td><td><input type="submit" value="Save" /></td></tr>
             </tbody>
             </table>

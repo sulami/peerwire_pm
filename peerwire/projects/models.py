@@ -82,6 +82,8 @@ class Project(models.Model):
     name = models.CharField(max_length=50)
     owners = models.ManyToManyField(User, related_name='projects_owned')
     desc = models.TextField(blank=True)
+    langs = models.ManyToManyField(Lang)
+    skills = models.ManyToManyField(Skill)
     users = models.ManyToManyField(
         User, related_name='projects_workingon', blank=True
         )
@@ -135,7 +137,6 @@ class UserSkill(models.Model):
 
     def __unicode__(self):
         return self.lang.name
-
 
 class MetaLink(models.Model):
     name = models.CharField(max_length=50)
