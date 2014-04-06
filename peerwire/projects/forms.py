@@ -15,6 +15,6 @@ class UserForm(ModelForm):
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
-        fields = ['name', 'desc', 'langs', 'skills', 'level', 'status',
+        fields = ['name', 'description', 'langs', 'skills', 'level', 'status',
             'seeking']
 

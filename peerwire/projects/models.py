@@ -63,7 +63,7 @@ class Skill(models.Model):
 
 class User(AbstractUser):
     avatar = models.ImageField(upload_to='avatars', blank=True)
-    desc = models.TextField(blank=True)
+    description = models.TextField(blank=True)
     mail = models.EmailField()
 
     def email_user(self, subject, message, from_email=None, **kwargs):
@@ -81,7 +81,7 @@ class User(AbstractUser):
 class Project(models.Model):
     name = models.CharField(max_length=50)
     owners = models.ManyToManyField(User, related_name='projects_owned')
-    desc = models.TextField(blank=True)
+    description = models.TextField(blank=True)
     langs = models.ManyToManyField(Lang)
     skills = models.ManyToManyField(Skill)
     users = models.ManyToManyField(
