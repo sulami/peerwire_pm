@@ -56,6 +56,7 @@ select, textarea {
 select[multiple] {
     overflow: hidden;
 }
+span.helptext { display: none }
 div#header {
     background-repeat: no-repeat;
     margin-top: 5px;

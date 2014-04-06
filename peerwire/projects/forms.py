@@ -10,7 +10,7 @@ class UserLangForm(forms.ModelForm):
 class UserForm(ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'mail', 'first_name', 'last_name', 'desc']
+        fields = ['mail', 'first_name', 'last_name', 'description']
 
 class ProjectForm(ModelForm):
     class Meta:
