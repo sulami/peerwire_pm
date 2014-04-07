@@ -40,6 +40,21 @@ def edit_project(request, project_id):
     context = {'form': form, 'project': project}
     return render(request, 'projects/edit_project.html', context)
 
+def start_project(request):
+    if not request.user.is_authenticated():
+        return redirect('projects:index')
+    if request.method == 'POST':
+        project = Project()
+        form = ProjectForm(request.POST, instance=project)
+        if form.is_valid():
+            p = form.save(commit=False)
+            p.save()
+            p.owners.add(request.user)
+            return redirect('projects:projectpage', project.pk)
+    else:
+        form = ProjectForm()
+    return render(request, 'projects/start_project.html', {'form': form})
+
 def startwork(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if project.seeking == 'Yes' and request.user not in project.users.all():

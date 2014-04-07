@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit {{ project }} - {% endblock %}
+
+{% block content %}
+    <div class="subcontainer sc_full">
+    <div class="subcontainer_h">
+        Edit {{ project }}
+    </div>
+    <div class="subcontainer_c">
+        <form action="." method="POST">
+            {% csrf_token %}
+            <table style="width: 400px">
+            {{ form.as_table }}
+            <tr><td></td><td><input type="submit" value="Save" /></td></tr>
+            </table>
+        </form>
+    </div>
+    </div>
+{% endblock %}
+
