@@ -103,9 +103,16 @@ def edit_profile(request):
 
 def edit_langs(request):
     profile = get_object_or_404(User, pk=request.user.pk)
-    LangFormSet = modelformset_factory(UserLang, form=UserLangForm)
+    LangFormSet = modelformset_factory(
+        UserLang,
+        form=UserLangForm,
+        extra=( 10 - profile.userlang_set.count() )
+        )
     if request.method == 'POST':
-        formset = LangFormSet(request.POST, queryset=UserLang.objects.filter(user=request.user))
+        formset = LangFormSet(
+            request.POST,
+            queryset=UserLang.objects.filter(user=request.user)
+            )
         if formset.is_valid():
             forms = formset.save(commit=False)
             for form in formset.forms:
@@ -118,14 +125,23 @@ def edit_langs(request):
                         instance.save()
             return redirect('projects:profilepage', profile.pk)
     else:
-        formset = LangFormSet(queryset=UserLang.objects.filter(user=request.user))
+        formset = LangFormSet(
+            queryset=UserLang.objects.filter(user=request.user)
+            )
     return render(request, 'projects/edit_langs.html', {'form': formset})
 
 def edit_skills(request):
     profile = get_object_or_404(User, pk=request.user.pk)
-    SkillFormSet = modelformset_factory(UserSkill, form=UserSkillForm)
+    SkillFormSet = modelformset_factory(
+        UserSkill,
+        form=UserSkillForm,
+        extra=( 10 - profile.userskill_set.count() )
+        )
     if request.method == 'POST':
-        formset = SkillFormSet(request.POST, queryset=UserSkill.objects.filter(user=request.user))
+        formset = SkillFormSet(
+            request.POST,
+            queryset=UserSkill.objects.filter(user=request.user)
+            )
         if formset.is_valid():
             forms = formset.save(commit=False)
             for form in formset.forms:
@@ -138,6 +154,8 @@ def edit_skills(request):
                         instance.save()
             return redirect('projects:profilepage', profile.pk)
     else:
-        form = SkillFormSet(queryset=UserSkill.objects.filter(user=request.user))
+        form = SkillFormSet(
+            queryset=UserSkill.objects.filter(user=request.user)
+            )
     return render(request, 'projects/edit_skills.html', {'form': form})
 
