@@ -52,7 +52,7 @@ def start_project(request, parent_id=None):
             if parent_id:
                 par = get_object_or_404(Project, pk=parent_id)
                 if request.user not in par.owners.all():
-                    redirect('projects:projectpage', par.pk)
+                    return redirect('projects:projectpage', par.pk)
                 p.parent = par
                 p.save()
             p.owners.add(request.user)
@@ -60,6 +60,16 @@ def start_project(request, parent_id=None):
     else:
         form = ProjectForm()
     return render(request, 'projects/start_project.html', {'form': form})
+
+def delete_project(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    if request.user not in project.owners.all():
+        return redirect('projects:projectpage', par.pk)
+    if request.method == 'POST':
+        if request.POST.get('delete'):
+            project.delete()
+            return redirect('projects:index')
+    return render(request, 'projects/confirmation.html', {'project': project})
 
 def startwork(request, project_id):
     project = get_object_or_404(Project, pk=project_id)

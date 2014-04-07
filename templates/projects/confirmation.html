@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Are you sure? - {% endblock %}
+
+{% block content %}
+<div class="subcontainer sc_full">
+    <div class="subcontainer_h">
+        Are you sure you want to delete "{{ project }}"?
+    </div>
+    <div class="subcontainer_c">
+        <form action="." method="POST">
+        {% csrf_token %}
+        <input type="submit" name="delete" value="I am sure"/>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
