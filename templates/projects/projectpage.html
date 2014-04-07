@@ -23,7 +23,7 @@
         {{ project.name }}
     </div>
     <div class="subcontainer_c">
-        {{ project.desc|default:'No description'|linebreaksbr }}
+        {{ project.description|default:'No description'|linebreaksbr }}
     </div>
 </div>
 {% if project.seeking == 'Yes' and user not in project.users.all %}
