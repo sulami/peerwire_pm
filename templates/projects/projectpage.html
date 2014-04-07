@@ -25,6 +25,10 @@
     </div>
     <div class="subcontainer_c">
         {{ project.description|default:'No description'|linebreaksbr }}
+        <h4>Languages used:</h4>
+        {{ project.langs.all|join:", " }}
+        <h4>Skills used:</h4>
+        {{ project.skills.all|join:", " }}
     </div>
 </div>
 {% if project.seeking == 'Yes' and user not in project.users.all %}
