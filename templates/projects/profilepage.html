@@ -28,12 +28,17 @@
             {% endif %}
         </div>
         <div class="subcontainer_c">
+            {% if profile.avatar %}
+                <div class="avatar" style="background-image: url({{ profile.avatar.url }})">&nbsp;</div>
+            {% else %}
+                <div class="avatar" style="background-image: url({% static 'avatar.svg' %})">&nbsp;</div>
+            {% endif %}
+            {{ profile.description|default:"No description given."|linebreaksbr }}
             {% if profile.userlink %}
                 {% for l in profile.userlink.all %}
                     <a href="{{ l.url }}">{{ l.name }}</a><br>
                 {% endfor %}
             {% endif %}
-            {{ profile.description|default:"No description given."|linebreaksbr }}
         </div>
     </div>
     <div class="subcontainer sc_small right">
