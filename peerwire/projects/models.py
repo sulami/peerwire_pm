@@ -136,7 +136,7 @@ class UserSkill(models.Model):
     level = models.CharField(max_length=10, choices=LEVEL_CHOICES)
 
     def __unicode__(self):
-        return self.lang.name
+        return self.skill.name
 
 class MetaLink(models.Model):
     name = models.CharField(max_length=50)

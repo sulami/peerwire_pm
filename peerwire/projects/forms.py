@@ -7,6 +7,11 @@ class UserLangForm(forms.ModelForm):
         model = UserLang
         fields = ['lang', 'level']
 
+class UserSkillForm(forms.ModelForm):
+    class Meta:
+        model = UserSkill
+        fields = ['skill', 'level']
+
 class UserForm(ModelForm):
     class Meta:
         model = User

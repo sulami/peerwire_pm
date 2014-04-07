@@ -11,4 +11,5 @@ urlpatterns = patterns('projects.views',
     url(r'^p/(\d+)/f/$', 'finishwork', name='finishwork'),
     url(r'^e/p/$', 'edit_profile', name='edit_profile'),
     url(r'^e/l/$', 'edit_langs', name='edit_langs'),
+    url(r'^e/s/$', 'edit_skills', name='edit_skills'),
     )
