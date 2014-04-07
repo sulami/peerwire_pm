@@ -23,6 +23,7 @@ Software Setup
   * Django (tested on 1.6.4)
   * Django-registration (tested on 0.9.3)
   * Django-haystack (tested on 2.1.0)
+  * Django-orphaned (tested on 0.3)
 
 URL overview
 ------------

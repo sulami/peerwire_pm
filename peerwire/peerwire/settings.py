@@ -130,6 +130,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'registration',
     'haystack',
+    'django_orphaned',
     'projects',
     'news',
 )
@@ -175,4 +176,11 @@ HAYSTACK_CONNECTIONS = {
         'URL': 'http://127.0.0.1:9200/',
         'INDEX_NAME': 'haystack',
     },
+}
+
+### Orphaned
+ORPHANED_APPS_MEDIABASE_DIRS = {
+    'projects': {
+        'root': '/home/sulami/build/peerwire_pm/media/avatars/'
+    }
 }
