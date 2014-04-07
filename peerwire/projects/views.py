@@ -72,27 +72,37 @@ def edit_langs(request):
     profile = get_object_or_404(User, pk=request.user.pk)
     LangFormSet = modelformset_factory(UserLang, form=UserLangForm)
     if request.method == 'POST':
-        form = LangFormSet(request.POST, queryset=UserLang.objects.filter(user=request.user))
-        if form.is_valid():
-            instances = form.save(commit=False)
-            for instance in instances:
-                instance.user = request.user
-                instance.save()
+        formset = LangFormSet(request.POST, queryset=UserLang.objects.filter(user=request.user))
+        if formset.is_valid():
+            forms = formset.save(commit=False)
+            for form in formset.forms:
+                if form.has_changed():
+                    instance = form.save(commit=False)
+                    if form.cleaned_data.get('delete'):
+                        instance.delete()
+                    else:
+                        instance.user = request.user
+                        instance.save()
             return redirect('projects:profilepage', profile.pk)
     else:
-        form = LangFormSet(queryset=UserLang.objects.filter(user=request.user))
-    return render(request, 'projects/edit_langs.html', {'form': form})
+        formset = LangFormSet(queryset=UserLang.objects.filter(user=request.user))
+    return render(request, 'projects/edit_langs.html', {'form': formset})
 
 def edit_skills(request):
     profile = get_object_or_404(User, pk=request.user.pk)
     SkillFormSet = modelformset_factory(UserSkill, form=UserSkillForm)
     if request.method == 'POST':
-        form = SkillFormSet(request.POST, queryset=UserSkill.objects.filter(user=request.user))
-        if form.is_valid():
-            instances = form.save(commit=False)
-            for instance in instances:
-                instance.user = request.user
-                instance.save()
+        formset = SkillFormSet(request.POST, queryset=UserSkill.objects.filter(user=request.user))
+        if formset.is_valid():
+            forms = formset.save(commit=False)
+            for form in formset.forms:
+                if form.has_changed():
+                    instance = form.save(commit=False)
+                    if form.cleaned_data.get('delete'):
+                        instance.delete()
+                    else:
+                        instance.user = request.user
+                        instance.save()
             return redirect('projects:profilepage', profile.pk)
     else:
         form = SkillFormSet(queryset=UserSkill.objects.filter(user=request.user))
