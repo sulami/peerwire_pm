@@ -17,7 +17,7 @@ class UserSkillForm(forms.ModelForm):
 class UserForm(ModelForm):
     class Meta:
         model = User
-        fields = ['mail', 'first_name', 'last_name', 'description']
+        fields = ['mail', 'first_name', 'last_name', 'description', 'avatar']
 
 class ProjectForm(ModelForm):
     class Meta:

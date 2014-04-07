@@ -81,7 +81,7 @@ def profilepage(request, profile_id):
 def edit_profile(request):
     profile = get_object_or_404(User, pk=request.user.pk)
     if request.method == 'POST':
-        form = UserForm(request.POST, instance=profile)
+        form = UserForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             form.save()
             return redirect('projects:profilepage', profile.pk)

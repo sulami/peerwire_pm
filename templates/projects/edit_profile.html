@@ -9,7 +9,7 @@
         Edit Profile
     </div>
     <div class="subcontainer_c">
-        <form action="." method="POST">
+        <form action="." method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <table style="width: 500px">
             {{ form.as_table }}
