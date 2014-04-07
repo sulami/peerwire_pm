@@ -5,25 +5,33 @@
 {% block content %}
 <div class="subcontainer sc_small right">
     <div class="subcontainer_h">
-        news
+        Get to work
     </div>
     <div class="subcontainer_c">
-        {% for post in news %}
-            <li><a href="{% url 'news:newspage' post.id %}">{{ post.title }}</a></li>
-        {% empty %}
-            No News
-        {% endfor %}
+        <li><a href="{% url 'projects:start_project' %}">Start a new project</a></li>
     </div>
 </div>
 <div class="subcontainer sc_large left">
     <div class="subcontainer_h">
-        trending projects
+        Trending projects
     </div>
     <div class="subcontainer_c">
         {% for project in trending_projects %}
             <li><a href="{% url 'projects:projectpage' project.id %}">{{ project }}</a></li>
         {% empty %}
             No trending projects
+        {% endfor %}
+    </div>
+</div>
+<div class="subcontainer sc_small right">
+    <div class="subcontainer_h">
+        News
+    </div>
+    <div class="subcontainer_c">
+        {% for post in news %}
+            <li><a href="{% url 'news:newspage' post.id %}">{{ post.title }}</a></li>
+        {% empty %}
+            No News
         {% endfor %}
     </div>
 </div>

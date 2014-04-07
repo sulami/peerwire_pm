@@ -40,7 +40,7 @@ def edit_project(request, project_id):
     context = {'form': form, 'project': project}
     return render(request, 'projects/edit_project.html', context)
 
-def start_project(request):
+def start_project(request, parent_id=None):
     if not request.user.is_authenticated():
         return redirect('projects:index')
     if request.method == 'POST':
@@ -49,6 +49,12 @@ def start_project(request):
         if form.is_valid():
             p = form.save(commit=False)
             p.save()
+            if parent_id:
+                par = get_object_or_404(Project, pk=parent_id)
+                if request.user not in par.owners.all():
+                    redirect('projects:projectpage', par.pk)
+                p.parent = par
+                p.save()
             p.owners.add(request.user)
             return redirect('projects:projectpage', project.pk)
     else:
