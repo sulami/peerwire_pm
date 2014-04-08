@@ -1,6 +1,7 @@
 # coding: utf-8
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.core.mail import send_mail
 
 # Global difficulty levels
 LEVEL_CHOICES = (
@@ -64,10 +65,6 @@ class Skill(models.Model):
 class User(AbstractUser):
     avatar = models.ImageField(upload_to='avatars', blank=True)
     description = models.TextField(blank=True)
-    mail = models.EmailField()
-
-    def email_user(self, subject, message, from_email=None, **kwargs):
-        send_mail(subject, message, from_email, [self.mail], **kwargs)
 
     def __unicode__(self):
         if self.first_name:
