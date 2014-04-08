@@ -2,4 +2,5 @@ db.db
 *.pyc
 *~
 recursion.py
+art/
 
