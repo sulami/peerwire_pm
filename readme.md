@@ -24,6 +24,18 @@ Software Setup
   * Django-haystack (tested on 2.1.0)
   * Django-orphaned (tested on 0.3)
 
+Custom Fixes
+------------
+
+registration: /usr/lib/python2.7/site-packages/registration/forms.py:
+
+<<
+    from django.contrib.auth.models import User
+
+>>
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+
 URL overview
 ------------
 
