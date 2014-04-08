@@ -135,10 +135,6 @@ class UserSkill(models.Model):
     def __unicode__(self):
         return self.skill.name
 
-class MetaLink(models.Model):
-    name = models.CharField(max_length=50)
-    url = models.URLField(max_length=200)
-
 class Credit(models.Model):
     user = models.ForeignKey(User)
     project = models.ForeignKey(Project)
