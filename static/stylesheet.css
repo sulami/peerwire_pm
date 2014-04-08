@@ -57,6 +57,9 @@ select, textarea {
 select[multiple] {
     overflow: hidden;
 }
+input[type="checkbox"] {
+    width: auto !important;
+}
 span.helptext { display: none }
 div#header {
     background-repeat: no-repeat;

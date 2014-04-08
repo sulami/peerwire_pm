@@ -11,12 +11,24 @@
         <form action="." method="POST">
             {% csrf_token %}
             <table style="width: 500px">
-            {{ form.as_table }}
+            {% for f in form.forms %}
+                <tr class="form_container">
+                {{ f.id }}
+                <td>{{ f.lang }}</td>
+                <td>{{ f.level }}</td>
+                <td>{{ f.delete }} Delete</td>
+                </tr>
+            {% endfor %}
             {{ form.management_form }}
-            <tr><td></td><td><input type="submit" value="Save" /></td></tr>
             </table>
+            <input type="submit" value="Save" />
         </form>
     </div>
+    <script type="text/javascript">
+        $(function() {
+            $('.form_container').formset({deleteText: ''});
+        })
+    </script>
     </div>
 {% endblock %}
 

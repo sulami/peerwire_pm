@@ -122,7 +122,6 @@ def edit_langs(request):
     LangFormSet = modelformset_factory(
         UserLang,
         form=UserLangForm,
-        extra=( 10 - profile.userlang_set.count() )
         )
     if request.method == 'POST':
         formset = LangFormSet(
@@ -151,7 +150,6 @@ def edit_skills(request):
     SkillFormSet = modelformset_factory(
         UserSkill,
         form=UserSkillForm,
-        extra=( 10 - profile.userskill_set.count() )
         )
     if request.method == 'POST':
         formset = SkillFormSet(
