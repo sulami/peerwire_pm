@@ -118,8 +118,8 @@ div.avatar {
     height: 100px;
     width: 100px;
 }
-div.mono {
-    font-family: Inconsolata, monospace;
+span.mono {
+    font-family: Inconsolata;
 }
 div#footer {
     background-color: rgb(50, 50, 50);

@@ -81,10 +81,8 @@
     <div class="subcontainer_c">
         {% for array in project.project_tree %}
             {% for b in array %}
-                <div class="mono">
                     {% autoescape off %}
-                        {{ b.1 }}{% endautoescape %}<a href="{% url 'projects:projectpage' b.0.pk %}">{{ b.0.name }}</a>
-                </div>
+                        <li><span class="mono">{{ b.1 }}</span>{% endautoescape %}<a href="{% url 'projects:projectpage' b.0.pk %}">{{ b.0.name }}</a></li>
             {% endfor %}
         {% endfor %}
     </div>
