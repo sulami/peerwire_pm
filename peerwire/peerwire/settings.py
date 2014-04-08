@@ -130,7 +130,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'registration',
     'haystack',
-    'django_orphaned',
+    'orphan',
     'projects',
     'news',
 )
