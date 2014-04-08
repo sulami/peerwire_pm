@@ -19,6 +19,10 @@ class UserForm(ModelForm):
         model = User
         fields = ['email', 'first_name', 'last_name', 'description', 'avatar']
 
+    def __init__(self, *args, **kwargs):
+        super(UserForm, self).__init__(*args, **kwargs)
+        self.fields['email'].required = True
+
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
