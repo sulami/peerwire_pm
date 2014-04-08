@@ -108,19 +108,18 @@ div.subcontainer_h {
 div.subcontainer_c {
     padding: 3px;
 }
+div.pure_li li { list-style: inherit !important }
 div.avatar {
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
     border-radius: 50px;
-    float: left;
+    float: right;
     margin: 5px;
     height: 100px;
     width: 100px;
 }
-span.mono {
-    font-family: Inconsolata;
-}
+span.mono { font-family: Inconsolata }
 div#footer {
     background-color: rgb(50, 50, 50);
     border-top: 2px rgb(251,179,0) solid;

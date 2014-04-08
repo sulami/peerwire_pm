@@ -9,6 +9,8 @@ from projects.models import *
 from news.models import News
 from projects.forms import *
 
+import markdown
+
 def index(request):
     trending_projects = Project.objects.all().order_by('-value')[:10]
     news = News.objects.all().order_by('-pub_date')[:10]
@@ -23,7 +25,14 @@ def projectpage(request, project_id):
     if project.status == 1:
         project.value += 1
         project.save()
-    context = {'project': project}
+    context = {
+        'project': project,
+        'desc': markdown.markdown(
+            project.description,
+            safe_mode='escape',
+            output_format='html5'
+            )
+        }
     return render(request, 'projects/projectpage.html', context)
 
 def edit_project(request, project_id):
@@ -87,7 +96,14 @@ def finishwork(request, project_id):
 
 def profilepage(request, profile_id):
     profile = get_object_or_404(User, pk=profile_id)
-    context = {'profile': profile}
+    context = {
+        'profile': profile,
+        'desc': markdown.markdown(
+            profile.description,
+            safe_mode='escape',
+            output_format='html5'
+            )
+        }
     return render(request, 'projects/profilepage.html', context)
 
 def edit_profile(request):
