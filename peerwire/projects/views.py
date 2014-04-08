@@ -159,3 +159,9 @@ def edit_skills(request):
             )
     return render(request, 'projects/edit_skills.html', {'form': form})
 
+def about_us(request):
+    return render(request, 'about_us.html')
+
+def contact(request):
+    return render(request, 'contact.html')
+
