@@ -30,9 +30,9 @@ table {
 tr.hover:hover {
     background-color: rgb(230,230,230);
 }
-td {
+th, td {
     padding: 0px;
-    vertical-align: top;
+    vertical-align: baseline;
 }
 li {
     list-style-type: none;
