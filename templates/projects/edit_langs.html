@@ -2,6 +2,12 @@
 
 {% block title %}Edit Languages - {% endblock %}
 
+{% block head %}
+    {% load staticfiles %}
+    <script type="text/javascript" src="{% static 'jquery-1.11.0.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'jquery.formset.js' %}"></script>
+{% endblock %}
+
 {% block content %}
     <div class="subcontainer sc_full">
     <div class="subcontainer_h">

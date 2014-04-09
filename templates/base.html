@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="{% static 'stylesheet.css' %}" type="text/css" charset="utf-8" />
     <link rel="stylesheet" href="{% static 'stylesheet_responsive.css' %}" type="text/css" charset="utf-8" />
     <link rel="icon" href="{% static 'favicon.png' %}" type="image/png" />
-    <script type="text/javascript" src="{% static 'jquery-1.11.0.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'jquery.formset.js' %}"></script>
+    {% block head %}{% endblock %}
 </head>
 <body>
     <div id="container">
