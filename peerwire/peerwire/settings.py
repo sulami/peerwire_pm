@@ -137,7 +137,6 @@ INSTALLED_APPS = (
     'orphan',
     'projects',
     'news',
-    'help',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
