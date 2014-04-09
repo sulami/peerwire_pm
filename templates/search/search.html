@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 
 {% block content %}
 <div class="subcontainer sc_full">
@@ -81,7 +82,7 @@
         Results
     </div>
     <div class="subcontainer_c">
-    <table style="width: 100%">
+    <table class="search">
     <tr>
         <td>Name</td>
         <td>Languages</td>
@@ -98,8 +99,12 @@
         </td>
         <td>{{ result.object.langs.all|join:", " }}</td>
         <td>{{ result.object.skills.all|join:", " }}</td>
-        <td>{{ result.object.status }}</td>
-        <td>{{ result.object.seeking }}</td>
+        <td style="background-image: url('{% if result.object.status == 'Active' %}{% static 'yes.svg' %}{% else %}{% static 'no.svg' %}{% endif %}')">
+            &nbsp;
+        </td>
+        <td style="background-image: url('{% if result.object.seeking == 'Yes' %}{% static 'yes.svg' %}{% else %}{% static 'no.svg' %}{% endif %}')">
+            &nbsp;
+        </td>
         </tr>
     {% empty %}
         <p>No results found.</p>

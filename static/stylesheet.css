@@ -37,13 +37,17 @@ th, td {
     padding: 0px;
     vertical-align: top;
 }
+table.search tr td {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
 li {
     list-style-type: none;
 }
 input {
     background-color: rgb(240,240,240);
     border: none;
-    padding: 5px;
     transition: all .3s;
     -webkit-transition: all .3s;
     width: 100%;
