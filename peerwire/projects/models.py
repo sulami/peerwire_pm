@@ -65,6 +65,7 @@ class Skill(models.Model):
 class User(AbstractUser):
     avatar = models.ImageField(upload_to='avatars', blank=True)
     description = models.TextField(blank=True)
+    premium = models.BooleanField(default=False)
 
     def __unicode__(self):
         if self.first_name:
