@@ -103,6 +103,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 )
 
 ROOT_URLCONF = 'peerwire.urls'
@@ -167,6 +170,15 @@ LOGGING = {
         },
     }
 }
+
+### Cache
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'peerwire'
+    }
+}
+CACHE_MIDDLEWARE_KEY_PREFIX = 'peerwire'
 
 ### Django-registration
 ACCOUNT_ACTIVATION_DAYS = 7
