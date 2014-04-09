@@ -19,5 +19,5 @@ def index(request):
 def newspage(request, news_id):
     news = get_object_or_404(News, pk=news_id)
     context = {'news': news}
-    return render(request, 'news/projectpage.html', context)
+    return render(request, 'news/newspage.html', context)
 

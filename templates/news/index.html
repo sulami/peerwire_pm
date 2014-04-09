@@ -3,8 +3,8 @@
 {% block title %}News - {% endblock %}
 
 {% block content %}
-    {% for post in news %}
-        <div class="subcontainer sc_full">
+    <div class="subcontainer sc_full">
+        {% for post in news %}
             <div class="subcontainer_h">
                 <a href="{% url 'news:newspage' post.pk %}">{{ post.title }}</a>
             </div>
@@ -13,7 +13,14 @@
                 <br />
                 <span style="font-size: 12px">{{ post.pub_date }}</span>
             </div>
+        {% empty %}
+            <p>No news here.</p>
+        {% endfor %}
+    </div>
+    <div class="subcontainer sc_full">
+        <div class="subcontainer_c">
+            Did someone say <a href="{% url 'news:newsfeed' %}">RSS</a>?
         </div>
-    {% endfor %}
+    </div>
 {% endblock %}
 
