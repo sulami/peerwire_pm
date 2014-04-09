@@ -30,7 +30,8 @@ def projectpage(request, project_id):
         'desc': markdown.markdown(
             project.description,
             safe_mode='escape',
-            output_format='html5'
+            output_format='html5',
+            extensions=['codehilite(noclasses=true,pygments_style=friendly)']
             )
         }
     return render(request, 'projects/projectpage.html', context)
@@ -101,7 +102,8 @@ def profilepage(request, profile_id):
         'desc': markdown.markdown(
             profile.description,
             safe_mode='escape',
-            output_format='html5'
+            output_format='html5',
+            extensions=['codehilite(noclasses=true,pygments_style=friendly)']
             )
         }
     return render(request, 'projects/profilepage.html', context)
