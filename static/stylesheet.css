@@ -25,6 +25,7 @@ a:hover, div.subcontainer_h a:hover, div#footer a:hover {
 }
 table {
     margin: auto;
+    width: 100%;
     max-width: 100%;
 }
 table.codehilitetable { margin: inherit !important }
@@ -51,7 +52,10 @@ input:hover {
     color: rgb(251,179,0);
     text-shadow: 1px 1px rgba(0,0,0,0.2);
 }
-textarea { border: none }
+textarea {
+    border: none;
+    resize: vertical;
+    }
 select, textarea {
     width: 100%;
 }

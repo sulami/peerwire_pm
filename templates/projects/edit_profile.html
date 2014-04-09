@@ -11,7 +11,7 @@
     <div class="subcontainer_c">
         <form action="." method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <table style="width: 500px">
+            <table>
             {{ form.as_table }}
             <tr><td></td><td><input type="submit" value="Save" /></td></tr>
             </table>
