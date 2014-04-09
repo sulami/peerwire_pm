@@ -85,7 +85,7 @@ def delete_project(request, project_id):
 
 def startwork(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
-    if project.seeking == 'Yes' and request.user not in project.users.all():
+    if (project.seeking == 'Yes' or request.user in project.owners.all()) and request.user not in project.users.all():
         project.users.add(request.user)
     return redirect('projects:projectpage', project.pk)
 
