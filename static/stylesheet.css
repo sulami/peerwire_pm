@@ -33,6 +33,11 @@ table.codehilitetable { margin: inherit !important }
 tr.hover:hover {
     background-color: rgb(230,230,230);
 }
+div.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 th, td {
     padding: 0px;
     vertical-align: top;

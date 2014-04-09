@@ -85,20 +85,18 @@
     <table class="search">
     <tr>
         <td>Name</td>
-        <td>Languages</td>
-        <td>Skills</td>
-        <td>Active</td>
-        <td>Seeking</td>
+        <td style="text-align: center">Active</td>
+        <td style="text-align: center">Seeking</td>
     </tr>
     {% for result in page.object_list %}
-        <tr class="hover">
+        <tr class="hover search">
         <td>
         <a href="{% url 'projects:projectpage' result.object.pk %}">
-            {{ result.object }}
+            <div class="ellipsis">
+                {{ result.object }}
+            </div>
         </a>
         </td>
-        <td>{{ result.object.langs.all|join:", " }}</td>
-        <td>{{ result.object.skills.all|join:", " }}</td>
         <td style="background-image: url('{% if result.object.status == 'Active' %}{% static 'yes.svg' %}{% else %}{% static 'no.svg' %}{% endif %}')">
             &nbsp;
         </td>
