@@ -50,6 +50,18 @@ def edit_project(request, project_id):
     context = {'form': form, 'project': project}
     return render(request, 'projects/edit_project.html', context)
 
+def manage_users(request, project_id, user_id=None):
+    project = get_object_or_404(Project, pk=project_id)
+    if request.user not in project.owners.all():
+        return redirect('projects:projectpage', project.pk)
+    if user_id:
+        user = get_object_or_404(User, pk=user_id)
+        if user in project.users.all():
+            project.users.remove(user)
+            return redirect('projects:manage_users', project.pk)
+    context = {'project': project}
+    return render(request, 'projects/manage_users.html', context)
+
 def start_project(request, parent_id=None):
     if not request.user.is_authenticated():
         return redirect('projects:index')
@@ -85,7 +97,8 @@ def delete_project(request, project_id):
 
 def startwork(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
-    if (project.seeking == 'Yes' or request.user in project.owners.all()) and request.user not in project.users.all():
+    if ((project.seeking == 'Yes' or request.user in project.owners.all()) and
+        request.user not in project.users.all()):
         project.users.add(request.user)
     return redirect('projects:projectpage', project.pk)
 
@@ -131,7 +144,6 @@ def edit_langs(request):
             queryset=UserLang.objects.filter(user=request.user)
             )
         if formset.is_valid():
-            forms = formset.save(commit=False)
             for form in formset.forms:
                 if form.has_changed():
                     instance = form.save(commit=False)
@@ -159,7 +171,6 @@ def edit_skills(request):
             queryset=UserSkill.objects.filter(user=request.user)
             )
         if formset.is_valid():
-            forms = formset.save(commit=False)
             for form in formset.forms:
                 if form.has_changed():
                     instance = form.save(commit=False)

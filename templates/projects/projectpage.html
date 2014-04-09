@@ -11,6 +11,7 @@
         </div>
         <div class="subcontainer_c">
             <li><a href="{% url 'projects:edit_project' project.pk %}">Edit Project</a></li>
+            <li><a href="{% url 'projects:manage_users' project.pk %}">Manage workers</a></li>
             <li><a href="{% url 'projects:start_project' project.pk %}">Start Subproject</a></li>
             <li><a href="{% url 'projects:delete_project' project.pk %}">Delete Project</a></li>
         </div>

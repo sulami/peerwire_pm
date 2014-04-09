@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage Workers - {% endblock %}
+
+{% block content %}
+    <div class="subcontainer sc_full">
+    <div class="subcontainer_h">
+        Manage Workers
+    </div>
+    <div class="subcontainer_c">
+        <table>
+            {% for u in project.users.all %}
+                <tr>
+                <td>{{ u }}</td>
+                <td><a href="{% url 'projects:manage_users' project.pk u.pk %}">Remove</a></td>
+                </tr>
+            {% empty %}
+                None
+            {% endfor %}
+        </table>
+        <p>
+        <a href="{% url 'projects:projectpage' project.pk %}">Back to project</a>
+        </p>
+    </div>
+    </div>
+{% endblock %}
+
