@@ -19,6 +19,7 @@ Software Setup
   * Python-pyelasticsearch (tested on 0.6.1)
   * Python-requests (tested on 2.2.1)
   * Python-markdown (tested on 2.4)
+  * Python-pygments (tested on 1.6)
   * Django (tested on 1.6.4)
   * Django-registration (tested on 0.9.3)
   * Django-haystack (tested on 2.1.0)
