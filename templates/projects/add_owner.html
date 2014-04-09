@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Manage Workers - {% endblock %}
+
+{% block content %}
+    <div class="subcontainer sc_full">
+    <div class="subcontainer_h">
+        Manage Workers
+    </div>
+    <div class="subcontainer_c">
+        <form method="POST" action=".">
+            <table>
+                {% csrf_token %}
+                {{ form.as_table }}
+            </table>
+            <input type="submit" value="Add" />
+        </form>
+        <p>
+        <a href="{% url 'projects:projectpage' project.pk %}">Back to project</a>
+        </p>
+    </div>
+    </div>
+{% endblock %}
+

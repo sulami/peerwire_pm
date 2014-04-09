@@ -1,5 +1,4 @@
-from django import forms
-from django.forms import ModelForm, BooleanField
+from django.forms import ModelForm, BooleanField, CharField, Form
 from projects.models import *
 
 class UserLangForm(ModelForm):
@@ -28,4 +27,7 @@ class ProjectForm(ModelForm):
         model = Project
         fields = ['name', 'description', 'langs', 'skills', 'level', 'status',
             'seeking']
+
+class InputForm(Form):
+    username = CharField(max_length=100)
 

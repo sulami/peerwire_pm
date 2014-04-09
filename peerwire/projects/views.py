@@ -62,6 +62,24 @@ def manage_users(request, project_id, user_id=None):
     context = {'project': project}
     return render(request, 'projects/manage_users.html', context)
 
+def add_owner(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    if request.user not in project.owners.all():
+        return redirect('projects:projectpage', project.pk)
+    if request.method == 'POST':
+        form = InputForm(request.POST)
+        if form.is_valid():
+            user = get_object_or_404(
+                User, username=form.cleaned_data.get('username')
+                )
+            if user not in project.owners.all():
+                project.owners.add(user)
+                return redirect('projects:projectpage', project.pk)
+    else:
+        form = InputForm()
+    context = {'form': form, 'project': project}
+    return render(request, 'projects/add_owner.html', context)
+
 def owner_resign(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.user not in project.owners.all():
