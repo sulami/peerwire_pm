@@ -2,17 +2,17 @@ from django import forms
 from django.forms import ModelForm, BooleanField
 from projects.models import *
 
-class UserLangForm(forms.ModelForm):
+class UserLangForm(ModelForm):
     class Meta:
         model = UserLang
         fields = ['lang', 'level']
-    delete = forms.BooleanField(required=False)
+    delete = BooleanField(required=False)
 
-class UserSkillForm(forms.ModelForm):
+class UserSkillForm(ModelForm):
     class Meta:
         model = UserSkill
         fields = ['skill', 'level']
-    delete = forms.BooleanField(required=False)
+    delete = BooleanField(required=False)
 
 class UserForm(ModelForm):
     class Meta:
