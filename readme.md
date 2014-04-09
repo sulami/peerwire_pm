@@ -4,8 +4,6 @@ Peerwire Project Management Platform
 TODO
 ----
 
-  * search facets for languages
-  * credit system
   * featured projects
   * premium account preparations
 
