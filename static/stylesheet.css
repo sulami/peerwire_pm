@@ -18,6 +18,7 @@ a {
 div.subcontainer_h a, div#footer a {
     color: rgb(230,230,230);
 }
+div.ul_a a { text-decoration: underline }
 a:hover, div.subcontainer_h a:hover, div#footer a:hover {
     color: rgb(251,179,0);
     transition: all .3s;
