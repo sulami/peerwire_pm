@@ -105,8 +105,7 @@ def start_project(request, parent_id=None):
                 p.parent = par
                 p.save()
             p.owners.add(request.user)
-            p.langs.add(request.POST.get('langs'))
-            p.skills.add(request.POST.get('skills'))
+            form.save()
             return redirect('projects:projectpage', project.pk)
     else:
         form = ProjectForm()
