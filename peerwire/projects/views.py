@@ -62,6 +62,15 @@ def manage_users(request, project_id, user_id=None):
     context = {'project': project}
     return render(request, 'projects/manage_users.html', context)
 
+def owner_resign(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    if request.user not in project.owners.all():
+        return redirect('projects:projectpage', project.pk)
+    if not project.owners.all().count() > 1:
+        return redirect('projects:projectpage', project.pk)
+    project.owners.remove(request.user)
+    return redirect('projects:projectpage', project.pk)
+
 def start_project(request, parent_id=None):
     if not request.user.is_authenticated():
         return redirect('projects:index')
