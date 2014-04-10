@@ -110,6 +110,8 @@ class Project(models.Model):
         blank=False, default='No'
         )
     value = models.IntegerField(default=0)
+    pub_date = models.DateField(auto_now_add=True)
+    change_date = models.DateField(auto_now=True)
 
     def project_tree(self):
         return get_project_tree(self, '', [], 0, 1)
