@@ -50,7 +50,7 @@ table.search tr td {
 li {
     list-style-type: none;
 }
-input {
+input, textarea {
     background-color: rgb(240,240,240);
     border: none;
     outline: none; /* Chrome Fix */
@@ -58,14 +58,12 @@ input {
     -webkit-transition: all .3s;
     width: 100%;
 }
-input:hover, input:active, input:focus {
+input:hover, input:active, textarea:hover, textarea:active {
     background-color: rgb(230,230,230);
     color: rgb(251,179,0);
     text-shadow: 1px 1px rgba(0,0,0,0.2);
 }
 textarea {
-    border: none;
-    outline: none; /* Chrome Fix */
     resize: vertical;
     }
 select, textarea {
