@@ -173,9 +173,9 @@ LOGGING = {
 ### Cache
 CACHES = {
     'default': {
-        # 'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        # 'LOCATION': 'peerwire'
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'peerwire'
+        # 'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
 }
 CACHE_MIDDLEWARE_KEY_PREFIX = 'peerwire_'
