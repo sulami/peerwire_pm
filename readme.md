@@ -25,6 +25,7 @@ Custom Fixes
 ------------
 
 registration: /usr/lib/python2.7/site-packages/registration/forms.py:
+(fix custom user model)
 
 <<
     from django.contrib.auth.models import User
@@ -32,6 +33,28 @@ registration: /usr/lib/python2.7/site-packages/registration/forms.py:
 >>
     from django.contrib.auth import get_user_model
     User = get_user_model()
+
+registration: /usr/lib/python2.7/site-packages/registration/auth_urls.py:
+(fix Django 1.6 base64-encoding)
+
+<<
+    url(r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$',
+
+>>
+    url(r'^password/reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>.+)/$',
+
+registration: /usr/lib/python2.7/site-packages/registration/auth_urls.py:
+
+>>
+    29:
+        from django.core.urlresolvers import reverse_lazy
+    45:
+        {'post_change_redirect': reverse_lazy('auth_password_change_done')},
+    52:
+        {'post_reset_redirect': reverse_lazy('auth_password_reset_done')},
+    56:
+        {'post_reset_redirect': reverse_lazy('auth_password_reset_complete')},
+
 
 URL overview
 ------------
