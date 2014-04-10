@@ -178,7 +178,7 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
 }
-CACHE_MIDDLEWARE_KEY_PREFIX = 'peerwire'
+CACHE_MIDDLEWARE_KEY_PREFIX = 'peerwire_'
 
 ### Django-registration
 ACCOUNT_ACTIVATION_DAYS = 7
