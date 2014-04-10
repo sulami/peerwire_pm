@@ -38,7 +38,16 @@
         {{ project.skills.all|join:", " }}
     </div>
 </div>
-{% if project.seeking == 'Yes' or user in project.owners.all and user not in project.users.all %}
+{% if project.seeking == 'Yes' and user not in project.users.all %}
+    <div class="subcontainer sc_small right">
+        <div class="subcontainer_h">
+            Work
+        </div>
+        <div class="subcontainer_c">
+            <a href="{% url 'projects:startwork' project.pk %}">Work on this project</a>
+        </div>
+    </div>
+{% elif user in project.owners.all and user not in project.users.all %}
     <div class="subcontainer sc_small right">
         <div class="subcontainer_h">
             Work
