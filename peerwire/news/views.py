@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.decorators.cache import cache_page
 
 from news.models import News
 
+@cache_page(60 * 15)
 def index(request):
     news_list = News.objects.all().order_by('-pub_date')
     paginator = Paginator(news_list, 5)
@@ -16,6 +18,7 @@ def index(request):
     context = {'news': news}
     return render(request, 'news/index.html', context)
 
+@cache_page(60 * 60)
 def newspage(request, news_id):
     news = get_object_or_404(News, pk=news_id)
     context = {'news': news}
