@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block title %}Registration complete - {% endblock %}
+
 {% block content %}
-<p>{% trans "You are now registered. Activation email sent." %}</p>
+<div class="subcontainer sc_full">
+    <div class="subcontainer_h">
+        Registration complete
+    </div>
+    <div class="subcontainer_c">
+        <p>{% trans "You are now registered. Activation email sent." %}</p>
+    </div>
+</div>
 {% endblock %}

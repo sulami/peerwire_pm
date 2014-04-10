@@ -10,6 +10,7 @@
             Admin
         </div>
         <div class="subcontainer_c">
+        <ol>
             <li><a href="{% url 'projects:edit_project' project.pk %}">Edit Project</a></li>
             <li><a href="{% url 'projects:manage_users' project.pk %}">Manage workers</a></li>
             <li><a href="{% url 'projects:add_owner' project.pk %}">Add owner</a></li>
@@ -18,6 +19,7 @@
                 <li><a href="{% url 'projects:owner_resign' project.pk %}">Resign from project</a></li>
             {% endif %}
             <li><a href="{% url 'projects:delete_project' project.pk %}">Delete Project</a></li>
+        </ol>
         </div>
     </div>
 {% endif %}
@@ -60,11 +62,13 @@
         Project owners
     </div>
     <div class="subcontainer_c">
+        <ul>
         {% for u in project.owners.all %}
             <li><a href="{% url 'projects:profilepage' u.pk %}">{{ u }}</a></li>
         {% empty %}
-            <li>None</li>
+            None
         {% endfor %}
+        </ul>
     </div>
 </div>
 <div class="subcontainer sc_small right">
@@ -72,11 +76,13 @@
         Users working on this
     </div>
     <div class="subcontainer_c">
+        <ul>
         {% for u in project.users.all %}
             <li><a href="{% url 'projects:profilepage' u.pk %}">{{ u }}</a></li>
         {% empty %}
-            <li>None</li>
+            None
         {% endfor %}
+        </ul>
     </div>
 </div>
 <div class="subcontainer sc_small right">
@@ -84,12 +90,14 @@
         Projecttree
     </div>
     <div class="subcontainer_c">
+        <ol>
         {% for array in project.project_tree %}
             {% for b in array %}
                     {% autoescape off %}
                         <li><span class="mono">{{ b.1 }}</span>{% endautoescape %}<a href="{% url 'projects:projectpage' b.0.pk %}">{{ b.0.name }}</a></li>
             {% endfor %}
         {% endfor %}
+        </ol>
     </div>
 </div>
 {% endblock %}

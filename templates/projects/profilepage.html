@@ -10,9 +10,11 @@
                 Admin
             </div>
             <div class="subcontainer_c">
+            <ul>
                 <li><a href="{% url 'projects:edit_profile' %}">Edit Profile</a></li>
                 <li><a href="{% url 'projects:edit_langs' %}">Edit Languages</a></li>
                 <li><a href="{% url 'projects:edit_skills' %}">Edit Skills</a></li>
+            </ul>
             </div>
         </div>
     {% endif %}
@@ -36,11 +38,6 @@
             {% autoescape off %}
             {{ desc|default:"No description given." }}
             {% endautoescape %}
-            {% if profile.userlink %}
-                {% for l in profile.userlink.all %}
-                    <a href="{{ l.url }}">{{ l.name }}</a><br />
-                {% endfor %}
-            {% endif %}
         </div>
     </div>
     <div class="subcontainer sc_small right">
@@ -48,11 +45,13 @@
             Languages
         </div>
         <div class="subcontainer_c">
+            <ul>
             {% for l in profile.userlang_set.all %}
                 <li>{{ l }} ({{ l.level }})</li>
             {% empty %}
                 None
             {% endfor %}
+            </ul>
         </div>
     </div>
     <div class="subcontainer sc_small right">
@@ -60,11 +59,13 @@
             Skills
         </div>
         <div class="subcontainer_c">
+            <ul>
             {% for l in profile.userskill_set.all %}
                 <li>{{ l }} ({{ l.level }})</li>
             {% empty %}
                 None
             {% endfor %}
+            </ul>
         </div>
     </div>
     <div class="subcontainer sc_small right">
@@ -72,11 +73,13 @@
             Projects owned ({{ profile.projects_owned.count }})
         </div>
         <div class="subcontainer_c">
+            <ul>
             {% for p in profile.projects_owned.all %}
                 <li><a href="{% url 'projects:projectpage' p.pk %}">{{ p }}</a></li>
             {% empty %}
                 None
             {% endfor %}
+            </ul>
         </div>
     </div>
     <div class="subcontainer sc_small right">
@@ -84,11 +87,13 @@
             Projects working on ({{ profile.projects_workingon.count }})
         </div>
         <div class="subcontainer_c">
+            <ul>
             {% for p in profile.projects_workingon.all %}
                 <li><a href="{% url 'projects:projectpage' p.pk %}">{{ p }}</a></li>
             {% empty %}
                 None
             {% endfor %}
+            </ul>
         </div>
     </div>
 {% endblock %}

@@ -8,7 +8,9 @@
         Get to work
     </div>
     <div class="subcontainer_c">
+        <ul>
         <li><a href="{% url 'projects:start_project' %}">Start a new project</a></li>
+        </ul>
     </div>
 </div>
 <div class="subcontainer sc_large left">
@@ -16,11 +18,13 @@
         Trending projects
     </div>
     <div class="subcontainer_c">
+        <ol>
         {% for project in trending_projects %}
             <li><a href="{% url 'projects:projectpage' project.id %}">{{ project }}</a></li>
         {% empty %}
             No trending projects
         {% endfor %}
+        </ol>
     </div>
 </div>
 <div class="subcontainer sc_small right">
@@ -28,11 +32,13 @@
         News
     </div>
     <div class="subcontainer_c">
+        <ol>
         {% for post in news %}
             <li><a href="{% url 'news:newspage' post.id %}">{{ post.title }}</a></li>
         {% empty %}
             No News
         {% endfor %}
+        </ol>
     </div>
 </div>
 {% endblock %}

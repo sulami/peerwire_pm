@@ -5,7 +5,6 @@ TODO
 ----
 
   * featured projects
-  * premium account preparations
 
 Software Setup
 --------------

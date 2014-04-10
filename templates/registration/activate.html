@@ -1,18 +1,20 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block title %}Activation - {% endblock %}
+
 {% block content %}
-
-{% if account %}
-
-<p>{% trans "Account successfully activated" %}</p>
-
-<p><a href="{% url 'auth_login' %}">{% trans "Log in" %}</a></p>
-
-{% else %}
-
-<p>{% trans "Account activation failed" %}</p>
-
-{% endif %}
-
+<div class="subcontainer sc_full">
+    <div class="subcontainer_h">
+        Activation
+    </div>
+    <div class="subcontainer_c">
+    {% if account %}
+        <p>{% trans "Account successfully activated" %}</p>
+        <p><a href="{% url 'auth_login' %}">{% trans "Log in" %}</a></p>
+    {% else %}
+        <p>{% trans "Account activation failed" %}</p>
+    {% endif %}
+    </div>
+</div>
 {% endblock %}
