@@ -80,8 +80,8 @@ class Project(models.Model):
     name = models.CharField(max_length=50)
     owners = models.ManyToManyField(User, related_name='projects_owned')
     description = models.TextField(blank=True)
-    langs = models.ManyToManyField(Lang)
-    skills = models.ManyToManyField(Skill)
+    langs = models.ManyToManyField(Lang, blank=True)
+    skills = models.ManyToManyField(Skill, blank=True)
     users = models.ManyToManyField(
         User, related_name='projects_workingon', blank=True
         )
