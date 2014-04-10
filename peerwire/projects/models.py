@@ -97,7 +97,7 @@ class Project(models.Model):
     status = models.CharField(
         max_length= 10,
         choices=STATUS_CHOICES,
-        blank=False, default=''
+        blank=False, default='Active'
         )
     parent = models.ForeignKey('self', blank=True, null=True)
     SEEKING_CHOICES = (
@@ -107,7 +107,7 @@ class Project(models.Model):
     seeking = models.CharField(
         max_length=3,
         choices=SEEKING_CHOICES,
-        blank=False, default=''
+        blank=False, default='No'
         )
     value = models.IntegerField(default=0)
 
