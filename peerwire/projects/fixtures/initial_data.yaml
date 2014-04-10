@@ -1,0 +1,156 @@
+- model: projects.lang
+  pk: 1
+  fields:
+    name: Assembly
+- model: projects.lang
+  pk: 2
+  fields:
+    name: Batch
+- model: projects.lang
+  pk: 3
+  fields:
+    name: Bash
+- model: projects.lang
+  pk: 4
+  fields:
+    name: Basic
+- model: projects.lang
+  pk: 5
+  fields:
+    name: C
+- model: projects.lang
+  pk: 6
+  fields:
+    name: C++
+- model: projects.lang
+  pk: 7
+  fields:
+    name: C#
+- model: projects.lang
+  pk: 8
+  fields:
+    name: Delphi
+- model: projects.lang
+  pk: 9
+  fields:
+    name: Erlang
+- model: projects.lang
+  pk: 10
+  fields:
+    name: F#
+- model: projects.lang
+  pk: 11
+  fields:
+    name: Fortran
+- model: projects.lang
+  pk: 12
+  fields:
+    name: Go
+- model: projects.lang
+  pk: 13
+  fields:
+    name: Haskell
+- model: projects.lang
+  pk: 14
+  fields:
+    name: Java
+- model: projects.lang
+  pk: 15
+  fields:
+    name: JavaScript
+- model: projects.lang
+  pk: 16
+  fields:
+    name: LaTeX
+- model: projects.lang
+  pk: 17
+  fields:
+    name: Lisp
+- model: projects.lang
+  pk: 18
+  fields:
+    name: Lua
+- model: projects.lang
+  pk: 19
+  fields:
+    name: Objective-C
+- model: projects.lang
+  pk: 20
+  fields:
+    name: Pascal
+- model: projects.lang
+  pk: 21
+  fields:
+    name: Perl
+- model: projects.lang
+  pk: 22
+  fields:
+    name: PowerShell
+- model: projects.lang
+  pk: 23
+  fields:
+    name: PHP
+- model: projects.lang
+  pk: 24
+  fields:
+    name: Python
+- model: projects.lang
+  pk: 25
+  fields:
+    name: Ruby
+- model: projects.lang
+  pk: 26
+  fields:
+    name: Scala
+- model: projects.lang
+  pk: 27
+  fields:
+    name: Scheme
+- model: projects.lang
+  pk: 28
+  fields:
+    name: SQL
+- model: projects.lang
+  pk: 29
+  fields:
+    name: TeX
+- model: projects.lang
+  pk: 30
+  fields:
+    name: Vala
+- model: projects.skill
+  pk: 1
+  fields:
+    name: Jquery
+- model: projects.skill
+  pk: 2
+  fields:
+    name: Linux
+- model: projects.skill
+  pk: 3
+  fields:
+    name: Android
+- model: projects.skill
+  pk: 4
+  fields:
+    name: Django
+- model: projects.skill
+  pk: 5
+  fields:
+    name: HTTP
+- model: projects.skill
+  pk: 6
+  fields:
+    name: Webdesign
+- model: projects.skill
+  pk: 7
+  fields:
+    name: Encryption
+- model: projects.skill
+  pk: 8
+  fields:
+    name: SSL
+- model: projects.skill
+  pk: 9
+  fields:
+    name: Rails
