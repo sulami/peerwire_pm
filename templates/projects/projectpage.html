@@ -31,11 +31,14 @@
         {{ project.name }}
     </div>
     <div class="subcontainer_c pure_li ul_a">
-        {% autoescape off %}{{ desc|default:'No description' }}{% endautoescape %}
-        <h4>Languages used:</h4>
-        {{ project.langs.all|join:", " }}
-        <h4>Skills used:</h4>
-        {{ project.skills.all|join:", " }}
+        {% autoescape off %}{{ desc|default:"<p>No description given.</p>" }}{% endautoescape %}
+        <hr />
+        <p>Languages used:<br />
+        {{ project.langs.all|join:", " }}</p>
+        <p>Skills used:<br />
+        {{ project.skills.all|join:", " }}</p>
+        <p>Project started: {{ project.pub_date|date:"Y-m-d" }}<br />
+        Last change: {{ project.change_date|date:"Y-m-d" }}</p>
     </div>
 </div>
 {% if project.seeking == 'Yes' and user not in project.users.all %}

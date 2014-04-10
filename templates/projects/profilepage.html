@@ -36,8 +36,10 @@
                 <div class="avatar" style="background-image: url({% static 'avatar.svg' %})">&nbsp;</div>
             {% endif %}
             {% autoescape off %}
-            {{ desc|default:"No description given." }}
+            {{ desc|default:"<p>No description given.</p>" }}
             {% endautoescape %}
+            <hr />
+            <p>Date joined: {{ profile.date_joined|date:"Y-m-d" }}</p>
         </div>
     </div>
     <div class="subcontainer sc_small right">
