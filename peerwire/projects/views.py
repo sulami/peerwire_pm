@@ -114,7 +114,7 @@ def start_project(request, parent_id=None):
 def delete_project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.user not in project.owners.all():
-        return redirect('projects:projectpage', par.pk)
+        return redirect('projects:projectpage', project.pk)
     if request.method == 'POST':
         if request.POST.get('delete'):
             project.delete()
@@ -152,6 +152,8 @@ def profilepage(request, profile_id):
     return render(request, 'projects/profilepage.html', context)
 
 def edit_profile(request):
+    if not request.user.is_authenticated():
+        return redirect('projects:index')
     profile = get_object_or_404(User, pk=request.user.pk)
     if request.method == 'POST':
         form = UserForm(request.POST, request.FILES, instance=profile)
@@ -163,6 +165,8 @@ def edit_profile(request):
     return render(request, 'projects/edit_profile.html', {'form': form})
 
 def edit_langs(request):
+    if not request.user.is_authenticated():
+        return redirect('projects:index')
     profile = get_object_or_404(User, pk=request.user.pk)
     LangFormSet = modelformset_factory(
         UserLang,
@@ -190,6 +194,8 @@ def edit_langs(request):
     return render(request, 'projects/edit_langs.html', {'form': formset})
 
 def edit_skills(request):
+    if not request.user.is_authenticated():
+        return redirect('projects:index')
     profile = get_object_or_404(User, pk=request.user.pk)
     SkillFormSet = modelformset_factory(
         UserSkill,
