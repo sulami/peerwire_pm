@@ -41,8 +41,15 @@
             <p>Skills used:<br />
             {{ project.skills.all|join:", " }}</p>
         {% endif %}
-        <p>Project started: {{ project.pub_date|date:"Y-m-d" }}<br />
-        Last change: {{ project.change_date|date:"Y-m-d" }}</p>
+        <p>
+        Project started: {{ project.pub_date|date:"Y-m-d" }}<br />
+        Last change: {{ project.change_date|date:"Y-m-d" }}<br />
+        Currently {{ project.status|lower }},
+        {% if project.seeking == 'No' %}
+            not
+        {% endif %}
+        seeking for help
+        </p>
     </div>
 </div>
 {% if user.is_authenticated %}
