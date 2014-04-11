@@ -12,6 +12,10 @@ class Command(BaseCommand):
         p_root = 0
         p_langs = {}
         p_skills = {}
+        for l in Lang.objects.all():
+            p_langs[l] = 0
+        for s in Skill.objects.all():
+            p_skills[s] = 0
         for p in Project.objects.all():
             if p.status == 'Active':
                 p_active += 1
@@ -20,11 +24,7 @@ class Command(BaseCommand):
             if not p.parent:
                 p_root += 1
             for l in p.langs.all():
-                p_langs[l] = 0
-            for l in p.langs.all():
                 p_langs[l] += 1
-            for s in p.skills.all():
-                p_skills[s] = 0
             for s in p.skills.all():
                 p_skills[s] += 1
             p_all += 1
@@ -54,8 +54,10 @@ class Command(BaseCommand):
             print("%s: %d" % (str(s).rjust(15), j))
         print("\nProject Languages:")
         for l, i in p_langs.iteritems():
-            print("%s: %d" % (str(l).rjust(15), i))
+            if i != 0:
+                print("%s: %d" % (str(l).rjust(15), i))
         print("\nProject Skills:")
         for s, j in p_skills.iteritems():
-            print("%s: %d" % (str(s).rjust(15), j))
+            if j != 0:
+                print("%s: %d" % (str(s).rjust(15), j))
 
