@@ -123,6 +123,8 @@ def delete_project(request, project_id):
 
 def startwork(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
+    if not request.user.is_authenticated():
+        return redirect('projects:projectpage', project.pk)
     if ((project.seeking == 'Yes' or request.user in project.owners.all()) and
         request.user not in project.users.all()):
         project.users.add(request.user)
@@ -130,6 +132,8 @@ def startwork(request, project_id):
 
 def finishwork(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
+    if not request.user.is_authenticated():
+        return redirect('projects:projectpage', project.pk)
     if request.user in project.users.all():
         project.users.remove(request.user)
     return redirect('projects:projectpage', project.pk)
