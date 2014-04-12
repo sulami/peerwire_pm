@@ -60,8 +60,8 @@ input, textarea {
 }
 input:hover, input:active, textarea:hover, textarea:active {
     background-color: rgb(230,230,230);
-    color: rgb(251,179,0);
-    text-shadow: 1px 1px rgba(0,0,0,0.2);
+    color: rgb(0, 0, 0);
+    /* text-shadow: 1px 1px 3px rgba(251, 179, 0, 1); */
 }
 textarea {
     resize: vertical;
