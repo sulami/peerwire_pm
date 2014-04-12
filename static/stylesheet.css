@@ -131,6 +131,7 @@ div.pure_li li {
     list-style: inherit !important;
     margin-left: 20px; /* Chrome Fix */
 }
+div.img_width img { max-width: 100%; }
 div.avatar {
     background-position: center;
     background-repeat: no-repeat;

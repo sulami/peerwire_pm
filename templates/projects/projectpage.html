@@ -30,7 +30,7 @@
         {% endfor %}
         {{ project.name }}
     </div>
-    <div class="subcontainer_c pure_li ul_a">
+    <div class="subcontainer_c pure_li img_width ul_a">
         {% autoescape off %}{{ desc|default:"<p>No description given.</p>" }}{% endautoescape %}
         <hr />
         {% if project.langs.exists %}
