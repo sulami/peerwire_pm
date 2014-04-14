@@ -109,6 +109,7 @@ div#account {
 div#content {
     width: 100%;
 }
+div#messages { background-color: rgb(240,240,240) }
 div.subcontainer {
     background-color: rgb(240,240,240);
     display: inline-block;

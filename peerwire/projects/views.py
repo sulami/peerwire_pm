@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.forms.models import modelformset_factory
 from django.core.urlresolvers import reverse
+from django.contrib import messages
 
 from projects.models import *
 from news.models import News
@@ -158,6 +159,9 @@ def delete_p_confirm(request, project_id):
         project.del_q.remove(request.user)
         if project.del_q.all().count() <= 0:
             project.delete()
+            messages.success(request, del_p_complete)
+        else:
+            messages.success(request, del_p_confirm)
     return redirect('projects:index')
 
 def delete_p_abort(request, project_id):
@@ -167,6 +171,7 @@ def delete_p_abort(request, project_id):
             project.del_q.remove(u)
         project.del_t = None
         project.save()
+        messages.success(request, del_p_abort)
         return redirect('projects:projectpage', project.pk)
     return redirect('projects:index')
 

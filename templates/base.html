@@ -54,6 +54,20 @@
                 {% endif %}
             </div>
         </div>
+        {% if messages %}
+            <div id="messages">
+                <div class="subcontainer_h">
+                    Messages
+                </div>
+                <div class="subcontainer_c">
+                    <ul>
+                    {% for message in messages %}
+                            <li>{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endif %}
         <div id="content">
             {% block content %}
                 This should not be visible. Content-block is missing.

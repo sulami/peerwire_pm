@@ -21,3 +21,15 @@ http://peerwire.org%s
 
 Without abortion, the deletion will commence on %s.
 """
+
+del_p_abort = """
+Project deletion has been aborted.
+"""
+
+del_p_confirm = """
+Project deletion has been confirmed.
+"""
+
+del_p_complete = """
+Project has been deleted.
+"""
