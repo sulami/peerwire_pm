@@ -170,6 +170,9 @@ LOGGING = {
     }
 }
 
+## Email
+DEFAULT_FROM_EMAIL = 'postmaster@peerwire.org'
+
 ### Cache
 CACHES = {
     'default': {

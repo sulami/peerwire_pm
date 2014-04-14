@@ -158,6 +158,12 @@ def edit_profile(request):
     if request.method == 'POST':
         form = UserForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
+            if 'email' in form.changed_data:
+                request.user.email_user(
+                    'Your email address has been changed',
+                    'Your email address has been changed to %s.' %
+                        form.cleaned_data.get('email')
+                    )
             form.save()
             return redirect('projects:profilepage', profile.pk)
     else:
