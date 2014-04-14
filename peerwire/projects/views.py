@@ -261,13 +261,6 @@ def delete_profile(request, profile_id):
             return redirect('projects:profilepage', profile.pk)
     return render(request, 'projects/confirmation.html', {'profile': profile})
 
-def delete_u_confirm(request, profile_id):
-    profile = get_object_or_404(User, pk=request.user.pk)
-    if request.user != profile:
-        return redirect('projects:index')
-    profile.delete()
-    return redirect('projects:index')
-
 def delete_u_abort(request, profile_id):
     profile = get_object_or_404(User, pk=request.user.pk)
     if request.user != profile:
