@@ -63,20 +63,13 @@ registration: /usr/lib/python2.7/site-packages/registration/auth_urls.py:
     56:
         {'post_reset_redirect': reverse_lazy('auth_password_reset_complete')},
 
+Cronjobs
+--------
 
-URL overview
-------------
-
-/       - index page
-/u/1/   - user page 1
-/p/1/   - project page 1
-/s/     - haystack search stack
-/n/     - news index
-/n/1/   - news post 1
-/a/     - account management by django-registration
-
-/static/    - static files
-/media/     - media files
+  * Recalc Values | every 24h
+  * Delete orphan files | as needed
+  * Clean projects | as needed
+  * Generate Stats | as needed
 
 [//]: # vim:filetype=markdown
 
