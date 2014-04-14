@@ -4,6 +4,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.forms.models import modelformset_factory
+from django.core.urlresolvers import reverse
 
 from projects.models import *
 from news.models import News
@@ -111,15 +112,48 @@ def start_project(request, parent_id=None):
         form = ProjectForm()
     return render(request, 'projects/start_project.html', {'form': form})
 
+del_msg = """Your project %s has been queued for deletion.
+
+If you want to confirm the deletion, click the following link:
+
+http://peerwire.org%s
+"""
+
 def delete_project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.user not in project.owners.all():
         return redirect('projects:projectpage', project.pk)
     if request.method == 'POST':
         if request.POST.get('delete'):
-            project.delete()
-            return redirect('projects:index')
+            if project.owners.all().count() <= 1:
+                project.delete()
+                return redirect('projects:index')
+            else:
+                for o in project.owners.all():
+                    if o != request.user:
+                        project.del_q.add(o)
+                        o.email_user(
+                            'Your project %s is queued for deletion' % project,
+                            del_msg % (project, str(reverse(
+                                    'projects:delete_confirm',
+                                    args=(project.pk,)
+                                    )
+                                ))
+                        )
+                return redirect('projects:delete_timer', project.pk)
     return render(request, 'projects/confirmation.html', {'project': project})
+
+def delete_timer(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    return render(request, 'projects/delete_timer.html', {'project': project})
+
+def delete_confirm(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    if request.user in project.del_q.all():
+        project.del_q.remove(request.user)
+        if project.del_q.all().count() <= 0:
+            project.delete()
+    return redirect('projects:index')
 
 def startwork(request, project_id):
     project = get_object_or_404(Project, pk=project_id)

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Deletion imminent - {% endblock %}
+
+{% block content %}
+<div class="subcontainer sc_full">
+    <div class="subcontainer_h">
+        {{ project }} deletion imminent
+    </div>
+    <div class="subcontainer_c">
+        <p>Your project</p>
+        <p>{{ project }}</p>
+        <p>will be deleted, as soon as all other owners confirmed the deletion.
+        The owners who need to confirm are:</p>
+        <p>
+        <ul>
+        {% for o in project.del_q.all %}
+            <li>{{ o }}</li>
+        {% endfor %}
+        </ul>
+        </p>
+    </div>
+</div>
+{% endblock %}
+

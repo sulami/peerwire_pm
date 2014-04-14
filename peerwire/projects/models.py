@@ -112,6 +112,7 @@ class Project(models.Model):
     value = models.IntegerField(default=0)
     pub_date = models.DateField(auto_now_add=True)
     change_date = models.DateField(auto_now=True)
+    del_q = models.ManyToManyField(User, blank=True, related_name='del_q')
 
     def project_tree(self):
         return get_project_tree(self, '', [], 0, 1)
