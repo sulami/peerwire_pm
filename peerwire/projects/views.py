@@ -123,30 +123,29 @@ def delete_project(request, project_id):
             if project.owners.all().count() <= 1:
                 project.delete()
                 return redirect('projects:index')
-            else:
-                for o in project.owners.all():
-                    if o != request.user:
-                        project.del_q.add(o)
-                        project.del_t = (
-                            datetime.date.today() + datetime.timedelta(days=7)
+            for o in project.owners.all():
+                if o != request.user:
+                    project.del_q.add(o)
+                    project.del_t = (
+                        datetime.date.today() + datetime.timedelta(days=7)
+                    )
+                    project.save()
+                    o.email_user(
+                        'Your project %s is queued for deletion' % project,
+                        project_del % (
+                            project,
+                            str(reverse(
+                                'projects:delete_p_confirm',
+                                args=(project.pk,)
+                            )),
+                            str(reverse(
+                                'projects:delete_p_abort',
+                                args=(project.pk,)
+                            )),
+                            str(project.del_t)
                         )
-                        project.save()
-                        o.email_user(
-                            'Your project %s is queued for deletion' % project,
-                            project_del % (
-                                project,
-                                str(reverse(
-                                    'projects:delete_p_confirm',
-                                    args=(project.pk,)
-                                )),
-                                str(reverse(
-                                    'projects:delete_p_abort',
-                                    args=(project.pk,)
-                                )),
-                                str(project.del_t)
-                            )
-                        )
-                return redirect('projects:delete_p_timer', project.pk)
+                    )
+            return redirect('projects:delete_p_timer', project.pk)
     return render(request, 'projects/confirmation.html', {'project': project})
 
 def delete_p_timer(request, project_id):
@@ -309,4 +308,3 @@ def about_us(request):
 
 def contact(request):
     return render(request, 'contact.html')
-
