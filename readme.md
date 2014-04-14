@@ -24,6 +24,14 @@ Software Setup
 Custom Fixes
 ------------
 
+django core: /usr/lib/python2.7/site-packages/django/contrib/auth/models.py:
+
+<<
+    AbstractUser: email = blank=True
+
+>>
+    AbstractUser: email = unique=True
+
 registration: /usr/lib/python2.7/site-packages/registration/forms.py:
 (fix custom user model)
 
