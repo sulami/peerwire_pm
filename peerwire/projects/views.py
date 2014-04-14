@@ -179,7 +179,7 @@ def delete_p_abort(request, project_id):
     if request.user in project.del_q.all():
         for u in project.del_q.all():
             project.del_q.remove(u)
-        project.del_t = NULL
+        project.del_t = None
         project.save()
         return redirect('projects:projectpage', project.pk)
     return redirect('projects:index')
@@ -272,7 +272,7 @@ def delete_u_abort(request, profile_id):
     profile = get_object_or_404(User, pk=request.user.pk)
     if request.user != profile:
         return redirect('projects:index')
-    profile.del_t = NULL
+    profile.del_t = None
     profile.save()
     return redirect('projects:profilepage', profile.pk)
 
