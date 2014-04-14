@@ -3,7 +3,6 @@
 {% block title %}Edit Profile - {% endblock %}
 
 {% block content %}
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <div class="subcontainer sc_full">
     <div class="subcontainer_h">
         Edit Profile
@@ -13,12 +12,13 @@
             {% csrf_token %}
             <table>
             {{ form.as_table }}
-            <tr><td></td><td><input type="submit" value="Save" /></td></tr>
             </table>
+            <input type="submit" value="Save" />
         </form>
-    <script type="text/javascript">
-    $("select").attr("size", function() { return this.options.length; });
-    </script>
+        <hr />
+        <p>
+        <a href="{% url 'projects:delete_profile' user.pk %}">Delete Profile</a>
+        </p>
     </div>
 {% endblock %}
 
