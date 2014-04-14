@@ -48,6 +48,7 @@ def edit_project(request, project_id):
         form = ProjectForm(request.POST, instance=project)
         if form.is_valid():
             form.save()
+            messages.success(request, changes_saved)
             return redirect('projects:projectpage', project.pk)
     else:
         form = ProjectForm(instance=project)
@@ -62,6 +63,7 @@ def manage_users(request, project_id, user_id=None):
         user = get_object_or_404(User, pk=user_id)
         if user in project.users.all():
             project.users.remove(user)
+            messages.success(request, user_removed)
             return redirect('projects:manage_users', project.pk)
     context = {'project': project}
     return render(request, 'projects/manage_users.html', context)
@@ -89,8 +91,10 @@ def owner_resign(request, project_id):
     if request.user not in project.owners.all():
         return redirect('projects:projectpage', project.pk)
     if not project.owners.all().count() > 1:
+        messages.error(request, last_owner)
         return redirect('projects:projectpage', project.pk)
     project.owners.remove(request.user)
+    messages.success(request, owner_resigned)
     return redirect('projects:projectpage', project.pk)
 
 def start_project(request, parent_id=None):
@@ -123,6 +127,7 @@ def delete_project(request, project_id):
         if request.POST.get('delete'):
             if project.owners.all().count() <= 1:
                 project.delete()
+                messages.success(request, del_p_complete)
                 return redirect('projects:index')
             for o in project.owners.all():
                 if o != request.user:
@@ -182,6 +187,7 @@ def startwork(request, project_id):
     if ((project.seeking == 'Yes' or request.user in project.owners.all()) and
         request.user not in project.users.all()):
         project.users.add(request.user)
+        messages.success(request, work_started)
     return redirect('projects:projectpage', project.pk)
 
 def finishwork(request, project_id):
@@ -190,6 +196,7 @@ def finishwork(request, project_id):
         return redirect('projects:projectpage', project.pk)
     if request.user in project.users.all():
         project.users.remove(request.user)
+        messages.success(request, work_finished)
     return redirect('projects:projectpage', project.pk)
 
 def profilepage(request, profile_id):
@@ -219,6 +226,7 @@ def edit_profile(request):
                         form.cleaned_data.get('email')
                     )
             form.save()
+            messages.success(request, changes_saved)
             return redirect('projects:profilepage', profile.pk)
     else:
         form = UserForm(instance=profile)
@@ -239,6 +247,7 @@ def delete_profile(request, profile_id):
                     str(profile.del_t)
                     )
                 )
+            messages.success(request, del_u)
             return redirect('projects:profilepage', profile.pk)
     return render(request, 'projects/confirmation.html', {'profile': profile})
 
@@ -248,6 +257,7 @@ def delete_u_abort(request, profile_id):
         return redirect('projects:index')
     profile.del_t = None
     profile.save()
+    messages.success(request, del_u_abort)
     return redirect('projects:profilepage', profile.pk)
 
 def edit_langs(request):
@@ -272,6 +282,7 @@ def edit_langs(request):
                     else:
                         instance.user = request.user
                         instance.save()
+            messages.success(request, changes_saved)
             return redirect('projects:profilepage', profile.pk)
     else:
         formset = LangFormSet(
@@ -301,6 +312,7 @@ def edit_skills(request):
                     else:
                         instance.user = request.user
                         instance.save()
+            messages.success(request, changes_saved)
             return redirect('projects:profilepage', profile.pk)
     else:
         form = SkillFormSet(

@@ -33,3 +33,36 @@ Project deletion has been confirmed.
 del_p_complete = """
 Project has been deleted.
 """
+
+del_u = """
+Profile will be deleted in 7 days.
+"""
+
+del_u_abort = """
+Profile deletion aborted.
+"""
+
+work_started = """
+You started working on this project.
+"""
+
+work_finished = """
+You finished working on this project.
+"""
+
+user_removed = """
+User removed.
+"""
+
+changes_saved = """
+Your changes have been saved.
+"""
+
+last_owner = """
+You cannot resign from this project because you are the only owner.
+"""
+
+owner_resigned = """
+You resigned from this project.
+"""
+
