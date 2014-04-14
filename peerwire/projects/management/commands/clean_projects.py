@@ -8,7 +8,7 @@ class Command(BaseCommand):
         count = 0
         for p in Project.objects.all():
             if p.owners.all().count() == 0:
-                print "Deleting: ", p
+                print "Deleting:", p
                 count += 1
                 p.delete()
         print "Deleted %d projects." % count
