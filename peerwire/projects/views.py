@@ -9,6 +9,7 @@ from django.core.urlresolvers import reverse
 from projects.models import *
 from news.models import News
 from projects.forms import *
+from projects.texts import *
 
 import datetime
 import markdown
@@ -112,20 +113,6 @@ def start_project(request, parent_id=None):
     else:
         form = ProjectForm()
     return render(request, 'projects/start_project.html', {'form': form})
-
-project_del = """
-Your project %s has been queued for deletion.
-
-If you want to confirm the deletion, click the following link:
-
-http://peerwire.org%s
-
-If you want to abort the deletion, click the following link:
-
-http://peerwire.org%s
-
-Without abortion, the deletion will commence on %s.
-"""
 
 def delete_project(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
@@ -232,16 +219,6 @@ def edit_profile(request):
     else:
         form = UserForm(instance=profile)
     return render(request, 'projects/edit_profile.html', {'form': form})
-
-profile_del = """
-Your account has been queued for deletion.
-
-If you want to abort this process, visit the following link:
-
-http://peerwire.org%s
-
-The deletion will commence on %s.
-"""
 
 def delete_profile(request, profile_id):
     if not request.user.is_authenticated():
