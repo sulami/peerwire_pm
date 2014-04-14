@@ -10,6 +10,7 @@ from projects.models import *
 from news.models import News
 from projects.forms import *
 
+import datetime
 import markdown
 
 def index(request):
@@ -112,11 +113,18 @@ def start_project(request, parent_id=None):
         form = ProjectForm()
     return render(request, 'projects/start_project.html', {'form': form})
 
-del_msg = """Your project %s has been queued for deletion.
+project_del = """
+Your project %s has been queued for deletion.
 
 If you want to confirm the deletion, click the following link:
 
 http://peerwire.org%s
+
+If you want to abort the deletion, click the following link:
+
+http://peerwire.org%s
+
+Without abortion, the deletion will commence on %s.
 """
 
 def delete_project(request, project_id):
@@ -132,27 +140,48 @@ def delete_project(request, project_id):
                 for o in project.owners.all():
                     if o != request.user:
                         project.del_q.add(o)
+                        project.del_t = (
+                            datetime.date.today() + datetime.timedelta(days=7)
+                        )
+                        project.save()
                         o.email_user(
                             'Your project %s is queued for deletion' % project,
-                            del_msg % (project, str(reverse(
-                                    'projects:delete_confirm',
+                            project_del % (
+                                project,
+                                str(reverse(
+                                    'projects:delete_p_confirm',
                                     args=(project.pk,)
-                                    )
-                                ))
+                                )),
+                                str(reverse(
+                                    'projects:delete_p_abort',
+                                    args=(project.pk,)
+                                )),
+                                str(project.del_t)
+                            )
                         )
-                return redirect('projects:delete_timer', project.pk)
+                return redirect('projects:delete_p_timer', project.pk)
     return render(request, 'projects/confirmation.html', {'project': project})
 
-def delete_timer(request, project_id):
+def delete_p_timer(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     return render(request, 'projects/delete_timer.html', {'project': project})
 
-def delete_confirm(request, project_id):
+def delete_p_confirm(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if request.user in project.del_q.all():
         project.del_q.remove(request.user)
         if project.del_q.all().count() <= 0:
             project.delete()
+    return redirect('projects:index')
+
+def delete_p_abort(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+    if request.user in project.del_q.all():
+        for u in project.del_q.all():
+            project.del_q.remove(u)
+        project.del_t = NULL
+        project.save()
+        return redirect('projects:projectpage', project.pk)
     return redirect('projects:index')
 
 def startwork(request, project_id):
@@ -203,6 +232,49 @@ def edit_profile(request):
     else:
         form = UserForm(instance=profile)
     return render(request, 'projects/edit_profile.html', {'form': form})
+
+profile_del = """
+Your account has been queued for deletion.
+
+If you want to abort this process, visit the following link:
+
+http://peerwire.org%s
+
+The deletion will commence on %s.
+"""
+
+def delete_profile(request, profile_id):
+    if not request.user.is_authenticated():
+        return redirect('projects:index')
+    profile = get_object_or_404(User, pk=request.user.pk)
+    if request.method == 'POST':
+        if request.POST.get('delete'):
+            profile.del_t = datetime.date.today() + datetime.timedelta(days=7)
+            profile.save()
+            profile.email_user(
+                'Your account is queued for deletion',
+                profile_del % (
+                    str(reverse('projects:delete_u_abort', args=(profile.pk,))),
+                    str(profile.del_t)
+                    )
+                )
+            return redirect('projects:profilepage', profile.pk)
+    return render(request, 'projects/confirmation.html', {'profile': profile})
+
+def delete_u_confirm(request, profile_id):
+    profile = get_object_or_404(User, pk=request.user.pk)
+    if request.user != profile:
+        return redirect('projects:index')
+    profile.delete()
+    return redirect('projects:index')
+
+def delete_u_abort(request, profile_id):
+    profile = get_object_or_404(User, pk=request.user.pk)
+    if request.user != profile:
+        return redirect('projects:index')
+    profile.del_t = NULL
+    profile.save()
+    return redirect('projects:profilepage', profile.pk)
 
 def edit_langs(request):
     if not request.user.is_authenticated():

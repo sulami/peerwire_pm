@@ -65,6 +65,7 @@ class Skill(models.Model):
 class User(AbstractUser):
     avatar = models.ImageField(upload_to='avatars', blank=True)
     description = models.TextField(blank=True)
+    del_t = models.DateField(blank=True, null=True)
     premium = models.BooleanField(default=False)
 
     def __unicode__(self):
@@ -113,6 +114,7 @@ class Project(models.Model):
     pub_date = models.DateField(auto_now_add=True)
     change_date = models.DateField(auto_now=True)
     del_q = models.ManyToManyField(User, blank=True, related_name='del_q')
+    del_t = models.DateField(blank=True, null=True)
 
     def project_tree(self):
         return get_project_tree(self, '', [], 0, 1)

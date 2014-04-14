@@ -5,7 +5,11 @@
 {% block content %}
 <div class="subcontainer sc_full">
     <div class="subcontainer_h">
-        Are you sure you want to delete "{{ project }}"?
+        {% if project %}
+            Are you sure you want to delete "{{ project }}"?
+        {% else %}
+            Are you sure you want to delete your profile?
+        {% endif %}
     </div>
     <div class="subcontainer_c">
         <form action="." method="POST">
