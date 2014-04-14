@@ -12,11 +12,19 @@ class UserLangForm(ModelForm):
         fields = ['lang', 'level']
     delete = BooleanField(required=False)
 
+    def __init__(self, *args, **kwargs):
+        super(UserLangForm, self).__init__(*args, **kwargs)
+        self.fields['lang'].queryset = Lang.objects.all().order_by('name')
+
 class UserSkillForm(ModelForm):
     class Meta:
         model = UserSkill
         fields = ['skill', 'level']
     delete = BooleanField(required=False)
+
+    def __init__(self, *args, **kwargs):
+        super(UserSkillForm, self).__init__(*args, **kwargs)
+        self.fields['skill'].queryset = Skill.objects.all().order_by('name')
 
 class UserForm(ModelForm):
     class Meta:
