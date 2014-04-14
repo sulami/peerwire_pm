@@ -68,7 +68,8 @@ Cronjobs
 
   * Recalc Values | every 24h
   * Delete orphan files | as needed
-  * Clean projects | as needed
+  * Clean projects | as needed, daily
+  * Clean users | daily
   * Generate Stats | as needed
 
 [//]: # vim:filetype=markdown
