@@ -144,6 +144,20 @@ div.avatar {
     width: 100px;
 }
 span.mono { font-family: Inconsolata }
+div.ad {
+    background-color: white;
+    height: 600px;
+    margin-top: 10px;
+    width: 160px;
+}
+div.ad_left {
+    float: left;
+    margin-left: 10px;
+}
+div.ad_right {
+    float: right;
+    margin-right: 10px
+}
 div#footer {
     background-color: rgb(50, 50, 50);
     border-top: 2px rgb(251,179,0) solid;

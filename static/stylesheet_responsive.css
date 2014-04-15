@@ -17,7 +17,11 @@ div.sc_full {
 }
 @media screen and (max-width: 599px) {
     body { background-color: rgb(255,255,255) }
-    div#container { border: none; margin: 0px; width: 100% }
+    div#container {
+        border: none;
+        margin: 0px;
+        width: 100% !important;
+    }
     div#header {
         background-image: url('/static/composite_full_mobile.svg');
         background-position: top center;
@@ -40,7 +44,10 @@ div.sc_full {
 }
 @media screen and (min-width: 600px) {
     body { background-color: rgb(230,230,230) }
-    div#container { border: 1px rgb(200,200,200) solid; margin: 10px; width: calc(100% - 20px) }
+    div#container {
+        border: 1px rgb(200,200,200) solid;
+        margin: 10px;
+    }
     div#header {
         background-image: url('/static/composite_full.svg');
         background-position: top left;
@@ -60,4 +67,18 @@ div.sc_full {
     div.sc_small { width: calc(30% - 10px) }
     div.sc_large { width: calc(70% - 10px) }
     div.sc_full { width: calc(100% - 10px) }
+}
+@media screen and (max-width: 800px){
+    div#container { width: calc(100% - 20px) }
+    div.ad_right { display: none }
+    div.ad_left { display: none }
+}
+@media screen and (min-width: 801px) and (max-width: 959px) {
+    div#container { width: calc(100% - 192px) }
+    div.ad_right { display: block }
+    div.ad_left { display: none }
+}
+@media screen and (min-width: 960px) {
+    div#container { width: calc(100% - 362px) }
+    div.ad_left, div.ad_right { display: block }
 }
