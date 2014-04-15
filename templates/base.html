@@ -8,9 +8,26 @@
     <link rel="stylesheet" href="{% static 'stylesheet.css' %}" type="text/css; charset=utf-8" />
     <link rel="stylesheet" href="{% static 'stylesheet_responsive.css' %}" type="text/css; charset=utf-8" />
     <link rel="icon" href="{% static 'favicon.png' %}" type="image/png" />
+    <script type="text/javascript" src="{% static 'jquery-1.11.0.min.js' %}"></script>
+    <script>
+    $("document").ready(function(){
+        setTimeout(function(){
+            $("#messages").slideUp("slow");
+        }, 2000);
+    });
+    </script>
     {% block head %}{% endblock %}
 </head>
 <body>
+    {% if messages %}
+        <div id="messages">
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
     <div class="ad ad_left">
         This is the ad.
     </div>
@@ -57,20 +74,6 @@
                 {% endif %}
             </div>
         </div>
-        {% if messages %}
-            <div id="messages">
-                <div class="subcontainer_h">
-                    Messages
-                </div>
-                <div class="subcontainer_c">
-                    <ul>
-                    {% for message in messages %}
-                            <li>{{ message }}</li>
-                    {% endfor %}
-                    </ul>
-                </div>
-            </div>
-        {% endif %}
         <div id="content">
             {% block content %}
                 This should not be visible. Content-block is missing.

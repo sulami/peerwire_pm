@@ -109,7 +109,19 @@ div#account {
 div#content {
     width: 100%;
 }
-div#messages { background-color: rgb(240,240,240) }
+div#messages {
+    background-color: rgba(50,255,50,.8);
+    color: rgb(255,255,255);
+    font-size: 20px;
+    margin: 0px !important;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    position: fixed;
+    text-align: center;
+    text-shadow: 2px 2px 5px rgba(0,0,0,.5);
+    top: 0px;
+    width: 100%;
+}
 div.subcontainer {
     background-color: rgb(240,240,240);
     display: inline-block;
