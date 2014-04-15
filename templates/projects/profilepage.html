@@ -49,7 +49,7 @@
         <div class="subcontainer_c">
             <ul>
             {% for l in profile.userlang_set.all %}
-                <li>{{ l }} ({{ l.level }})</li>
+                <li><a href="{% url 'haystack:haystack_search' %}?q={{ l|urlencode }}">{{ l }}</a> ({{ l.level }})</li>
             {% empty %}
                 None
             {% endfor %}
@@ -63,7 +63,7 @@
         <div class="subcontainer_c">
             <ul>
             {% for l in profile.userskill_set.all %}
-                <li>{{ l }} ({{ l.level }})</li>
+                <li><a href="{% url 'haystack:haystack_search' %}?q={{ l|urlencode }}">{{ l }}</a> ({{ l.level }})</li>
             {% empty %}
                 None
             {% endfor %}
@@ -77,7 +77,7 @@
         <div class="subcontainer_c">
             <ul>
             {% for p in profile.projects_owned.all %}
-                <li><a href="{% url 'projects:projectpage' p.pk %}">{{ p }}</a></li>
+                <li><a href="{% url 'projects:projectpage' p.pk %}" title="{{ p }}">{{ p.name }}</a></li>
             {% empty %}
                 None
             {% endfor %}
@@ -91,7 +91,7 @@
         <div class="subcontainer_c">
             <ul>
             {% for p in profile.projects_workingon.all %}
-                <li><a href="{% url 'projects:projectpage' p.pk %}">{{ p }}</a></li>
+                <li><a href="{% url 'projects:projectpage' p.pk %}" title="{{ p }}">{{ p.name }}</a></li>
             {% empty %}
                 None
             {% endfor %}
