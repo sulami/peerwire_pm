@@ -91,7 +91,7 @@
     {% for result in page.object_list %}
         <tr class="hover search">
         <td>
-        <a href="{% url 'projects:projectpage' result.object.pk %}">
+        <a href="{% url 'projects:projectpage' result.object.pk %}" title="{{ result.object.description|truncatewords:30 }}">
             <div class="ellipsis">
                 {{ result.object }}
             </div>
