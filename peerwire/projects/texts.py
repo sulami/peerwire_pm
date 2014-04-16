@@ -47,6 +47,10 @@ del_u_abort = """
 Profile deletion aborted.
 """
 
+project_started = """
+Project has been started.
+"""
+
 work_started = """
 You started working on this project.
 """
@@ -57,6 +61,18 @@ You finished working on this project.
 
 user_removed = """
 User removed.
+"""
+
+user_not_found = """
+The user could not be found.
+"""
+
+user_already_owner = """
+This user is already owner of this project.
+"""
+
+owner_added = """
+New owner has been added.
 """
 
 changes_saved = """

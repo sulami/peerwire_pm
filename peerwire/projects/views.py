@@ -74,12 +74,20 @@ def add_owner(request, project_id):
     if request.method == 'POST':
         form = InputForm(request.POST)
         if form.is_valid():
-            user = get_object_or_404(
-                User, username=form.cleaned_data.get('username')
-                )
+            try:
+                user = User.objects.get(
+                    username=form.cleaned_data.get('username')
+                    )
+            except:
+                messages.error(request, user_not_found)
+                return redirect('projects:add_owner', project_id)
             if user not in project.owners.all():
                 project.owners.add(user)
-                return redirect('projects:projectpage', project.pk)
+                messages.success(request, owner_added)
+            else:
+                messages.error(request, user_already_owner)
+                return redirect('projects:add_owner', project_id)
+            return redirect('projects:projectpage', project.pk)
     else:
         form = InputForm()
     context = {'form': form, 'project': project}
@@ -113,6 +121,7 @@ def start_project(request, parent_id=None):
                 p.save()
             p.owners.add(request.user)
             form.save()
+            messages.success(request, project_started)
             return redirect('projects:projectpage', project.pk)
     else:
         form = ProjectForm()
