@@ -1,4 +1,5 @@
 body {
+    color: rgb(70,70,70);
     font-family: Cantarell, sans-serif;
     margin: 0px;
     padding: 0px;
@@ -54,7 +55,7 @@ li {
 input, textarea {
     background-color: rgb(230,230,230);
     border: none;
-    outline: transparent; /* Chrome Fix */
+    outline: 1px rgb(230,230,230) solid; /* Chrome Fix */
     padding-bottom: 5px;
     padding-top: 5px;
     transition: all .3s;
@@ -63,6 +64,7 @@ input, textarea {
 }
 input:hover, input:active, textarea:hover, textarea:active {
     background-color: rgb(220,220,220);
+    outline: 1px rgb(220,220,220) solid;
     color: rgb(0, 0, 0);
     /* text-shadow: 1px 1px 3px rgba(251, 179, 0, 1); */
 }
@@ -79,6 +81,7 @@ select[multiple] {
     overflow: hidden;
 }
 input[type="checkbox"] {
+    outline: transparent;
     width: auto !important;
 }
 input[type="checkbox"]:focus, input[type="file"]:focus {
@@ -86,6 +89,7 @@ input[type="checkbox"]:focus, input[type="file"]:focus {
 }
 input[type="file"] {
     background-color: transparent;
+    outline: transparent;
     width: inherit;
 }
 input[type="submit"] {
@@ -94,8 +98,14 @@ input[type="submit"] {
     padding-left: 8px;
     padding-right: 8px;
 }
+input[type="submit"]:hover {
+    background-color: rgba(251,179,0,.8);
+}
 input[type="submit"].red {
     background-color: rgba(255,50,50,.5);
+}
+input[type="submit"].red:hover {
+    background-color: rgba(255,50,50,.8);
 }
 div#header {
     background-repeat: no-repeat;
