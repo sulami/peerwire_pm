@@ -1,7 +1,6 @@
 # Create your views here.
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from django.forms.models import modelformset_factory
 from django.core.urlresolvers import reverse
