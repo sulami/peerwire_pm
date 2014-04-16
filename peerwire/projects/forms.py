@@ -1,10 +1,6 @@
 from django.forms import ModelForm, BooleanField, CharField, Form
 from projects.models import *
-
-project_ph = """You can use Markdown here
- (http://daringfireball.net/projects/markdown/syntax). You also might want to
- include a way to contact the person responsible for this project, like an email
- address or an irc channel. This help text will not be in the description."""
+from projects.texts import project_ph
 
 class UserLangForm(ModelForm):
     class Meta:
