@@ -22,7 +22,10 @@ def index(request):
         'news': news,
         }
     if request.user.is_authenticated():
-        proper = Project.objects.filter(seeking='Yes', status='Active')
+        proper = Project.objects.filter(
+            seeking='Yes',
+            status='Active'
+            ).exclude(users__in=[request.user,])
         userlangs = request.user.userlang_set.all().values('lang')
         r_langs = proper.filter(langs__in=userlangs).distinct()
         userskills = request.user.userskill_set.all().values('skill')
