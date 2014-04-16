@@ -113,7 +113,7 @@ def owner_resign(request, project_id):
 
 def start_project(request, parent_id=None):
     if not request.user.is_authenticated():
-        return redirect('projects:index')
+        return redirect('auth_login')
     if request.method == 'POST':
         project = Project()
         form = ProjectForm(request.POST, instance=project)
