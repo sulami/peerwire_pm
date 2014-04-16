@@ -45,5 +45,6 @@ urlpatterns = patterns('',
         ), name='haystack_search'),
     url(r'^s/', include('haystack.urls', namespace='haystack')),
     url(r'^n/', include('news.urls', namespace='news')),
+    url(r'^r/', include('reporting.urls', namespace='reporting')),
     url(r'^', include('projects.urls', namespace='projects')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

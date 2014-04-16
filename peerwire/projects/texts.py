@@ -71,3 +71,14 @@ owner_resigned = """
 You resigned from this project.
 """
 
+report_done = """
+Your report has been registered.
+"""
+
+report_p_failed = """
+Your report has not been registered because you already reported this Project.
+"""
+report_u_failed = """
+Your report has not been registered because you already reported this User.
+"""
+
