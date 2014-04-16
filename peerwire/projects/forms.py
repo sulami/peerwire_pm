@@ -1,6 +1,6 @@
 from django.forms import ModelForm, BooleanField, CharField, Form
 from projects.models import *
-from projects.texts import project_ph
+from projects.texts import project_ph, user_ph
 
 class UserLangForm(ModelForm):
     class Meta:
@@ -29,6 +29,7 @@ class UserForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
+        self.fields['description'].widget.attrs['placeholder'] = user_ph
         self.fields['email'].required = True
 
 class ProjectForm(ModelForm):
@@ -39,6 +40,7 @@ class ProjectForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ProjectForm, self).__init__(*args, **kwargs)
+        self.fields['name'].widget.attrs['placeholder'] = 'Required'
         self.fields['description'].widget.attrs['placeholder'] = project_ph
 
 
