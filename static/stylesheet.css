@@ -51,17 +51,23 @@ li {
     list-style-type: none;
 }
 input, textarea {
-    background-color: rgb(240,240,240);
+    background-color: rgb(230,230,230);
     border: none;
-    outline: none; /* Chrome Fix */
+    outline: transparent; /* Chrome Fix */
+    padding-bottom: 5px;
+    padding-top: 5px;
     transition: all .3s;
     -webkit-transition: all .3s;
     width: 100%;
 }
 input:hover, input:active, textarea:hover, textarea:active {
-    background-color: rgb(230,230,230);
+    background-color: rgb(240,240,240);
     color: rgb(0, 0, 0);
     /* text-shadow: 1px 1px 3px rgba(251, 179, 0, 1); */
+}
+input:focus, textarea:focus {
+    background-color: rgb(240,240,240);
+    outline: 1px rgba(251,179,0,.8) solid;
 }
 textarea {
     resize: vertical;
@@ -74,6 +80,16 @@ select[multiple] {
 }
 input[type="checkbox"] {
     width: auto !important;
+}
+input[type="file"] {
+    background-color: transparent;
+    width: inherit;
+}
+input[type="submit"] {
+    background-color: rgba(251,179,0,.5);
+    width: auto;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 span.helptext { display: none }
 div#header {
@@ -117,7 +133,7 @@ div.messages {
     padding-top: 5px;
     position: fixed;
     text-align: center;
-    text-shadow: 2px 2px 5px rgba(0,0,0,.5);
+    text-shadow: 2px 2px 1px rgba(0,0,0,.5);
     top: 0px;
     width: 100%;
 }
