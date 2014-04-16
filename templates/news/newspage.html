@@ -8,11 +8,10 @@
             {{ news.title }}
         </div>
         <div class="subcontainer_c pure_li">
+            <span style="font-size: 12px">{{ news.pub_date }}</span>
             {% autoescape off %}
             {{ news.get_markdown }}
             {% endautoescape %}
-            <br />
-            <span style="font-size: 12px">{{ news.pub_date }}</span>
         </div>
     </div>
 {% endblock %}
