@@ -12,7 +12,7 @@
     <script>
     $("document").ready(function(){
         setTimeout(function(){
-            $("#messages").slideUp("slow");
+            $("div.messages").slideUp("slow");
         }, 2000);
     });
     </script>
@@ -20,13 +20,11 @@
 </head>
 <body>
     {% if messages %}
-        <div id="messages">
-            <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-            </ul>
-        </div>
+        {% for message in messages %}
+            <div class="messages msg_{{ message.level }}">
+                {{ message }}
+            </div>
+        {% endfor %}
     {% endif %}
     <div class="ad ad_left">
         This is the ad.
