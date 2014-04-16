@@ -40,7 +40,12 @@
             {% endautoescape %}
             <hr />
             <p>Date joined: {{ profile.date_joined|date:"Y-m-d" }}</p>
-            <p><a href="{% url 'reporting:r_user' profile.pk %}">Report User</a></p>
+            <p>
+            <form action="{% url 'reporting:r_user' profile.pk %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" name="delete" class="red" value="Report user"/>
+            </form>
+            </p>
         </div>
     </div>
     <div class="subcontainer sc_small right">
@@ -87,7 +92,7 @@
     </div>
     <div class="subcontainer sc_small right">
         <div class="subcontainer_h">
-            Projects working on ({{ profile.projects_workingon.count }})
+            Working on ({{ profile.projects_workingon.count }})
         </div>
         <div class="subcontainer_c">
             <ul>

@@ -18,7 +18,7 @@
         Specify search
     </div>
     <div class="subcontainer_c">
-    <table style="width: 100%">
+    <table class="search">
     {% if facets.fields.status %}
         <tr><td>
         Status:
@@ -83,11 +83,13 @@
     </div>
     <div class="subcontainer_c">
     <table class="search">
+    {% if page.object_list.exists %}
     <tr>
         <td>Name</td>
         <td style="text-align: center">Active</td>
         <td style="text-align: center">Seeking</td>
     </tr>
+    {% endif %}
     {% for result in page.object_list %}
         <tr class="hover search">
         <td>

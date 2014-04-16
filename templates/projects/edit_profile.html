@@ -15,9 +15,21 @@
             <tr><td></td><td><input type="submit" value="Save" /></td></tr>
             </table>
         </form>
-        <hr />
+    </div>
+    </div>
+    <div class="subcontainer sc_full">
+    <div class="subcontainer_h">
+        Delete Profile
+    </div>
+    <div class="subcontainer_c">
         <p>
-        <a href="{% url 'projects:delete_profile' user.pk %}">Delete Profile</a>
+        If you click this button, there will be a another confirmation page.
+        </p>
+        <p>
+        <form action="{% url 'projects:delete_profile' user.pk %}" method="POST">
+            {% csrf_token %}
+            <input type="submit" class="red" value="Delete Profile" />
+        </form>
         </p>
     </div>
     </div>

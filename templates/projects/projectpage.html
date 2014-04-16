@@ -50,7 +50,12 @@
         {% endif %}
         seeking for help
         </p>
-        <p><a href="{% url 'reporting:r_project' project.pk %}">Report Project</a></p>
+        <p>
+        <form action="{% url 'reporting:r_project' project.pk %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" name="delete" class="red" value="Report project"/>
+        </form>
+        </p>
     </div>
 </div>
 {% if user.is_authenticated %}
@@ -69,7 +74,7 @@
                 Work
             </div>
             <div class="subcontainer_c">
-                <a href="{% url 'projects:startwork' project.pk %}">Work on this project</a>
+                <a href="{% url 'projects:startwork' project.pk %}">Work on this</a>
             </div>
         </div>
     {% elif user in project.users.all %}
@@ -78,14 +83,14 @@
                 Work
             </div>
             <div class="subcontainer_c">
-                <a href="{% url 'projects:finishwork' project.pk %}">Stop working on this project</a>
+                <a href="{% url 'projects:finishwork' project.pk %}">Stop working on this</a>
             </div>
         </div>
     {% endif %}
 {% endif %}
 <div class="subcontainer sc_small right">
     <div class="subcontainer_h">
-        Project owners
+        Owners
     </div>
     <div class="subcontainer_c">
         <ul>
@@ -99,7 +104,7 @@
 </div>
 <div class="subcontainer sc_small right">
     <div class="subcontainer_h">
-        Users working on this
+        Workers
     </div>
     <div class="subcontainer_c">
         <ul>
@@ -113,7 +118,7 @@
 </div>
 <div class="subcontainer sc_small right">
     <div class="subcontainer_h">
-        Projecttree
+        Tree
     </div>
     <div class="subcontainer_c">
         <ol>

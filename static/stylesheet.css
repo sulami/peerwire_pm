@@ -1,5 +1,5 @@
 body {
-    font-family: sans-serif;
+    font-family: Cantarell, sans-serif;
     margin: 0px;
     padding: 0px;
 }
@@ -39,13 +39,14 @@ div.ellipsis {
     white-space: nowrap;
 }
 th, td {
-    padding: 0px;
-    vertical-align: top;
+    padding: 5px;
+    vertical-align: baseline;
 }
 table.search tr td {
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
+    padding: 0px;
 }
 li {
     list-style-type: none;
@@ -61,12 +62,11 @@ input, textarea {
     width: 100%;
 }
 input:hover, input:active, textarea:hover, textarea:active {
-    background-color: rgb(240,240,240);
+    background-color: rgb(220,220,220);
     color: rgb(0, 0, 0);
     /* text-shadow: 1px 1px 3px rgba(251, 179, 0, 1); */
 }
 input:focus, textarea:focus {
-    background-color: rgb(240,240,240);
     outline: 1px rgba(251,179,0,.8) solid;
 }
 textarea {
@@ -90,6 +90,9 @@ input[type="submit"] {
     width: auto;
     padding-left: 8px;
     padding-right: 8px;
+}
+input[type="submit"].red {
+    background-color: rgba(255,50,50,.5);
 }
 span.helptext { display: none }
 div#header {
@@ -179,7 +182,7 @@ div.avatar {
     height: 100px;
     width: 100px;
 }
-span.mono { font-family: Inconsolata }
+span.mono { font-family: Inconsolata, Consolas, monospace !important }
 div.ad {
     background-color: white;
     height: 600px;

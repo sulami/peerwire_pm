@@ -59,7 +59,7 @@ div.sc_full {
         top: 11px;
         width: 250px;
     }
-    menu#main_menu { margin-top: 17px; text-align: right }
+    menu#main_menu { margin-top: 14px; text-align: right }
     menu#main_menu li { margin-left: 15px }
     div#account { text-align: right }
     div#messages { margin: 5px }
@@ -68,17 +68,17 @@ div.sc_full {
     div.sc_large { width: calc(70% - 10px) }
     div.sc_full { width: calc(100% - 10px) }
 }
-@media screen and (max-width: 800px){
+@media screen and (max-width: 900px){
     div#container { width: calc(100% - 20px) }
     div.ad_right { display: none }
     div.ad_left { display: none }
 }
-@media screen and (min-width: 801px) and (max-width: 959px) {
+@media screen and (min-width: 901px) and (max-width: 1179px) {
     div#container { width: calc(100% - 192px) }
     div.ad_right { display: block }
     div.ad_left { display: none }
 }
-@media screen and (min-width: 960px) {
+@media screen and (min-width: 1180px) {
     div#container { width: calc(100% - 362px) }
     div.ad_left, div.ad_right { display: block }
 }

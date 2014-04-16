@@ -12,10 +12,22 @@
         {% endif %}
     </div>
     <div class="subcontainer_c">
+        <p>
+        {% if project %}
+            Deleting this project will delete all subprojects as well. If you
+            are not the sole owner of this project, the other owners will have
+            7 days to abort the deletion.
+        {% else %}
+            Deleting your profile will delete all projects solely owned by you.
+            You will have 7 days to abort the deletion.
+        {% endif %}
+        </p>
+        <p>
         <form action="." method="POST">
         {% csrf_token %}
-        <input type="submit" name="delete" value="I am sure"/>
+        <input type="submit" name="delete" class="red" value="I am sure"/>
         </form>
+        </p>
     </div>
 </div>
 {% endblock %}
