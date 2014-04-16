@@ -81,4 +81,5 @@ div.sc_full {
 @media screen and (min-width: 1180px) {
     div#container { width: calc(100% - 362px) }
     div.ad_left, div.ad_right { display: block }
+    a#home-link { left: 181px }
 }
