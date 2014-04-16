@@ -5,36 +5,19 @@
 {% block content %}
 <div class="subcontainer sc_full">
     <div class="subcontainer_h">
-        Search for Projects
-    </div>
-    <div class="subcontainer_c">
-    <form method="get" action="{% url 'haystack:haystack_search' %}">
-        <input type="text" name="q" placeholder="Search" style="width: calc(100% - 55px)" />
-        <input type="submit" value="Go" style="width: 50px" />
-    </div>
-</div>
-<div class="subcontainer sc_small right">
-    <div class="subcontainer_h">
         Get to work
     </div>
     <div class="subcontainer_c">
-        <ul>
-        <li><a href="{% url 'projects:start_project' %}">Start a new project</a></li>
-        </ul>
+    <div style="text-align: center">
+        <form method="GET" action="{% url 'projects:start_project' %}">
+            <input type="submit" value="Start a new project" style="margin-right: 5px" />
+            or search for existing ones
+        </form>
     </div>
-</div>
-<div class="subcontainer sc_large left">
-    <div class="subcontainer_h">
-        Trending projects
-    </div>
-    <div class="subcontainer_c">
-        <ol>
-        {% for project in trending_projects %}
-            <li><a href="{% url 'projects:projectpage' project.id %}">{{ project }}</a></li>
-        {% empty %}
-            No trending projects
-        {% endfor %}
-        </ol>
+    <form method="GET" action="{% url 'haystack:haystack_search' %}">
+        <input type="text" name="q" placeholder="Search" style="width: calc(100% - 55px)" />
+        <input type="submit" value="Go" style="width: 50px" />
+    </form></td></tr></table>
     </div>
 </div>
 <div class="subcontainer sc_small right">
@@ -47,6 +30,34 @@
             <li><a href="{% url 'news:newspage' post.id %}">{{ post.title }}</a></li>
         {% empty %}
             No News
+        {% endfor %}
+        </ol>
+    </div>
+</div>
+<div class="subcontainer sc_large left">
+    <div class="subcontainer_h">
+        Recommended projects
+    </div>
+    <div class="subcontainer_c">
+        <ol>
+        {% for project in recommended %}
+            <li><a href="{% url 'projects:projectpage' project.id %}">{{ project }}</a></li>
+        {% empty %}
+            No recommended projects
+        {% endfor %}
+        </ol>
+    </div>
+</div>
+<div class="subcontainer sc_large left">
+    <div class="subcontainer_h">
+        Trending projects
+    </div>
+    <div class="subcontainer_c">
+        <ol>
+        {% for project in trending_projects %}
+            <li><a href="{% url 'projects:projectpage' project.id %}">{{ project }}</a></li>
+        {% empty %}
+            No trending projects
         {% endfor %}
         </ol>
     </div>

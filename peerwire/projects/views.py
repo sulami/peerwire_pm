@@ -15,12 +15,19 @@ import datetime
 import markdown
 
 def index(request):
-    trending_projects = Project.objects.all().order_by('-value')[:10]
+    trending_projects = Project.objects.all().order_by('-value')[:5]
     news = News.objects.all().order_by('-pub_date')[:10]
     context = {
         'trending_projects': trending_projects,
         'news': news,
         }
+    if request.user.is_authenticated():
+        proper = Project.objects.filter(seeking='Yes', status='Active')
+        userlangs = request.user.userlang_set.all().values('lang')
+        r_langs = proper.filter(langs__in=userlangs).distinct()
+        userskills = request.user.userskill_set.all().values('skill')
+        r_skills = r_langs.filter(skills__in=userskills)
+        context['recommended'] = r_skills.order_by('users')[:5]
     return render(request, 'projects/index.html', context)
 
 def projectpage(request, project_id):
