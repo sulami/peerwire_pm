@@ -5,19 +5,26 @@
 {% block content %}
 <div class="subcontainer sc_full">
     <div class="subcontainer_h">
-        Get to work
+        Welcome
     </div>
     <div class="subcontainer_c">
-    <div style="text-align: center">
-        <form method="GET" action="{% url 'projects:start_project' %}">
-            <input type="submit" value="Start a new project" style="margin-right: 5px" />
-            or search for existing ones
-        </form>
-    </div>
-    <form method="GET" action="{% url 'haystack:haystack_search' %}">
-        <input type="text" name="q" placeholder="Search" style="width: calc(100% - 55px)" />
-        <input type="submit" value="Go" style="width: 50px" />
-    </form></td></tr></table>
+        <div class="half" style="float: left">
+            <p>Peerwire is a platform for collaboration.</p>
+            <p>Some more stuff about how cool it actually is...</p>
+            <p>This is going to be the next best thing!</p>
+            <p>HOLY SHIT?!</p>
+        </div>
+        <div class="half" style="float: right">
+        <p>
+            <form method="GET" action="{% url 'projects:start_project' %}">
+                <input type="submit" value="Start a new project" style="margin-right: 5px" />
+            </form>
+            <p>or search for existing ones</p>
+        <form method="GET" action="{% url 'haystack:haystack_search' %}">
+            <input type="text" name="q" placeholder="Search" style="width: calc(100% - 55px)" />
+            <input type="submit" value="Go" style="width: 50px" /> </form>
+        </p>
+        </div>
     </div>
 </div>
 <div class="subcontainer sc_small right">
@@ -40,11 +47,13 @@
     </div>
     <div class="subcontainer_c">
         <ol>
-        {% for project in recommended %}
-            <li><a href="{% url 'projects:projectpage' project.id %}">{{ project }}</a></li>
-        {% empty %}
-            No recommended projects
-        {% endfor %}
+        {% if user.is_authenticated %}
+            {% for project in recommended %}
+                <li><a href="{% url 'projects:projectpage' project.id %}">{{ project }}</a></li>
+            {% empty %}
+                    No recommended projects
+            {% endfor %}
+        {% endif %}
         </ol>
     </div>
 </div>
