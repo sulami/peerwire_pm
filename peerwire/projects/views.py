@@ -59,11 +59,6 @@ def edit_project(request, project_id):
         form = ProjectForm(request.POST, instance=project)
         if form.is_valid():
             form.save()
-            expire_view_cache(
-                'projectpage',
-                args=(project.pk,),
-                namespace='projects'
-                )
             messages.success(request, changes_saved)
             return redirect('projects:projectpage', project.pk)
     else:
@@ -318,11 +313,6 @@ def edit_langs(request):
                     else:
                         instance.user = request.user
                         instance.save()
-            expire_view_cache(
-                'profilepage',
-                args=(profile.pk,),
-                namespace='projects'
-                )
             messages.success(request, changes_saved)
             return redirect('projects:profilepage', profile.pk)
     else:
@@ -353,11 +343,6 @@ def edit_skills(request):
                     else:
                         instance.user = request.user
                         instance.save()
-            expire_view_cache(
-                'profilepage',
-                args=(profile.pk,),
-                namespace='projects'
-                )
             messages.success(request, changes_saved)
             return redirect('projects:profilepage', profile.pk)
     else:
