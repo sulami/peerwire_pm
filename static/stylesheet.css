@@ -41,7 +41,7 @@ div.ellipsis {
 }
 th, td {
     padding: 5px;
-    vertical-align: top;
+    vertical-align: middle;
 }
 table.search tr td {
     background-position: center;
@@ -168,6 +168,7 @@ div.subcontainer_h {
     color: rgb(230,230,230);
     font-size: 18px;
     padding: 3px;
+    text-align: center;
     background: -moz-linear-gradient(top, #323232 0%, #1e1e1e 100%);
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#323232), color-stop(100%,#1e1e1e));
     background: -webkit-linear-gradient(top, #323232 0%,#1e1e1e 100%);
@@ -183,6 +184,7 @@ div.pure_li li {
     list-style: inherit !important;
     margin-left: 20px; /* Chrome Fix */
 }
+.center { text-align: center }
 div.img_width img { max-width: 100%; }
 div.half {
     text-align: center;
