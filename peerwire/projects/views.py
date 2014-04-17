@@ -246,7 +246,9 @@ def edit_profile(request):
                         form.cleaned_data.get('email')
                     )
             form.save()
-            if 'avatar' in form.changed_data:
+            if 'avatar' in form.changed_data and form.cleaned_data.get(
+                'avatar'
+                ):
                 im = Image.open(profile.avatar.path)
                 if im.size[0] < im.size[1]:
                     ratio = im.size[1] / float(im.size[0])
