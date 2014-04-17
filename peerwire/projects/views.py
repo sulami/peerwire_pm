@@ -13,6 +13,7 @@ from projects.texts import *
 
 import datetime
 import markdown
+import Image
 
 def index(request):
     trending_projects = Project.objects.all().order_by('-value')[:5]
@@ -244,6 +245,17 @@ def edit_profile(request):
                         form.cleaned_data.get('email')
                     )
             form.save()
+            if 'avatar' in form.changed_data:
+                im = Image.open(profile.avatar.path)
+                if im.size[0] < im.size[1]:
+                    ratio = im.size[1] / float(im.size[0])
+                    out = im.resize((100, int(100 * ratio)))
+                elif im.size[0] > im.size[1]:
+                    ratio = im.size[0] / float(im.size[1])
+                    out = im.resize((int(100 * ratio), 100))
+                else:
+                    out = im.resize((100, 100))
+                out.save(profile.avatar.path, im.format)
             messages.success(request, changes_saved)
             return redirect('projects:profilepage', profile.pk)
     else:

@@ -17,6 +17,10 @@ Software Setup
   * Python-requests (tested on 2.2.1)
   * Python-markdown (tested on 2.4)
   * Python-pygments (tested on 1.6)
+  * Python-pip (tested on 2.7.5)
+    * libjpeg-devel
+    * libz-devel
+    * libfreetype-devel
   * Django (tested on 1.6.4)
   * Django-registration (tested on 0.9.3)
   * Django-haystack (tested on 2.1.0)
