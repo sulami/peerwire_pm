@@ -1,10 +1,11 @@
-# Create your views here.
 from django.shortcuts import render, get_object_or_404, redirect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import authenticate, login
 from django.forms.models import modelformset_factory
 from django.core.urlresolvers import reverse
 from django.contrib import messages
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_headers
 
 from projects.models import *
 from news.models import News
@@ -58,6 +59,11 @@ def edit_project(request, project_id):
         form = ProjectForm(request.POST, instance=project)
         if form.is_valid():
             form.save()
+            expire_view_cache(
+                'projectpage',
+                args=(project.pk,),
+                namespace='projects'
+                )
             messages.success(request, changes_saved)
             return redirect('projects:projectpage', project.pk)
     else:
@@ -312,6 +318,11 @@ def edit_langs(request):
                     else:
                         instance.user = request.user
                         instance.save()
+            expire_view_cache(
+                'profilepage',
+                args=(profile.pk,),
+                namespace='projects'
+                )
             messages.success(request, changes_saved)
             return redirect('projects:profilepage', profile.pk)
     else:
@@ -342,6 +353,11 @@ def edit_skills(request):
                     else:
                         instance.user = request.user
                         instance.save()
+            expire_view_cache(
+                'profilepage',
+                args=(profile.pk,),
+                namespace='projects'
+                )
             messages.success(request, changes_saved)
             return redirect('projects:profilepage', profile.pk)
     else:
@@ -350,8 +366,12 @@ def edit_skills(request):
             )
     return render(request, 'projects/edit_skills.html', {'form': form})
 
+@cache_page(60 * 60)
+@vary_on_headers('Cookie')
 def about_us(request):
     return render(request, 'about_us.html')
 
+@cache_page(60 * 60)
+@vary_on_headers('Cookie')
 def contact(request):
     return render(request, 'contact.html')
