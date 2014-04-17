@@ -178,7 +178,7 @@ DEFAULT_FROM_EMAIL = 'postmaster@peerwire.org'
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'peerwire'
+        # 'LOCATION': 'peerwire'
         # 'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
     }
 }
