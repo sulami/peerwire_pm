@@ -12,7 +12,12 @@
             {% for u in project.users.all %}
                 <tr class="hover">
                 <td>{{ u }}</td>
-                <td><a href="{% url 'projects:manage_users' project.pk u.pk %}">Remove</a></td>
+                <td>
+                <form method="POST" action="{% url 'projects:manage_users' project.pk u.pk %}">
+                {% csrf_token %}
+                <input type="submit" class="red" value="Remove" />
+                </form>
+                </td>
                 </tr>
             {% empty %}
                 None
