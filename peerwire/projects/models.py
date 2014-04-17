@@ -51,13 +51,15 @@ def get_project_root(p, tree):
         get_project_root(p.parent, tree)
     return tree
 
-class Lang(models.Model):
+class Lang(CachingMixin, models.Model):
+    objects = CachingManager()
     name = models.CharField(max_length=30)
 
     def __unicode__(self):
         return self.name
 
-class Skill(models.Model):
+class Skill(CachingMixin, models.Model):
+    objects = CachingManager()
     name = models.CharField(max_length=50)
 
     def __unicode__(self):
@@ -128,7 +130,8 @@ class Project(CachingMixin, models.Model):
     def __unicode__(self):
         return get_project_path(self)
 
-class UserLang(models.Model):
+class UserLang(CachingMixin, models.Model):
+    objects = CachingManager()
     lang = models.ForeignKey(Lang)
     user = models.ForeignKey(User)
     level = models.CharField(max_length=10, choices=LEVEL_CHOICES)
@@ -136,7 +139,8 @@ class UserLang(models.Model):
     def __unicode__(self):
         return self.lang.name
 
-class UserSkill(models.Model):
+class UserSkill(CachingMixin, models.Model):
+    objects = CachingManager()
     skill = models.ForeignKey(Skill)
     user = models.ForeignKey(User)
     level = models.CharField(max_length=10, choices=LEVEL_CHOICES)
