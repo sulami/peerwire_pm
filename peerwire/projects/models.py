@@ -2,6 +2,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
+from caching.base import CachingManager, CachingMixin
 
 # Global difficulty levels
 LEVEL_CHOICES = (
@@ -77,7 +78,8 @@ class User(AbstractUser):
         else:
             return self.username
 
-class Project(models.Model):
+class Project(CachingMixin, models.Model):
+    objects = CachingManager()
     name = models.CharField(max_length=50)
     owners = models.ManyToManyField(User, related_name='projects_owned')
     description = models.TextField(blank=True)

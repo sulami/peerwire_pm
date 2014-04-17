@@ -18,39 +18,6 @@ from projects.texts import *
 import datetime
 import markdown
 
-def expire_view_cache(
-    view_name, args=[], namespace=None, key_prefix=None, method="GET"
-    ):
-    from django.core.urlresolvers import reverse
-    from django.http import HttpRequest
-    from django.utils.cache import get_cache_key
-    from django.core.cache import cache
-    from django.conf import settings
-    request = HttpRequest()
-    request.method = method
-    if settings.USE_I18N:
-        request.LANGUAGE_CODE = settings.LANGUAGE_CODE
-    if namespace:
-        view_name = namespace + ":" + view_name
-    request.path = reverse(view_name, args=args)
-    key = get_cache_key(request, key_prefix=key_prefix)
-    if key:
-        if cache.get(key):
-            cache.set(key, None, 0)
-            print "reset" + str(key)
-        return True
-    print "no reset"
-    return False
-
-# def expire_page(path):
-#     request = HttpRequest()
-#     request.path = path
-#     key = get_cache_key(request)
-#     if cache.has_key(key):
-#         cache.delete(key)
-
-@cache_page(60 * 60)
-@vary_on_headers('Cookie')
 def index(request):
     trending_projects = Project.objects.all().order_by('-value')[:5]
     news = News.objects.all().order_by('-pub_date')[:10]
@@ -70,8 +37,6 @@ def index(request):
         context['recommended'] = r_skills.order_by('users')[:5]
     return render(request, 'projects/index.html', context)
 
-@cache_page(60 * 30)
-@vary_on_headers('Cookie')
 def projectpage(request, project_id):
     project = get_object_or_404(Project, pk=project_id)
     if project.status == 'Active':
@@ -116,11 +81,6 @@ def manage_users(request, project_id, user_id=None):
         user = get_object_or_404(User, pk=user_id)
         if user in project.users.all():
             project.users.remove(user)
-            expire_view_cache(
-                'projectpage',
-                args=(project.pk,),
-                namespace='projects'
-                )
             messages.success(request, user_removed)
             return redirect('projects:manage_users', project.pk)
     context = {'project': project}
@@ -142,11 +102,6 @@ def add_owner(request, project_id):
                 return redirect('projects:add_owner', project_id)
             if user not in project.owners.all():
                 project.owners.add(user)
-                expire_view_cache(
-                    'projectpage',
-                    args=(project.pk,),
-                    namespace='projects'
-                    )
                 messages.success(request, owner_added)
             else:
                 messages.error(request, user_already_owner)
@@ -165,11 +120,6 @@ def owner_resign(request, project_id):
         messages.error(request, last_owner)
         return redirect('projects:projectpage', project.pk)
     project.owners.remove(request.user)
-    expire_view_cache(
-        'projectpage',
-        args=(project.pk,),
-        namespace='projects'
-        )
     messages.success(request, owner_resigned)
     return redirect('projects:projectpage', project.pk)
 
@@ -188,12 +138,6 @@ def start_project(request, parent_id=None):
                     return redirect('projects:projectpage', par.pk)
                 p.parent = par
                 p.save()
-                for pro in p.project_root():
-                    expire_view_cache(
-                        'projectpage',
-                        args=(pro.pk,),
-                        namespace='projects'
-                        )
             p.owners.add(request.user)
             form.save()
             messages.success(request, project_started)
@@ -210,12 +154,6 @@ def delete_project(request, project_id):
         if request.POST.get('delete'):
             if project.owners.all().count() <= 1:
                 project.delete()
-                for pro in project.project_root():
-                    expire_view_cache(
-                        'projectpage',
-                        args=(pro.pk,),
-                        namespace='projects'
-                        )
                 messages.success(request, del_p_complete)
                 return redirect('projects:index')
             for o in project.owners.all():
@@ -253,12 +191,6 @@ def delete_p_confirm(request, project_id):
         project.del_q.remove(request.user)
         if project.del_q.all().count() <= 0:
             project.delete()
-            for pro in project.project_root():
-                expire_view_cache(
-                    'projectpage',
-                    args=(pro.pk,),
-                    namespace='projects'
-                    )
             messages.success(request, del_p_complete)
         else:
             messages.success(request, del_p_confirm)
@@ -282,11 +214,6 @@ def startwork(request, project_id):
     if ((project.seeking == 'Yes' or request.user in project.owners.all()) and
         request.user not in project.users.all()):
         project.users.add(request.user)
-        expire_view_cache(
-            'projectpage',
-            args=(project.pk,),
-            namespace='projects'
-            )
         messages.success(request, work_started)
     return redirect('projects:projectpage', project.pk)
 
@@ -296,11 +223,6 @@ def finishwork(request, project_id):
         return redirect('projects:projectpage', project.pk)
     if request.user in project.users.all():
         project.users.remove(request.user)
-        expire_view_cache(
-            'projectpage',
-            args=(project.pk,),
-            namespace='projects'
-            )
         messages.success(request, work_finished)
     return redirect('projects:projectpage', project.pk)
 
@@ -333,11 +255,6 @@ def edit_profile(request):
                         form.cleaned_data.get('email')
                     )
             form.save()
-            expire_view_cache(
-                'profilepage',
-                args=(profile.pk,),
-                namespace='projects'
-                )
             messages.success(request, changes_saved)
             return redirect('projects:profilepage', profile.pk)
     else:
