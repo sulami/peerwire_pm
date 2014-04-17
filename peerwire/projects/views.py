@@ -6,9 +6,6 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_headers
-from django.core.cache import cache
-from django.http import HttpRequest
-from django.utils.cache import get_cache_key
 
 from projects.models import *
 from news.models import News
@@ -226,8 +223,6 @@ def finishwork(request, project_id):
         messages.success(request, work_finished)
     return redirect('projects:projectpage', project.pk)
 
-@cache_page(60 * 60)
-@vary_on_headers('Cookie')
 def profilepage(request, profile_id):
     profile = get_object_or_404(User, pk=profile_id)
     context = {

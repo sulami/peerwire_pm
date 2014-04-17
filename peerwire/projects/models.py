@@ -63,7 +63,8 @@ class Skill(models.Model):
     def __unicode__(self):
         return self.name
 
-class User(AbstractUser):
+class User(CachingMixin, AbstractUser):
+    objects = CachingManager()
     avatar = models.ImageField(upload_to='avatars', blank=True)
     description = models.TextField(blank=True)
     del_t = models.DateField(blank=True, null=True)
