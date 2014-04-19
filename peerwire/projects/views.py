@@ -207,6 +207,8 @@ def startwork(request, project_id):
     if ((project.seeking == 'Yes' or request.user in project.owners.all()) and
         request.user not in project.users.all()):
         project.users.add(request.user)
+        project.save()
+        request.user.save()
         messages.success(request, work_started)
     return redirect('projects:projectpage', project.pk)
 
@@ -216,6 +218,8 @@ def finishwork(request, project_id):
         return redirect('projects:projectpage', project.pk)
     if request.user in project.users.all():
         project.users.remove(request.user)
+        project.save()
+        request.user.save()
         messages.success(request, work_finished)
     return redirect('projects:projectpage', project.pk)
 
