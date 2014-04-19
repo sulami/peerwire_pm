@@ -263,6 +263,7 @@ def edit_profile(request):
                 else:
                     out = im.resize((100, 100))
                 out.save(profile.avatar.path, im.format)
+            profile.save()
             messages.success(request, changes_saved)
             return redirect('projects:profilepage', profile.pk)
     else:
