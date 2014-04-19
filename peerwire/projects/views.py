@@ -320,6 +320,7 @@ def edit_langs(request):
                     else:
                         instance.user = request.user
                         instance.save()
+            profile.save()
             messages.success(request, changes_saved)
             return redirect('projects:profilepage', profile.pk)
     else:
@@ -350,6 +351,7 @@ def edit_skills(request):
                     else:
                         instance.user = request.user
                         instance.save()
+            profile.save()
             messages.success(request, changes_saved)
             return redirect('projects:profilepage', profile.pk)
     else:
