@@ -37,6 +37,13 @@ django core: /usr/lib/python2.7/site-packages/django/contrib/auth/models.py:
 >>
     AbstractUser: email = unique=True
 
+django auth: /usr/lib/python2.7/site-packages/django/contrib/auth/backends.py:
+<<
+    user = UserModel._default_manager.get_by_natural_key(username)
+
+>>
+    user = UserModel._default_manager.get(username=username)
+
 registration: /usr/lib/python2.7/site-packages/registration/forms.py:
 (fix custom user model)
 
