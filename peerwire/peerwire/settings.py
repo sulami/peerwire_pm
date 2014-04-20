@@ -133,6 +133,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'registration',
     'haystack',
+    'cacheops',
     'south',
     'orphan',
     'projects',
@@ -175,14 +176,25 @@ LOGGING = {
 DEFAULT_FROM_EMAIL = 'postmaster@peerwire.org'
 
 ### Cache
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         # 'LOCATION': 'peerwire'
         # 'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
-    }
+    # }
+# }
+# CACHE_MIDDLEWARE_KEY_PREFIX = 'peerwire_'
+CACHEOPS_REDIS = {
+    'host': 'localhost',
+    'port': 6379,
+    'db': 1,
+    'socket_timeout': 3,
 }
-CACHE_MIDDLEWARE_KEY_PREFIX = 'peerwire_'
+
+CACHEOPS = {
+    'news.*': ('all', 60 * 60),
+    'projects.*': ('all', 60 * 15),
+}
 
 ### Django-registration
 ACCOUNT_ACTIVATION_DAYS = 7

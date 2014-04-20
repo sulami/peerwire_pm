@@ -95,6 +95,7 @@ def add_owner(request, project_id):
                 return redirect('projects:add_owner', project_id)
             if user not in project.owners.all():
                 project.owners.add(user)
+                request.user.save()
                 messages.success(request, owner_added)
             else:
                 messages.error(request, user_already_owner)
@@ -113,6 +114,7 @@ def owner_resign(request, project_id):
         messages.error(request, last_owner)
         return redirect('projects:projectpage', project.pk)
     project.owners.remove(request.user)
+    request.user.save()
     messages.success(request, owner_resigned)
     return redirect('projects:projectpage', project.pk)
 
@@ -208,7 +210,6 @@ def startwork(request, project_id):
         request.user not in project.users.all()):
         project.users.add(request.user)
         project.save()
-        request.user.save()
         messages.success(request, work_started)
     return redirect('projects:projectpage', project.pk)
 
@@ -219,7 +220,6 @@ def finishwork(request, project_id):
     if request.user in project.users.all():
         project.users.remove(request.user)
         project.save()
-        request.user.save()
         messages.success(request, work_finished)
     return redirect('projects:projectpage', project.pk)
 
@@ -263,7 +263,6 @@ def edit_profile(request):
                 else:
                     out = im.resize((100, 100))
                 out.save(profile.avatar.path, im.format)
-            profile.save()
             messages.success(request, changes_saved)
             return redirect('projects:profilepage', profile.pk)
     else:
@@ -320,7 +319,6 @@ def edit_langs(request):
                     else:
                         instance.user = request.user
                         instance.save()
-            profile.save()
             messages.success(request, changes_saved)
             return redirect('projects:profilepage', profile.pk)
     else:
@@ -351,7 +349,6 @@ def edit_skills(request):
                     else:
                         instance.user = request.user
                         instance.save()
-            profile.save()
             messages.success(request, changes_saved)
             return redirect('projects:profilepage', profile.pk)
     else:

@@ -12,6 +12,7 @@ Software Setup
   * Nginx
   * MySQL /w InnoDB
   * Elasticsearch (tested on 1.0.1)
+  * Redis
   * Python (>= 2.7)
   * Python-pyelasticsearch (tested on 0.6.1)
   * Python-requests (tested on 2.2.1)
@@ -24,7 +25,7 @@ Software Setup
   * Django (tested on 1.6.4)
   * Django-registration (tested on 0.9.3)
   * Django-haystack (tested on 2.1.0)
-  * Django-cache-machine (tested on 0.8)
+  * Django-cacheops (tested on 1.3.1)
 
 Custom Fixes
 ------------
@@ -36,13 +37,6 @@ django core: /usr/lib/python2.7/site-packages/django/contrib/auth/models.py:
 
 >>
     AbstractUser: email = unique=True
-
-django auth: /usr/lib/python2.7/site-packages/django/contrib/auth/backends.py:
-<<
-    user = UserModel._default_manager.get_by_natural_key(username)
-
->>
-    user = UserModel._default_manager.get(username=username)
 
 registration: /usr/lib/python2.7/site-packages/registration/forms.py:
 (fix custom user model)

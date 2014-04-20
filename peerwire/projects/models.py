@@ -2,7 +2,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.mail import send_mail
-from caching.base import CachingManager, CachingMixin
 
 # Global difficulty levels
 LEVEL_CHOICES = (
@@ -51,22 +50,19 @@ def get_project_root(p, tree):
         get_project_root(p.parent, tree)
     return tree
 
-class Lang(CachingMixin, models.Model):
-    objects = CachingManager()
+class Lang(models.Model):
     name = models.CharField(max_length=30)
 
     def __unicode__(self):
         return self.name
 
-class Skill(CachingMixin, models.Model):
-    objects = CachingManager()
+class Skill(models.Model):
     name = models.CharField(max_length=50)
 
     def __unicode__(self):
         return self.name
 
-class User(CachingMixin, AbstractUser):
-    objects = CachingManager()
+class User(AbstractUser):
     avatar = models.ImageField(upload_to='avatars', blank=True)
     description = models.TextField(blank=True)
     del_t = models.DateField(blank=True, null=True)
@@ -81,8 +77,7 @@ class User(CachingMixin, AbstractUser):
         else:
             return self.username
 
-class Project(CachingMixin, models.Model):
-    objects = CachingManager()
+class Project(models.Model):
     name = models.CharField(max_length=50)
     owners = models.ManyToManyField(User, related_name='projects_owned')
     description = models.TextField(blank=True)
@@ -130,8 +125,7 @@ class Project(CachingMixin, models.Model):
     def __unicode__(self):
         return get_project_path(self)
 
-class UserLang(CachingMixin, models.Model):
-    objects = CachingManager()
+class UserLang(models.Model):
     lang = models.ForeignKey(Lang)
     user = models.ForeignKey(User)
     level = models.CharField(max_length=10, choices=LEVEL_CHOICES)
@@ -139,8 +133,7 @@ class UserLang(CachingMixin, models.Model):
     def __unicode__(self):
         return self.lang.name
 
-class UserSkill(CachingMixin, models.Model):
-    objects = CachingManager()
+class UserSkill(models.Model):
     skill = models.ForeignKey(Skill)
     user = models.ForeignKey(User)
     level = models.CharField(max_length=10, choices=LEVEL_CHOICES)
