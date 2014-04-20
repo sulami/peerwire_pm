@@ -27,9 +27,12 @@ div.sc_full {
         background-position: top center;
     }
     a#home-link {
+        font-size: 48px;
         height: 65px;
         left: 0px;
+        line-height: 48px;
         position: absolute;
+        text-align: center;
         top: 0px;
         width: 100%;
     }
@@ -53,8 +56,10 @@ div.sc_full {
         background-position: top left;
     }
     a#home-link {
+        font-size: 48px;
         height: 65px;
         left: 11px;
+        line-height: 48px;
         position: absolute;
         top: 11px;
         width: 250px;
