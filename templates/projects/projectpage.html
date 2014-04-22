@@ -32,7 +32,18 @@
     </div>
     <div class="subcontainer_c pure_li img_width ul_a">
         {% autoescape off %}{{ desc|default:"<p>No description given.</p>" }}{% endautoescape %}
-        <hr id="divider" />
+        <p class="da">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- Peerwire Responsive -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-5757275602398953"
+                 data-ad-slot="1400122950"
+                 data-ad-format="auto"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </p>
         {% if project.langs.exists %}
             <p>Languages used:<br />
             {{ project.langs.all|join:", " }}</p>

@@ -38,7 +38,18 @@
             {% autoescape off %}
             {{ desc|default:"<p>No description given.</p>" }}
             {% endautoescape %}
-            <hr id="divider" />
+            <p class="da">
+                <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- Peerwire Responsive -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-5757275602398953"
+                     data-ad-slot="1400122950"
+                     data-ad-format="auto"></ins>
+                <script>
+                (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </p>
             <p>Date joined: {{ profile.date_joined|date:"Y-m-d" }}</p>
             <p>
             <form action="{% url 'reporting:r_user' profile.pk %}" method="POST">

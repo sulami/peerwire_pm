@@ -183,6 +183,12 @@ div.subcontainer_h {
 div.subcontainer_c {
     padding: 3px;
 }
+p.da {
+    background-color: rgb(230,230,230);
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+}
 div.pure_li li {
     list-style: inherit !important;
     margin-left: 20px; /* Chrome Fix */
