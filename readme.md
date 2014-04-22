@@ -68,6 +68,7 @@ Cronjobs
 --------
 
   * Recalc Values | daily
+  * Update Index | hourly
   * Delete orphan files | as needed
   * Clean projects | daily
   * Clean users | daily
