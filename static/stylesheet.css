@@ -187,6 +187,7 @@ div.pure_li li {
     list-style: inherit !important;
     margin-left: 20px; /* Chrome Fix */
 }
+hr#divider { margin: 15px }
 .center { text-align: center }
 div.img_width img { max-width: 100%; }
 div.half {

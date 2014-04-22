@@ -38,7 +38,7 @@
             {% autoescape off %}
             {{ desc|default:"<p>No description given.</p>" }}
             {% endautoescape %}
-            <hr />
+            <hr id="divider" />
             <p>Date joined: {{ profile.date_joined|date:"Y-m-d" }}</p>
             <p>
             <form action="{% url 'reporting:r_user' profile.pk %}" method="POST">

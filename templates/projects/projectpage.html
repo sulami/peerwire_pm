@@ -32,7 +32,7 @@
     </div>
     <div class="subcontainer_c pure_li img_width ul_a">
         {% autoescape off %}{{ desc|default:"<p>No description given.</p>" }}{% endautoescape %}
-        <hr />
+        <hr id="divider" />
         {% if project.langs.exists %}
             <p>Languages used:<br />
             {{ project.langs.all|join:", " }}</p>
