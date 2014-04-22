@@ -31,6 +31,8 @@ table {
     max-width: 100%;
 }
 table.codehilitetable { margin: inherit !important }
+::selection { background: rgba(251,179,0,.5) }
+::-moz-selection { background: rgba(251,179,0,.5) }
 tr.hover:hover {
     background-color: rgb(230,230,230);
 }
