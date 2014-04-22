@@ -42,7 +42,8 @@ class ProjectForm(ModelForm):
         super(ProjectForm, self).__init__(*args, **kwargs)
         self.fields['name'].widget.attrs['placeholder'] = 'Required'
         self.fields['description'].widget.attrs['placeholder'] = project_ph
-
+        self.fields['langs'].queryset = Lang.objects.all().order_by('name')
+        self.fields['skills'].queryset = Skill.objects.all().order_by('name')
 
 class InputForm(Form):
     username = CharField(max_length=100)
