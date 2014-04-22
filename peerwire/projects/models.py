@@ -87,7 +87,7 @@ class Project(models.Model):
         User, related_name='projects_workingon', blank=True
         )
     level = models.CharField(
-        max_length=20,
+        max_length=8,
         choices=LEVEL_CHOICES,
         blank=False, default=''
         )
@@ -96,7 +96,7 @@ class Project(models.Model):
         ('Active', 'Active'),
     )
     status = models.CharField(
-        max_length= 10,
+        max_length= 8,
         choices=STATUS_CHOICES,
         blank=False, default='Active'
         )
@@ -128,7 +128,7 @@ class Project(models.Model):
 class UserLang(models.Model):
     lang = models.ForeignKey(Lang)
     user = models.ForeignKey(User)
-    level = models.CharField(max_length=10, choices=LEVEL_CHOICES)
+    level = models.CharField(max_length=8, choices=LEVEL_CHOICES)
 
     def __unicode__(self):
         return self.lang.name
@@ -136,7 +136,7 @@ class UserLang(models.Model):
 class UserSkill(models.Model):
     skill = models.ForeignKey(Skill)
     user = models.ForeignKey(User)
-    level = models.CharField(max_length=10, choices=LEVEL_CHOICES)
+    level = models.CharField(max_length=8, choices=LEVEL_CHOICES)
 
     def __unicode__(self):
         return self.skill.name
