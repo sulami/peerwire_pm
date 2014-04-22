@@ -10,7 +10,7 @@ Software Setup
 --------------
 
   * Nginx
-  * MySQL /w InnoDB
+  * MySQL w/ InnoDB
   * Elasticsearch (tested on 1.0.1)
   * Redis
   * Python (>= 2.7)
@@ -72,9 +72,9 @@ registration: /usr/lib/python2.7/site-packages/registration/auth_urls.py:
 Cronjobs
 --------
 
-  * Recalc Values | every 24h
+  * Recalc Values | daily
   * Delete orphan files | as needed
-  * Clean projects | as needed, daily
+  * Clean projects | daily
   * Clean users | daily
   * Generate Stats | as needed
 
