@@ -1,11 +1,6 @@
 Peerwire Project Management Platform
 ====================================
 
-TODO
-----
-
-  * featured projects
-
 Software Setup
 --------------
 
