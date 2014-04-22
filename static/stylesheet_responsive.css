@@ -51,7 +51,6 @@ div.sc_full {
         border: 1px rgb(200,200,200) solid;
         margin: 10px;
     }
-    div#container { width: calc(100% - 20px) }
     div#header {
         background-image: url('/static/composite_full.svg');
         background-position: top left;
@@ -73,5 +72,13 @@ div.sc_full {
     div.sc_small { width: calc(30% - 10px) }
     div.sc_large { width: calc(70% - 10px) }
     div.sc_full { width: calc(100% - 10px) }
+}
+@media screen and (max-width: 900px){
+    div#container { width: calc(100% - 20px) }
+    div.ad_left { display: none }
+}
+@media screen and (min-width: 901px) {
+    div#container { width: calc(100% - 192px) }
+    div.ad_left { display: none }
 }
 
