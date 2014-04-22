@@ -183,7 +183,7 @@ div.subcontainer_h {
 div.subcontainer_c {
     padding: 3px;
 }
-p.da {
+div.da {
     overflow: hidden;
     text-align: center;
     width: 100%;
@@ -212,12 +212,9 @@ div.avatar {
 span.mono { font-family: Inconsolata, Consolas, monospace !important }
 div.ad {
     background-color: white;
+    height: 600px;
     margin-top: 10px;
     width: 160px;
-}
-div.ad_left {
-    float: left;
-    margin-left: 10px;
 }
 div.ad_right {
     float: right;
