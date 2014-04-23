@@ -9,11 +9,14 @@ Software Setup
   * Elasticsearch (tested on 1.0.1)
   * Redis
   * Python (>= 2.7)
+  * Python-South
   * Python-pyelasticsearch (tested on 0.6.1)
   * Python-requests (tested on 2.2.1)
+  * Python-flup
   * Python-markdown (tested on 2.4)
   * Python-pygments (tested on 1.6)
-  * Python-pip (tested on 2.7.5)
+  * Python-pyaml
+  * Python-pil (tested on 2.7.5)
     * libjpeg-devel
     * libz-devel
     * libfreetype-devel
