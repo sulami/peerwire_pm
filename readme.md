@@ -6,11 +6,10 @@ Software Setup
 
   * Nginx
   * MySQL w/ InnoDB
-  * Elasticsearch (tested on 1.0.1)
+  * Whoosh
   * Redis
   * Python (>= 2.7)
   * Python-South
-  * Python-pyelasticsearch (tested on 0.6.1)
   * Python-requests (tested on 2.2.1)
   * Python-flup
   * Python-markdown (tested on 2.4)
