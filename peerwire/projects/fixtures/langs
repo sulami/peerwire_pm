@@ -36,7 +36,6 @@ Averest
 Awk
 Axiom
 B
-B
 Bash
 Basic
 BAL
@@ -51,7 +50,7 @@ BODOL
 Boo
 Bourne shell
 Bpel
-C
+Brainfuck
 C
 C--
 C++
@@ -72,7 +71,6 @@ Chrome
 ChucK
 Cilk
 Clarion
-Clay
 Clay
 Clean
 Clipper
@@ -96,11 +94,11 @@ Corn
 Cowsel
 CPL
 Crack
+CSS
 Csh
 Curl
 Curry
 Cyclone
-D
 D
 Databus
 Dark Basic
@@ -114,13 +112,12 @@ Disco
 DRAKON
 Dylan
 E
-E
 Ease
 ECMAScript
 Edinburgh IMP
 Eiffel
 Elan
-elastiC
+ElastiC
 Elixir
 Elm
 Emacs Lisp
@@ -133,7 +130,6 @@ Euclid
 Euphoria
 Euler
 Exec
-F
 F
 F#
 Fabric
@@ -151,7 +147,6 @@ Fortran
 Fortress
 FP
 Frink
-G
 G
 Gams
 Gml
@@ -184,7 +179,6 @@ Intercal
 IO
 Iswim
 J
-J
 Jade
 Jal
 Janus
@@ -202,7 +196,6 @@ JSP
 JScript
 Julia
 Jython
-K
 K
 Kid
 Kiev
@@ -230,9 +223,7 @@ Lush
 Lustre
 LYaPAS
 M
-M
 M#
-M
 M4
 MAD
 Magma
@@ -274,7 +265,7 @@ Noop
 Nu
 Nosica
 O
-o:Xml
+O:Xml
 Oberon
 Objective-C
 Objective Caml
@@ -322,12 +313,9 @@ Pure
 Purescript
 Python
 Q
-Q
 QuakeC
 QML
-QML
 Quorum
-R
 R
 R++
 Rascal
@@ -347,7 +335,6 @@ Rlab
 RSL
 Ruby
 Rust
-S
 S
 S2
 Sail
@@ -387,7 +374,6 @@ SuperCollider
 SuperX++
 SyncCharts
 Synergy/DE
-T
 T
 TACL
 Tacpol
@@ -459,13 +445,13 @@ XHTML
 XML
 XUL
 Aubit-4GL
-D4 or Dataphor
+Dataphor
 Dataflex
-dBase
+DBase
 Hypertalk
 Informix-4GL
-pl/SQL
+Pl/SQL
 SQL
 Tutorial D
 Visual Foxpro
-xBaseScript
+XBaseScript
