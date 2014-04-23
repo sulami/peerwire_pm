@@ -1,4 +1,4 @@
-from django.forms import ModelForm, BooleanField, CharField, Form
+from django.forms import ModelForm, BooleanField, CharField, Form, PasswordInput
 from projects.models import *
 from projects.texts import project_ph, user_ph
 
@@ -33,9 +33,9 @@ class UserForm(ModelForm):
         self.fields['email'].required = True
 
 class PasswordForm(Form):
-    old_pw = CharField(widget=forms.PasswordInput)
-    new_pw1 = CharField(widget=forms.PasswordInput)
-    new_pw2 = CharField(widget=forms.PasswordInput)
+    old_pw = CharField(widget=PasswordInput)
+    new_pw1 = CharField(widget=PasswordInput)
+    new_pw2 = CharField(widget=PasswordInput)
 
 class ProjectForm(ModelForm):
     class Meta:

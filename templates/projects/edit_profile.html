@@ -23,7 +23,7 @@
     </div>
     <div class="subcontainer_c center">
         <p>
-        <form action="{% url 'projects:edit_password' user.pk %}" method="POST">
+        <form action="{% url 'projects:edit_password' %}" method="POST">
             <table>
             {% csrf_token %}
             {{ pw_form.as_table }}

@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_headers
+from django.contrib.auth.hashers import check_password, make_password
 
 from projects.models import *
 from news.models import News
@@ -272,26 +273,25 @@ def edit_profile(request):
         'pw_form': pw_form,
         })
 
-def edit_password(request, profile_id):
+def edit_password(request):
     if not request.user.is_authenticated():
         return redirect('projects:index')
-    if not request.user == get_object_or_404(User, pk=profile_id):
-        return redirect('projects:index')
+    profile = get_object_or_404(User, pk=request.user.pk)
     if request.method == 'POST':
         form = PasswordForm(request.POST)
         if form.is_valid():
             if check_password(
                 form.cleaned_data.get('old_pw'),
-                request.user.PasswordForm
+                request.user.password
                 ):
                 if form.cleaned_data.get(
                     'new_pw1') == form.cleaned_data.get('new_pw2'):
                     pw = make_password(form.cleaned_data.get('new_pw1'))
                     request.user.password = pw
                     request.user.save()
-                    request.user.email_user(pw_changed)
+                    request.user.email_user('Your password has been changed', pw_changed)
                     messages.success(request, changes_saved)
-                    return redirect('projects:profilepage', profile_id)
+                    return redirect('projects:profilepage', profile.pk)
                 else:
                     messages.error(request, "New passwords did not match.")
             else:

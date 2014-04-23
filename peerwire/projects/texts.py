@@ -87,6 +87,10 @@ changes_saved = """
 Your changes have been saved.
 """
 
+pw_changed = """
+Your password has been changed. If you did not do this, you might want to investigate further.
+"""
+
 last_owner = """
 You cannot resign from this project because you are the only owner.
 """
