@@ -41,22 +41,22 @@
         </ol>
     </div>
 </div>
-<div class="subcontainer sc_large left">
-    <div class="subcontainer_h">
-        Recommended projects
-    </div>
-    <div class="subcontainer_c">
-        <ol>
-        {% if user.is_authenticated %}
+{% if request.user.is_authenticated %}
+    <div class="subcontainer sc_large left">
+        <div class="subcontainer_h">
+            Recommended projects
+        </div>
+        <div class="subcontainer_c">
+            <ol>
             {% for project in recommended %}
                 <li><a href="{% url 'projects:projectpage' project.id %}">{{ project }}</a></li>
             {% empty %}
                     No recommended projects
             {% endfor %}
-        {% endif %}
-        </ol>
+            </ol>
+        </div>
     </div>
-</div>
+{% endif %}
 <div class="subcontainer sc_large left">
     <div class="subcontainer_h">
         Trending projects
