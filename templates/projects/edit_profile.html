@@ -19,6 +19,22 @@
     </div>
     <div class="subcontainer sc_full">
     <div class="subcontainer_h">
+        Change Password
+    </div>
+    <div class="subcontainer_c center">
+        <p>
+        <form action="{% url 'projects:edit_password' user.pk %}" method="POST">
+            <table>
+            {% csrf_token %}
+            {{ pw_form.as_table }}
+            <tr><td></td><td><input type="submit" value="Save" /></td></tr>
+            </table>
+        </form>
+        </p>
+    </div>
+    </div>
+    <div class="subcontainer sc_full">
+    <div class="subcontainer_h">
         Delete Profile
     </div>
     <div class="subcontainer_c center">

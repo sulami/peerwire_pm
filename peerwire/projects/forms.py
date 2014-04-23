@@ -32,6 +32,11 @@ class UserForm(ModelForm):
         self.fields['description'].widget.attrs['placeholder'] = user_ph
         self.fields['email'].required = True
 
+class PasswordForm(Form):
+    old_pw = CharField(widget=forms.PasswordInput)
+    new_pw1 = CharField(widget=forms.PasswordInput)
+    new_pw2 = CharField(widget=forms.PasswordInput)
+
 class ProjectForm(ModelForm):
     class Meta:
         model = Project

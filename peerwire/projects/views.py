@@ -266,7 +266,37 @@ def edit_profile(request):
             return redirect('projects:profilepage', profile.pk)
     else:
         form = UserForm(instance=profile)
-    return render(request, 'projects/edit_profile.html', {'form': form})
+        pw_form = PasswordForm()
+    return render(request, 'projects/edit_profile.html', {
+        'form': form,
+        'pw_form': pw_form,
+        })
+
+def edit_password(request, profile_id):
+    if not request.user.is_authenticated():
+        return redirect('projects:index')
+    if not request.user == get_object_or_404(User, pk=profile_id):
+        return redirect('projects:index')
+    if request.method == 'POST':
+        form = PasswordForm(request.POST)
+        if form.is_valid():
+            if check_password(
+                form.cleaned_data.get('old_pw'),
+                request.user.PasswordForm
+                ):
+                if form.cleaned_data.get(
+                    'new_pw1') == form.cleaned_data.get('new_pw2'):
+                    pw = make_password(form.cleaned_data.get('new_pw1'))
+                    request.user.password = pw
+                    request.user.save()
+                    request.user.email_user(pw_changed)
+                    messages.success(request, changes_saved)
+                    return redirect('projects:profilepage', profile_id)
+                else:
+                    messages.error(request, "New passwords did not match.")
+            else:
+                messages.error(request, "Old password does not match.")
+    return redirect('projects:edit_profile')
 
 def delete_profile(request, profile_id):
     if not request.user.is_authenticated():
