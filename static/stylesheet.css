@@ -82,6 +82,7 @@ select, textarea {
 }
 select[multiple] {
     overflow: hidden;
+    resize: vertical;
 }
 input[type="checkbox"] {
     outline: transparent;
