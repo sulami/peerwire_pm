@@ -1,13 +1,11 @@
 project_ph = """
-You can use Markdown here (http://daringfireball.net/projects/markdown/syntax).
- You also might want to include a way to contact the person responsible for this
- project, like an email address or an irc channel. This help text will not
+You might want to include a way to contact the person responsible for this
+ project, like an email address or an IRC channel. This help text will not
  appear in the description.
 """
 
 user_ph = """
-You can use Markdown here (http://daringfireball.net/projects/markdown/syntax).
- You also might want to include a way to contact you, like an email address.
+You might want to include a way to contact you, like an email address.
  This help text will not appear in the description.
 """
 

@@ -30,6 +30,10 @@ class UserForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(UserForm, self).__init__(*args, **kwargs)
         self.fields['description'].widget.attrs['placeholder'] = user_ph
+        self.fields['description'].help_text = (
+            'You can use \
+            <a href="http://daringfireball.net/projects/markdown/syntax">\
+            Markdown</a> here')
         self.fields['email'].required = True
 
 class PasswordForm(Form):
@@ -47,6 +51,10 @@ class ProjectForm(ModelForm):
         super(ProjectForm, self).__init__(*args, **kwargs)
         self.fields['name'].widget.attrs['placeholder'] = 'Required'
         self.fields['description'].widget.attrs['placeholder'] = project_ph
+        self.fields['description'].help_text = (
+            'You can use \
+            <a href="http://daringfireball.net/projects/markdown/syntax">\
+            Markdown</a> here')
         self.fields['langs'].queryset = Lang.objects.all().order_by('name')
         self.fields['skills'].queryset = Skill.objects.all().order_by('name')
 
