@@ -27,7 +27,70 @@
     </div>
 </div>
 {% if query %}
-    <div class="subcontainer sc_full">
+<div class="subcontainer sc_small left">
+    <div class="subcontainer_h">
+        Specify search
+    </div>
+    <div class="subcontainer_c">
+    <table class="search">
+    {% if facets.fields.status %}
+        <tr><td>
+        Status:
+        </td>
+        {% for status in facets.fields.status %}
+            {% if forloop.counter0 != 0 %}
+                <tr><td></td>
+            {% endif %}
+            <td class="right">
+            <a href="{{ request.get_full_path }}&amp;selected_facets=status_exact:{{ status.0|urlencode }}">
+                {{ status.0 }}
+            </a>
+            <span style="color: rgb(170,170,170)">
+                ({{ status.1 }})
+            </span>
+            </td></tr>
+        {% endfor %}
+    {% endif %}
+    {% if facets.fields.seeking %}
+        <tr><td>
+        Seeking:
+        </td>
+        {% for seeking in facets.fields.seeking %}
+            {% if forloop.counter0 != 0 %}
+                <tr class="right"><td></td>
+            {% endif %}
+            <td class="right">
+            <a href="{{ request.get_full_path }}&amp;selected_facets=seeking_exact:{{ seeking.0|urlencode }}">
+                {{ seeking.0 }}
+            </a>
+            <span style="color: rgb(170,170,170)">
+                ({{ seeking.1 }})
+            </span>
+            </td></tr>
+        {% endfor %}
+    {% endif %}
+    {% if facets.fields.level %}
+        <tr><td>
+        Level:
+        </td>
+        {% for level in facets.fields.level %}
+            {% if forloop.counter0 != 0 %}
+                <tr class="right"><td></td>
+            {% endif %}
+            <td class="right">
+            <a href="{{ request.get_full_path }}&amp;selected_facets=level_exact:{{ level.0|urlencode }}">
+                {{ level.0 }}
+            </a>
+            <span style="color: rgb(170,170,170)">
+                ({{ level.1 }})
+            </span>
+            </td></tr>
+        {% endfor %}
+    {% endif %}
+    </table>
+    </div>
+    </div>
+    <div class="subcontainer sc_large right">
     <div class="subcontainer_h">
         Results
     </div>

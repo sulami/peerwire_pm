@@ -1,7 +1,4 @@
 {{ object.name }}
-{{ object.status }}
-{{ object.level }}
-{{ object.seeking }}
 {{ object.desc }}
 {% for o in object.langs.all %}
     {{ o.name }}

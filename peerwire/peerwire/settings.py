@@ -1,6 +1,6 @@
 # Django settings for peerwire project.
 
-DEBUG = False
+DEBUG = True
 # TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -211,8 +211,10 @@ ACCOUNT_ACTIVATION_DAYS = 7
 import os
 HAYSTACK_CONNECTIONS = {
     'default': {
-        'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
-        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+        #'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        #'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+        'ENGINE': 'xapian_backend.XapianEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'xapian_index'),
     },
 }
 

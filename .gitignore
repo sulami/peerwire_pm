@@ -5,4 +5,5 @@ recursion.py
 art/
 media/
 peerwire/peerwire/whoosh_index
+peerwire/peerwire/xapian_index
 
