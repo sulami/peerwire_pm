@@ -3,6 +3,3 @@
 {% for o in object.langs.all %}
     {{ o.name }}
 {% endfor %}
-{% for o in object.skills.all %}
-    {{ o.name }}
-{% endfor %}

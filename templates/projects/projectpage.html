@@ -48,10 +48,6 @@
             <p>Languages used:<br />
             {{ project.langs.all|join:", " }}</p>
         {% endif %}
-        {% if project.skills.exists %}
-            <p>Skills used:<br />
-            {{ project.skills.all|join:", " }}</p>
-        {% endif %}
         <p>
         Project started: {{ project.pub_date|date:"Y-m-d" }}<br />
         Last change: {{ project.change_date|date:"Y-m-d" }}<br />

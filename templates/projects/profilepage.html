@@ -13,7 +13,6 @@
             <ul>
                 <li><a href="{% url 'projects:edit_profile' %}">Edit Profile</a></li>
                 <li><a href="{% url 'projects:edit_langs' %}">Edit Languages</a></li>
-                <li><a href="{% url 'projects:edit_skills' %}">Edit Skills</a></li>
             </ul>
             </div>
         </div>
@@ -66,20 +65,6 @@
         <div class="subcontainer_c">
             <ul>
             {% for l in profile.userlang_set.all %}
-                <li><a href="{% url 'haystack:haystack_search' %}?q={{ l|urlencode }}">{{ l }}</a> ({{ l.level }})</li>
-            {% empty %}
-                None
-            {% endfor %}
-            </ul>
-        </div>
-    </div>
-    <div class="subcontainer sc_small right">
-        <div class="subcontainer_h">
-            Skills
-        </div>
-        <div class="subcontainer_c">
-            <ul>
-            {% for l in profile.userskill_set.all %}
                 <li><a href="{% url 'haystack:haystack_search' %}?q={{ l|urlencode }}">{{ l }}</a> ({{ l.level }})</li>
             {% empty %}
                 None

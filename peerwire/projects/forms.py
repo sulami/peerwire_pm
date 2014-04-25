@@ -12,16 +12,6 @@ class UserLangForm(ModelForm):
         super(UserLangForm, self).__init__(*args, **kwargs)
         self.fields['lang'].queryset = Lang.objects.all().order_by('name')
 
-class UserSkillForm(ModelForm):
-    class Meta:
-        model = UserSkill
-        fields = ['skill', 'level']
-    delete = BooleanField(required=False)
-
-    def __init__(self, *args, **kwargs):
-        super(UserSkillForm, self).__init__(*args, **kwargs)
-        self.fields['skill'].queryset = Skill.objects.all().order_by('name')
-
 class UserForm(ModelForm):
     class Meta:
         model = User
@@ -44,8 +34,7 @@ class PasswordForm(Form):
 class ProjectForm(ModelForm):
     class Meta:
         model = Project
-        fields = ['name', 'description', 'langs', 'skills', 'level', 'status',
-            'seeking']
+        fields = ['name', 'description', 'langs', 'level', 'status', 'seeking']
 
     def __init__(self, *args, **kwargs):
         super(ProjectForm, self).__init__(*args, **kwargs)
@@ -56,7 +45,6 @@ class ProjectForm(ModelForm):
             <a href="http://daringfireball.net/projects/markdown/syntax">\
             Markdown</a> here')
         self.fields['langs'].queryset = Lang.objects.all().order_by('name')
-        self.fields['skills'].queryset = Skill.objects.all().order_by('name')
 
 class InputForm(Form):
     username = CharField(max_length=100)

@@ -30,9 +30,7 @@ def index(request):
             ).exclude(users__in=[request.user,])
         userlangs = request.user.userlang_set.all().values('lang')
         r_langs = proper.filter(langs__in=userlangs).distinct()
-        userskills = request.user.userskill_set.all().values('skill')
-        r_skills = r_langs.filter(skills__in=userskills)
-        context['recommended'] = r_skills.order_by('users')[:5]
+        context['recommended'] = r_langs.order_by('users')[:5]
     return render(request, 'projects/index.html', context)
 
 def projectpage(request, project_id):
@@ -289,7 +287,8 @@ def edit_password(request):
                     pw = make_password(form.cleaned_data.get('new_pw1'))
                     request.user.password = pw
                     request.user.save()
-                    request.user.email_user('Your password has been changed', pw_changed)
+                    request.user.email_user('Your password has been changed',
+                        pw_changed)
                     messages.success(request, changes_saved)
                     return redirect('projects:profilepage', profile.pk)
                 else:
@@ -355,36 +354,6 @@ def edit_langs(request):
             queryset=UserLang.objects.filter(user=request.user)
             )
     return render(request, 'projects/edit_langs.html', {'form': formset})
-
-def edit_skills(request):
-    if not request.user.is_authenticated():
-        return redirect('projects:index')
-    profile = get_object_or_404(User, pk=request.user.pk)
-    SkillFormSet = modelformset_factory(
-        UserSkill,
-        form=UserSkillForm,
-        )
-    if request.method == 'POST':
-        formset = SkillFormSet(
-            request.POST,
-            queryset=UserSkill.objects.filter(user=request.user)
-            )
-        if formset.is_valid():
-            for form in formset.forms:
-                if form.has_changed():
-                    instance = form.save(commit=False)
-                    if form.cleaned_data.get('delete'):
-                        instance.delete()
-                    else:
-                        instance.user = request.user
-                        instance.save()
-            messages.success(request, changes_saved)
-            return redirect('projects:profilepage', profile.pk)
-    else:
-        form = SkillFormSet(
-            queryset=UserSkill.objects.filter(user=request.user)
-            )
-    return render(request, 'projects/edit_skills.html', {'form': form})
 
 @cache_page(60 * 60)
 @vary_on_headers('Cookie')

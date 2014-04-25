@@ -56,12 +56,6 @@ class Lang(models.Model):
     def __unicode__(self):
         return self.name
 
-class Skill(models.Model):
-    name = models.CharField(max_length=50)
-
-    def __unicode__(self):
-        return self.name
-
 class User(AbstractUser):
     avatar = models.ImageField(upload_to='avatars', blank=True)
     description = models.TextField(blank=True)
@@ -82,7 +76,6 @@ class Project(models.Model):
     owners = models.ManyToManyField(User, related_name='projects_owned')
     description = models.TextField(blank=True)
     langs = models.ManyToManyField(Lang, blank=True)
-    skills = models.ManyToManyField(Skill, blank=True)
     users = models.ManyToManyField(
         User, related_name='projects_workingon', blank=True
         )
@@ -132,14 +125,6 @@ class UserLang(models.Model):
 
     def __unicode__(self):
         return self.lang.name
-
-class UserSkill(models.Model):
-    skill = models.ForeignKey(Skill)
-    user = models.ForeignKey(User)
-    level = models.CharField(max_length=8, choices=LEVEL_CHOICES)
-
-    def __unicode__(self):
-        return self.skill.name
 
 class Credit(models.Model):
     user = models.ForeignKey(User)
