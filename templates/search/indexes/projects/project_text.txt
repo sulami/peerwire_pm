@@ -1,5 +1,11 @@
 {{ object.name }}
-{{ object.desc }}
+{{ object }}
+{{ object.project_root }}
+{{ object.description }}
 {% for o in object.langs.all %}
     {{ o.name }}
 {% endfor %}
+{{ object.level }}
+{{ object.status }}
+{{ object.seeking }}
+
