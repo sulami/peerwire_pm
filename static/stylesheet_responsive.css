@@ -75,10 +75,10 @@ div.sc_full {
 }
 @media screen and (max-width: 900px){
     div#container { width: calc(100% - 20px) }
-    div.ad_left { display: none }
+    div.ad_right { display: none }
 }
 @media screen and (min-width: 901px) {
     div#container { width: calc(100% - 192px) }
-    div.ad_left { display: none }
+    div.ad_right { display: block }
 }
 
