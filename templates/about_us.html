@@ -5,10 +5,24 @@
 {% block content %}
 <div class="subcontainer sc_full">
     <div class="subcontainer_h">
-        About us
+        About Peerwire
     </div>
     <div class="subcontainer_c">
-        <p>Well, yeah... will be written one day.</p>
+        <p>Peerwire is a platform about organizing your project and helping the right people find them. It is
+        mainly targeted at software projects, but may be used in any way possible. Let's play through an
+        example:</p>
+
+        <p>Steve and Bob want to make a mobile game inspired by Tetris, which they want to call "Megablox".
+        But making a game is too much for to do on their own, so they need to find other people interested
+        in joining.</p>
+
+        {% load staticfiles %}
+        <img src="{% static 'intro.png' %}" style="display: block; margin: auto; max-width: 100%" />
+
+        <h3 style="color:black; font-weight: normal">TL,DR;</h3>
+        <p>You can use an infinite amount of subprojects divide and conquer your project, isolating single tasks
+        and attract specialists for the ones you need help with. This way, you generate what we call the
+        project tree, which allows you to drill down into more and more specific areas of your project.</p>
     </div>
 </div>
 {% endblock %}

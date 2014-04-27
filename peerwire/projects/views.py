@@ -355,12 +355,12 @@ def edit_langs(request):
             )
     return render(request, 'projects/edit_langs.html', {'form': formset})
 
-# @cache_page(60 * 60)
-# @vary_on_headers('Cookie')
-# def about_us(request):
-#     return render(request, 'about_us.html')
+@cache_page(60 * 60)
+@vary_on_headers('Cookie')
 def about_us(request):
-    return redirect('projects:projectpage', 2)
+    return render(request, 'about_us.html')
+# def about_us(request):
+#     return redirect('projects:projectpage', 2)
 
 @cache_page(60 * 60)
 @vary_on_headers('Cookie')
