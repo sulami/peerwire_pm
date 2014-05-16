@@ -11,9 +11,9 @@ from projects.models import *
 from news.models import News
 from projects.forms import *
 from projects.texts import *
+from projects.functions import markdown
 
 import datetime
-import markdown
 import Image
 
 def index(request):
@@ -38,15 +38,7 @@ def projectpage(request, project_id):
     if project.status == 'Active':
         project.value += 1
         project.save()
-    context = {
-        'project': project,
-        'desc': markdown.markdown(
-            project.description,
-            safe_mode='escape',
-            output_format='html5',
-            extensions=['codehilite(noclasses=true,pygments_style=friendly)']
-            )
-        }
+    context = {'project': project, 'desc': markdown(project.description)}
     return render(request, 'projects/projectpage.html', context)
 
 def edit_project(request, project_id):
@@ -223,15 +215,7 @@ def finishwork(request, project_id):
 
 def profilepage(request, profile_id):
     profile = get_object_or_404(User, pk=profile_id)
-    context = {
-        'profile': profile,
-        'desc': markdown.markdown(
-            profile.description,
-            safe_mode='escape',
-            output_format='html5',
-            extensions=['codehilite(noclasses=true,pygments_style=friendly)']
-            )
-        }
+    context = {'profile': profile, 'desc': markdown(profile.description)}
     return render(request, 'projects/profilepage.html', context)
 
 def edit_profile(request):
